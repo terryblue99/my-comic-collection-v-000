@@ -1,5 +1,5 @@
 {
-  "name": "my-watch-collection-front",
+  "name": "my-comic-collection-front",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001/",
