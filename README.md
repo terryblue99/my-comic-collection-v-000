@@ -2,9 +2,9 @@
 
 APP
 
-my-watch-collection-v-004
+my-comic-collection-v-000
 
-Catalog a watch collection - (React/Redux/Hooks & Rails API version) (MySQL DB)
+Catalog a comic collection - (React/Redux/Hooks & Rails API version) (MySQL DB)
 
 INSTALLATION, USAGE & DEVELOPMENT
 
@@ -22,7 +22,7 @@ Run the following commands in your terminal:
 
     Creates the tables, then runs the migrations
 
-5. cd my-watch-collection-front
+5. cd my-comic-collection-front
 
 6. npm install
 
@@ -32,7 +32,7 @@ Run the following commands in your terminal:
 
     Starts the React app on the 3000 port and the API server on the 3001 port
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/terryblue99/my-watch-collection-v-004. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the "Contributor Covenant" code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/terryblue99/my-comic-collection-v-000. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the "Contributor Covenant" code of conduct.
 
 LICENSE
 
