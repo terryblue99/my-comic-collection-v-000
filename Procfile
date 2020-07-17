@@ -1,2 +1,2 @@
-web: cd my-watch-collection-front && npm start
+web: cd my-comic-collection-front && npm start
 api: bundle exec rails s -p 3001
