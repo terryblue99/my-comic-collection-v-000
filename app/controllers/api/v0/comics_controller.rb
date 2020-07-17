@@ -45,9 +45,9 @@ class Api::V0::ComicsController < ApplicationController
           :comic_number
           :year_published,
           :cost,
-          :user_id,
           :notes,
-          :image
+          :image,
+          :user_id
       )
   end
   
