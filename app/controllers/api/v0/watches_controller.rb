@@ -1,10 +1,10 @@
-class Api::V0::WatchesController < ApplicationController
+class Api::V0::ComicsController < ApplicationController
 
   before_action :set_watch, only: [:update, :destroy]
 
   def index
-      @watches = Watch.where(user_id: params[:user_id]).with_attached_image
-      render json: @watches.map { |watch|
+      @comics = Watch.where(user_id: params[:user_id]).with_attached_image
+      render json: @comics.map { |watch|
           watch.as_json.merge({ image: url_for(watch.image) })
       } 
   end

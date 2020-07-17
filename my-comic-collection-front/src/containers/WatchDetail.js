@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { deleteWatchAction } from '../actions/watchesActions'
+import { deleteWatchAction } from '../actions/comicsActions'
 import DashboardMain from './DashboardMain'
 import RedirectTo from '../components/RedirectTo'
 import RedirectToWithState from '../components/RedirectToWithState'
@@ -9,9 +9,9 @@ import RedirectToWithState from '../components/RedirectToWithState'
 const WatchDetail = (props) => { 
 
     const [stateData, setStateData] = useState({isBackToDashboard: false, isWatchDeleted: false})
-    const isSort = useSelector(state => state.myWatches.isSort)
-    const watchRelated = useSelector(state => state.myWatches.watchRelated) // For records that are not related to a specific watch.
-    const isSearchFailed = useSelector(state => state.myWatches.isSearchFailed)
+    const isSort = useSelector(state => state.myComics.isSort)
+    const watchRelated = useSelector(state => state.myComics.watchRelated) // For records that are not related to a specific watch.
+    const isSearchFailed = useSelector(state => state.myComics.isSearchFailed)
     const dispatch = useDispatch()
 
     const handleDelete = () => {
@@ -204,7 +204,7 @@ const WatchDetail = (props) => {
                         {!watch_maker.includes(watchRelated)
                             ? <>
                                 <Link className='btn Edit-button Button-text Center-text' to={{
-                                        pathname: `/watches/${id}/edit_watch`,
+                                        pathname: `/comics/${id}/edit_watch`,
                                         state: {
                                             watch: currentWatch
                                         }
@@ -214,7 +214,7 @@ const WatchDetail = (props) => {
                             </>
                             : <>
                                 <Link className='btn Edit-button Button-text Center-text' to={{
-                                        pathname: `/watches/${id}/edit_watch_related`,
+                                        pathname: `/comics/${id}/edit_watch_related`,
                                         state: {
                                             watch: currentWatch,
                                             isEditWatchRelated: true
@@ -236,7 +236,7 @@ const WatchDetail = (props) => {
         return <DashboardMain   newestWatch={props.newestWatch}
                                 oldestWatch={props.oldestWatch}
                                 setCurrentWatch={props.setCurrentWatch}
-                                filteredWatches={props.filteredWatches}
+                                filteredComics={props.filteredComics}
                                 filteredWatchRelated={props.filteredWatchRelated}
                                 sortOptionSelected={props.sortOptionSelected}
                                 DashBoardHistory={props.DashBoardHistory}              

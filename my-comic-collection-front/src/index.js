@@ -11,7 +11,7 @@ import * as serviceWorker from './serviceWorker'
 
 const rootReducer = combineReducers({
     currentUser: currentUserReducer,
-    myWatches: watchReducer 
+    myComics: watchReducer 
 })
 
 const store = createStore(

@@ -2,22 +2,22 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch} from 'react-redux'
 import { hashHistory } from 'react-router' // Used to change URL without a re-render
 import logo from '../images/logo.jpg'
-import { sortWatchesAction, resetWatchesAction, resetSearchFailedAction, resetSortAction } from '../actions/watchesActions'
+import { sortComicsAction, resetComicsAction, resetSearchFailedAction, resetSortAction } from '../actions/comicsActions'
 import RedirectToWithState from "../components/RedirectToWithState"
 
 const DashboardMain = (props) => {
 
   const [stateData, setStateData] = useState({isSortRequired: false, sortOptionSelected: ''})
-  const savedWatches = useSelector(state => state.myWatches.savedWatches)
-  const watchRelated = useSelector(state => state.myWatches.watchRelated) // For records that are not related to a specific watch.
-  const sortDefaultText = useSelector(state => state.myWatches.sortDefaultText)
-  const isSearchFailed = useSelector(state => state.myWatches.isSearchFailed)
+  const savedComics = useSelector(state => state.myComics.savedComics)
+  const watchRelated = useSelector(state => state.myComics.watchRelated) // For records that are not related to a specific watch.
+  const sortDefaultText = useSelector(state => state.myComics.sortDefaultText)
+  const isSearchFailed = useSelector(state => state.myComics.isSearchFailed)
   const dispatch = useDispatch()
 
   const handleSelectedSortKey = (event) =>  {
     event.preventDefault()
     const {value} = event.target
-    dispatch(sortWatchesAction(value))
+    dispatch(sortComicsAction(value))
     setStateData(prevStateData => {
       return {
         ...prevStateData,
@@ -37,10 +37,10 @@ const DashboardMain = (props) => {
   let oldestWatchMaker
   let oldestWatchDate
 
-  let number_of_watches = 0
+  let number_of_comics = 0
   let number_of_watcheRelated = 0
 
-  const number_of_saved_watches = Object.keys(savedWatches).length
+  const number_of_saved_comics = Object.keys(savedComics).length
   const sortElement = [
     <>
       <h2 className='Center-text'>Sort By</h2>
@@ -73,7 +73,7 @@ const DashboardMain = (props) => {
     <>
       <h2 className="Welcome-text-header Center-text">Welcome</h2>
       <p className="Welcome-text Center-text"><b>Please click on the ADD WATCH button</b></p>
-      <p className="Welcome-text Center-text"><b>to start cataloging your watches</b></p>
+      <p className="Welcome-text Center-text"><b>to start cataloging your comics</b></p>
     </>
   ]
 
@@ -89,7 +89,7 @@ const DashboardMain = (props) => {
       oldestWatchMaker = props.oldestWatch.watch_maker
       oldestWatchDate = props.oldestWatch.date_bought
 
-      number_of_watches = Object.keys(props.filteredWatches).length
+      number_of_comics = Object.keys(props.filteredComics).length
   }
 
   if (props.filteredWatchRelated) {
@@ -126,12 +126,12 @@ const DashboardMain = (props) => {
     <div className='DashboardMain'>
 
       <div className='Dashboard-item Dashboard-initialList'>
-        { number_of_saved_watches > 1
+        { number_of_saved_comics > 1
           ? <>
               <button className='btn FullList-button Button-text' 
                 // Fetch all records and delete the DashBoard history location state
                 // so that the initial sort option text can be displayed
-                onClick={() => {  dispatch(resetWatchesAction())
+                onClick={() => {  dispatch(resetComicsAction())
                                   if (props.DashBoardHistory && props.DashBoardHistory.location.state) {
                                         delete props.DashBoardHistory.location.state                                                                               
                                   }             
@@ -143,8 +143,8 @@ const DashboardMain = (props) => {
           : null
         }
         <br />
-        { number_of_watches > 0
-            ? <p className='Dashboard-totalWatches Center-text'>Total watches: <span className='Watch-total'>{number_of_watches}</span></p>
+        { number_of_comics > 0
+            ? <p className='Dashboard-totalComics Center-text'>Total comics: <span className='Watch-total'>{number_of_comics}</span></p>
             : null
         }
         { number_of_watcheRelated > 0
@@ -154,18 +154,18 @@ const DashboardMain = (props) => {
       </div>
       <div className='Dashboard-item Dashboard-sort'> 
         <h1 className='Dashboard-header Dark-red-color Center-text'>Dashboard</h1>
-        { number_of_watches > 1 
+        { number_of_comics > 1 
             && an_oldest_watch_exists
             && a_newest_watch_exists
           ? sortElement
           : null
         }
-        { number_of_watches === 0 && number_of_saved_watches === 0
+        { number_of_comics === 0 && number_of_saved_comics === 0
           ? welcome
           : null
         }
       </div>
-      { number_of_watches !== 0 && number_of_saved_watches !== 0
+      { number_of_comics !== 0 && number_of_saved_comics !== 0
           ? <div className='Dashboard-item'>
               <iframe className='Dashboard-time' 
                       title='clockFrame' 
@@ -178,7 +178,7 @@ const DashboardMain = (props) => {
           : null
       }
       <div className='Dashboard-item Dashboard-newestWatch Dashboard-watch-image'>
-        {number_of_watches > 1 && a_newest_watch_exists
+        {number_of_comics > 1 && a_newest_watch_exists
           ? <>
               <h2 className='Dashboard-watchText Newest-watch Center-text'>Newest Watch</h2>
               <h3 className='Dashboard-watchText-new Center-text'>{newestWatchMaker}</h3>
@@ -186,18 +186,18 @@ const DashboardMain = (props) => {
             </>
           : null
         }
-        {number_of_watches === 1 && a_newest_watch_exists
+        {number_of_comics === 1 && a_newest_watch_exists
           ? <>
               <h3 className='Dashboard-watchText-new Center-text'>{newestWatchMaker}</h3>
               <h4 className='Dashboard-watchText-new Center-text'>{newestWatchDate}</h4>
             </>
           : null
         }
-        {number_of_watches > 0 && a_newest_watch_exists
+        {number_of_comics > 0 && a_newest_watch_exists
           ? <span className='Image-link' 
                   onClick={() => { 
                     dispatch(resetSortAction())
-                    hashHistory.push(`/watches/${props.newestWatch.id}/watch_detail`) // set the url for the watch
+                    hashHistory.push(`/comics/${props.newestWatch.id}/watch_detail`) // set the url for the watch
                     props.setCurrentWatch(props.newestWatch)
                   }}>
                   <img src={newestWatchImage} alt='newest watch' className='Watch-image Dashboard-watch-image'/>
@@ -206,7 +206,7 @@ const DashboardMain = (props) => {
         }
         <br />
       </div>
-      {number_of_watches !== 0 && number_of_saved_watches !== 0
+      {number_of_comics !== 0 && number_of_saved_comics !== 0
         ? <div className='Dashboard-item Dashboard-logo'>
             <img src={logo} alt='logo' />
           </div>
@@ -215,7 +215,7 @@ const DashboardMain = (props) => {
         
       <br />
       <div className='Dashboard-item Dashboard-oldestWatch Dashboard-watch-image'>
-        {number_of_watches > 1 && an_oldest_watch_exists
+        {number_of_comics > 1 && an_oldest_watch_exists
           ? <>
               <h2 className='Dashboard-watchText Oldest-watch Center-text'>Oldest Watch</h2>
               <h3 className='Dashboard-watchText-old Center-text'>{oldestWatchMaker}</h3>
@@ -223,18 +223,18 @@ const DashboardMain = (props) => {
             </>
           : null
         }
-        {number_of_watches === 1 && an_oldest_watch_exists
+        {number_of_comics === 1 && an_oldest_watch_exists
           ? <>
               <h3 className='Dashboard-watchText-old Center-text'>{oldestWatchMaker}</h3>
               <h4 className='Dashboard-watchText-old Center-text'>{oldestWatchDate}</h4>
             </>
           : null
         }
-        {number_of_watches > 0 && an_oldest_watch_exists
+        {number_of_comics > 0 && an_oldest_watch_exists
           ? <span className='Image-link' 
                 onClick={() => { 
                   dispatch(resetSortAction())
-                  hashHistory.push(`/watches/${props.oldestWatch.id}/watch_detail`) // set the url for the watch
+                  hashHistory.push(`/comics/${props.oldestWatch.id}/watch_detail`) // set the url for the watch
                   props.setCurrentWatch(props.oldestWatch)
                 }}>
               <img src={oldestWatchImage} alt='oldest watch' className='Watch-image Dashboard-watch-image'/>

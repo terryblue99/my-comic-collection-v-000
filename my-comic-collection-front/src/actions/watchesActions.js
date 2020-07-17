@@ -11,42 +11,42 @@ import {
 import _ from 'lodash'
 
 const API_URL = '/api/v0'
-let sortedWatches
+let sortedComics
 
-export const getWatchesAction = (user_id, isSearchFailed = false) => {
+export const getComicsAction = (user_id, isSearchFailed = false) => {
 	// Thunk middleware knows how to handle functions.
 	// It passes the dispatch method as an argument to the function,
 	// thus making it able to dispatch actions itself.
 	return dispatch => {
 
-		return fetch(`${API_URL}/watches/?user_id=${user_id}`)
+		return fetch(`${API_URL}/comics/?user_id=${user_id}`)
 		.then(response => {
 			if (response.error) {
-				alert('*** getWatchesAction ERROR 1: ' + response.error.message)
+				alert('*** getComicsAction ERROR 1: ' + response.error.message)
 			} else {
 				return response.json()
 			}
 		})
 		.then(response => {
-			// Sort the watches using the underscore functions _.chain & _.sortBy
+			// Sort the comics using the underscore functions _.chain & _.sortBy
 			// Sort by watch name within watch maker for the initial dashboard screen
-			sortedWatches = _.chain(response)
+			sortedComics = _.chain(response)
 				.sortBy('watch_name')
 				.sortBy('watch_maker')
 				.value()
 			// Update watch states with the sorted result
 			dispatch({
 				type: GET_WATCHES, 
-				payload: {sortedWatches, isSearchFailed}
+				payload: {sortedComics, isSearchFailed}
 			})
 		})
 		.catch(error => {
-			console.log('*** getWatchesAction ERROR 2: ' + error.message)
+			console.log('*** getComicsAction ERROR 2: ' + error.message)
 		})
 	}
 }
 
-export const sortWatchesAction = (sortKey) => {
+export const sortComicsAction = (sortKey) => {
 	return dispatch => {
 		dispatch({
 			type: sortKey
@@ -54,7 +54,7 @@ export const sortWatchesAction = (sortKey) => {
 	}		
 }
 
-export const searchWatchesAction = (searchText) => {
+export const searchComicsAction = (searchText) => {
 	return dispatch => {
 		dispatch({
 			type: RESET_WATCHES
@@ -67,7 +67,7 @@ export const searchWatchesAction = (searchText) => {
 	}		
 }
 
-export const resetWatchesAction = () => {
+export const resetComicsAction = () => {
 	return dispatch => {
 		dispatch({
 			type: RESET_WATCHES
@@ -94,7 +94,7 @@ export const resetSearchFailedAction = (isSearchFailed = false) => {
 
 export const addWatchAction = (formData, watch) => {
 	return dispatch => {
-		return fetch(`${API_URL}/watches`, {
+		return fetch(`${API_URL}/comics`, {
 			method: 'POST',
 			body: formData
 		})
@@ -119,7 +119,7 @@ export const editWatchAction = (formData, watch_id) => {
 	// 	console.log(`${name} = ${value}`)
 	// }
 	return dispatch => {
-		return fetch(`${API_URL}/watches/${watch_id}`, {
+		return fetch(`${API_URL}/comics/${watch_id}`, {
 			method: 'PATCH',
 			body: formData
 		})
@@ -136,7 +136,7 @@ export const editWatchAction = (formData, watch_id) => {
 
 export const deleteWatchAction = (id) => {
 	return dispatch => {
-		return fetch(`${API_URL}/watches/${id}`, {
+		return fetch(`${API_URL}/comics/${id}`, {
 				method: 'DELETE'
 		})
 		.then(response => {

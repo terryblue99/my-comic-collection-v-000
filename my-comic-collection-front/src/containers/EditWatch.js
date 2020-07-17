@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import NavBar from './NavBar'
-import { editWatchAction } from '../actions/watchesActions'
+import { editWatchAction } from '../actions/comicsActions'
 import RedirectTo from '../components/RedirectTo'
 import RedirectToWithState from "../components/RedirectToWithState"
 import DateValidation from "../components/DateValidation"
 
 const EditWatch = (props) => {
    
-     const watchRelated = useSelector(state => state.myWatches.watchRelated)
+     const watchRelated = useSelector(state => state.myComics.watchRelated)
      const dispatch = useDispatch()
      const initialState = {
           id: props.location.state.watch.id,

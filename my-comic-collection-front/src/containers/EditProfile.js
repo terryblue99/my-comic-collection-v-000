@@ -31,7 +31,7 @@ const EditProfile = () => {
      } = stateData
 
      const handleDelete = () => {
-          if (window.confirm('Do you really want to delete your account?\nAll of your watches will also be deleted!')) {
+          if (window.confirm('Do you really want to delete your account?\nAll of your comics will also be deleted!')) {
                setStateData(prevStateData => {
                     return {
                          ...prevStateData,

@@ -40,8 +40,8 @@ const LogIn = (props) => {
         <div className='container'>
             <header className='LogIn'>
                 { !isFromSignUp // not a new user
-                    ? <p className='LogIn-banner Cornsilk-color Center-text'>Log in to access your watches</p>
-                    : <p className='LogIn-banner Cornsilk-color Center-text'>Log in to add your watches</p>
+                    ? <p className='LogIn-banner Cornsilk-color Center-text'>Log in to access your comics</p>
+                    : <p className='LogIn-banner Cornsilk-color Center-text'>Log in to add your comics</p>
                 }
                 <img src={logo} alt='logo' className='Logo'/>
                 <div className='LogIn-container'>

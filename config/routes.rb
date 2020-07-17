@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resources :registrations, only: [:create, :destroy]
       delete :logout, to: 'sessions#logout'
       patch 'update/:id', to: 'registrations#update'
-      resources :watches
+      resources :comics
     end  
   end
 end

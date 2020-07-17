@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import NavBar from './NavBar'
-import { addWatchAction } from '../actions/watchesActions'
+import { addWatchAction } from '../actions/comicsActions'
 import ClearForm from '../components/ClearForm'
 import SetFocus from '../components/SetFocus'
 import RedirectTo from '../components/RedirectTo'
@@ -10,7 +10,7 @@ import DateValidation from '../components/DateValidation'
 const AddWatch = (props) => {
 
      const currentUser = useSelector(state => state.currentUser)
-     const watchRelated = useSelector(state => state.myWatches.watchRelated) // For records that are not related to a specific watch.
+     const watchRelated = useSelector(state => state.myComics.watchRelated) // For records that are not related to a specific watch.
      const dispatch = useDispatch()
 
      const initialState = {

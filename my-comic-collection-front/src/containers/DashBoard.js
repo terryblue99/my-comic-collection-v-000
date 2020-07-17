@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getWatchesAction } from '../actions/watchesActions'
+import { getComicsAction } from '../actions/comicsActions'
 import NavBar from './NavBar'
-import Watches from '../components/Watches'
+import Comics from '../components/Comics'
 
 const DashBoard = (props) => {
 
     const currentUser = useSelector(state => state.currentUser)
-    const watches = useSelector(state => state.myWatches.watches)
-    const watchRelated = useSelector(state => state.myWatches.watchRelated)
-    const sortDefaultText = useSelector(state => state.myWatches.sortDefaultText)
+    const comics = useSelector(state => state.myComics.comics)
+    const watchRelated = useSelector(state => state.myComics.watchRelated)
+    const sortDefaultText = useSelector(state => state.myComics.sortDefaultText)
     const dispatch = useDispatch()
     let sortOptionSelected = sortDefaultText
     let isSearchSuccessful
     
     useEffect(() => {
-        dispatch(getWatchesAction(currentUser.user.id))    
+        dispatch(getComicsAction(currentUser.user.id))    
     },[dispatch, currentUser.user.id])
 
     // Check if redirected from another screen
@@ -25,7 +25,7 @@ const DashBoard = (props) => {
                 if (props.location.state.isSearchSuccessful) {
                         isSearchSuccessful = props.location.state.isSearchSuccessful
                 } else if (props.location.state.isSearchFailed) {
-                    dispatch(getWatchesAction(currentUser.user.id, props.location.state.isSearchFailed))
+                    dispatch(getComicsAction(currentUser.user.id, props.location.state.isSearchFailed))
                     // Delete the history location state to prevent re-execution of this code
                     delete props.history.location.state
                 }
@@ -34,7 +34,7 @@ const DashBoard = (props) => {
         // Check if redirected to from WatchDetail and a record has been edited
         else if (props.location.state.isFromWatchDetail &&
                     props.location.state.isEdits) {
-                    dispatch(getWatchesAction(currentUser.user.id))
+                    dispatch(getComicsAction(currentUser.user.id))
                     // Delete the history location state to prevent re-execution of this code
                     delete props.history.location.state   
                 }
@@ -42,7 +42,7 @@ const DashBoard = (props) => {
         // Check if redirected to from WatchDetail and a record has been deleted
         else if (props.location.state.isFromWatchDetail &&
                     props.location.state.isWatchDeleted) {
-                    dispatch(getWatchesAction(currentUser.user.id))
+                    dispatch(getComicsAction(currentUser.user.id))
                     // Delete the history location state to prevent re-execution of this code
                     delete props.history.location.state   
         }
@@ -59,7 +59,7 @@ const DashBoard = (props) => {
         <div>
             <NavBar />
             <div className='container Main-container'>
-                <Watches watches={watches}
+                <Comics comics={comics}
                          watchRelated={watchRelated}
                          sortOptionSelected={sortOptionSelected}
                          isSearchSuccessful={isSearchSuccessful}

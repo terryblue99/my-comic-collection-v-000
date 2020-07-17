@@ -1,6 +1,6 @@
-class CreateWatches < ActiveRecord::Migration[5.2]
+class CreateComics < ActiveRecord::Migration[5.2]
   def change
-    create_table :watches do |t|
+    create_table :comics do |t|
       t.string     :watch_name
       t.string     :watch_maker
       t.string     :movement

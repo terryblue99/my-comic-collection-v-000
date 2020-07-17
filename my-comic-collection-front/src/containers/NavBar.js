@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { searchWatchesAction } from '../actions/watchesActions'
+import { searchComicsAction } from '../actions/comicsActions'
 import ClearForm from '../components/ClearForm'
 import RedirectToWithState from '../components/RedirectToWithState'
 
@@ -9,7 +9,7 @@ const NavBar = () => {
 
   const [searchData, setSearchData] = useState({isSearchRequested: false, searchText: ''})
   const currentUser = useSelector(state => state.currentUser)
-  const watches = useSelector(state => state.myWatches.watches)
+  const comics = useSelector(state => state.myComics.comics)
   const dispatch = useDispatch()
 
   const handleChange = (event) => {
@@ -24,7 +24,7 @@ const NavBar = () => {
 
   const handleSearch = (event) => {
     event.preventDefault()
-    dispatch(searchWatchesAction(searchData.searchText))
+    dispatch(searchComicsAction(searchData.searchText))
     setSearchData(prevSearchData => {
       return {
         ...prevSearchData,
@@ -34,7 +34,7 @@ const NavBar = () => {
   }
     
   if (searchData.isSearchRequested &&
-      watches.length > 0) {
+      comics.length > 0) {
         setSearchData(prevSearchData => {
           return {
             ...prevSearchData,
@@ -53,7 +53,7 @@ const NavBar = () => {
                                   )
       
   } else if (searchData.isSearchRequested &&
-             watches.length === 0) 
+             comics.length === 0) 
               {
                 setSearchData(prevSearchData => {
                   return {

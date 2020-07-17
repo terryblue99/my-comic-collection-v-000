@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2019_08_19_183257) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "watches", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "comics", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "watch_name"
     t.string "watch_maker"
     t.string "movement"

@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
-  has_many :watches, dependent: :destroy
+  has_many :comics, dependent: :destroy
 
   validates_presence_of :email, case_insensitive: false
   validates_uniqueness_of :email

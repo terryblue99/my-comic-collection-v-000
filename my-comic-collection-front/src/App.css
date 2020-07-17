@@ -297,7 +297,7 @@ img {
   justify-self: center;
 }
 
-.Dashboard-totalWatches,
+.Dashboard-totalComics,
 .Dashboard-totalWatchRelated,
 .Sort-header
 {
@@ -312,7 +312,7 @@ img {
 }
 
 .Dashboard-totalWatchRelated,
-.Dashboard-totalWatches 
+.Dashboard-totalComics 
 {
   font-size: 1.2rem; 
 }
@@ -343,7 +343,7 @@ img {
   text-align: left;
 }
 
-.Watches-Sidebar-list-detail {
+.Comics-Sidebar-list-detail {
   display: grid;
   grid-template-areas: 'sidebar-desktop main';
   grid-template-columns: 370px auto;
@@ -1254,7 +1254,7 @@ textarea:required
   }
 
   .Dashboard-totalWatchRelated,
-  .Dashboard-totalWatches 
+  .Dashboard-totalComics 
   {
     font-size: 1.5rem;
   }

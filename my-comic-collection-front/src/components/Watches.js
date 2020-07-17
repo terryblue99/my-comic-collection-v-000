@@ -7,52 +7,52 @@ import SidebarMobile from './SidebarMobile'
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core' // https://github.com/emotion-js/emotion
 
-const Watches = ({ watches, watchRelated, sortOptionSelected, isSearchSuccessful, DashBoardHistory }) => {
+const Comics = ({ comics, watchRelated, sortOptionSelected, isSearchSuccessful, DashBoardHistory }) => {
  
     let oldestWatch
     let newestWatch
-    let filteredWatches
+    let filteredComics
     let filteredWatchRelated
 
-    if(watches?.length > 0) {
+    if(comics?.length > 0) {
         // Filter out watch-related records
-        filteredWatchRelated = watches.filter(watch => watch.watch_maker.includes(watchRelated))
+        filteredWatchRelated = comics.filter(watch => watch.watch_maker.includes(watchRelated))
         // Filter out watch records
-        filteredWatches = watches.filter(watch => !watch.watch_maker.includes(watchRelated))
+        filteredComics = comics.filter(watch => !watch.watch_maker.includes(watchRelated))
         // Sort the filtered watch records by date bought using the underscore function _.sortBy
-        const sortedWatches = _.sortBy( filteredWatches, 'date_bought' )
-        oldestWatch = sortedWatches[0]
-        newestWatch = sortedWatches[sortedWatches.length-1] 
+        const sortedComics = _.sortBy( filteredComics, 'date_bought' )
+        oldestWatch = sortedComics[0]
+        newestWatch = sortedComics[sortedComics.length-1] 
         
     }    
 
-   const [showWatches, setShowWatches] = useState(false) // used when in a mobile view
+   const [showComics, setShowComics] = useState(false) // used when in a mobile view
                                                          // to toggle watch list on and off   
 
    const [currentWatch, setCurrentWatch] = useState(null) 
 
     return (
         <div className='Sidebar-list-detail-container'>
-            <div className='Watches-Sidebar-list-detail' css={css`
+            <div className='Comics-Sidebar-list-detail' css={css`
                 
                 @media (max-width: 600px) {
-                    grid-template-areas: 'sidebar-mobile ${showWatches ? 'sidebar-desktop' : 'main'}';
+                    grid-template-areas: 'sidebar-mobile ${showComics ? 'sidebar-desktop' : 'main'}';
                     grid-template-columns: 80px auto;
                 }
             `}>
-                <SidebarMobile  showWatches={showWatches}   
-                                setShowWatches={setShowWatches}
+                <SidebarMobile  showComics={showComics}   
+                                setShowComics={setShowComics}
                     />
-                <WatchList showWatches={showWatches}
-                           setShowWatches={setShowWatches}
-                           watches={watches}
+                <WatchList showComics={showComics}
+                           setShowComics={setShowComics}
+                           comics={comics}
                            setCurrentWatch={setCurrentWatch}
                 /> 
                 <WatchDetail currentWatch={currentWatch}
                              setCurrentWatch={setCurrentWatch}
                              newestWatch={newestWatch}
                              oldestWatch={oldestWatch}
-                             filteredWatches={filteredWatches}
+                             filteredComics={filteredComics}
                              filteredWatchRelated={filteredWatchRelated}
                              sortOptionSelected={sortOptionSelected}
                              isSearchSuccessful={isSearchSuccessful}
@@ -64,4 +64,4 @@ const Watches = ({ watches, watchRelated, sortOptionSelected, isSearchSuccessful
     )
 }
 
-export default Watches
+export default Comics

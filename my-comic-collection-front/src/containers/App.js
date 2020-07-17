@@ -58,11 +58,11 @@ const App = () => {
             {/* The following routes are only accessible from within the app as a logged in user */}
             {/* Any attempt to access them, other than within the app, will be redirected to the home page */}
             <PrivateRoute path='/dashboard' component={DashBoard} />
-            <PrivateRoute path='/watches/add_watch' component={AddWatch} />
-            <PrivateRoute path='/watches/add_watch_related' component={AddWatch} />
-            <PrivateRoute path='/watches/:id/watch_detail' component={WatchDetail} />
-            <PrivateRoute path='/watches/:id/edit_watch' component={EditWatch} />
-            <PrivateRoute path='/watches/:id/edit_watch_related' component={EditWatch} />
+            <PrivateRoute path='/comics/add_watch' component={AddWatch} />
+            <PrivateRoute path='/comics/add_watch_related' component={AddWatch} />
+            <PrivateRoute path='/comics/:id/watch_detail' component={WatchDetail} />
+            <PrivateRoute path='/comics/:id/edit_watch' component={EditWatch} />
+            <PrivateRoute path='/comics/:id/edit_watch_related' component={EditWatch} />
             <PrivateRoute path='/edit_profile' component={EditProfile} />
             <PrivateRoute path='/watch_related_info' component={WatchRelatedInfo} />
             {/* the following catchall route will redirect unknown routes to the home page */}

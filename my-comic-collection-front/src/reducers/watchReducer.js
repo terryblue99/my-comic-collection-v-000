@@ -19,13 +19,13 @@ import {
 const initialState = {
 	isSearchFailed: false,
 	isSort: false,
-	savedWatches: [],
+	savedComics: [],
 	sortDefaultText: 'Select a sort option...',
 	watchRelated: 'Watch-Related' // For records that are not related to a specific watch.
 }
-let sortedWatches
+let sortedComics
 
-// Used when sorting watches by cost,
+// Used when sorting comics by cost,
 // converting it to a floating point number
 const costToNumber = (watch) => {
 	if (watch.cost) {
@@ -45,15 +45,15 @@ export default (state = initialState, { type, payload } ) => {
 					...state,
 					WatchRelated: state.WatchRelated,
 					isSearchFailed: payload.isSearchFailed,
-					savedWatches: payload.sortedWatches,
-					watches: payload.sortedWatches
+					savedComics: payload.sortedComics,
+					comics: payload.sortedComics
 				})
 			} else return state
 
 		case RESET_WATCHES:		
 			return ({
 				...state,
-				watches: state.savedWatches
+				comics: state.savedComics
 			})
 
 		case RESET_SEARCH_FAILED:
@@ -66,7 +66,7 @@ export default (state = initialState, { type, payload } ) => {
 			if (payload) {
 				return ({
 					...state,
-					state: state.watches.concat(payload)
+					state: state.comics.concat(payload)
 				}) 	
 			} else return state
 
@@ -74,8 +74,8 @@ export default (state = initialState, { type, payload } ) => {
 			if (payload) {
 				return ({
 					...state,
-					savedWatches: state.savedWatches.filter(watch => watch.id !== payload),
-					watches: state.watches.filter(watch => watch.id !== payload)
+					savedComics: state.savedComics.filter(watch => watch.id !== payload),
+					comics: state.comics.filter(watch => watch.id !== payload)
 				})
 			} else return state		
 
@@ -97,7 +97,7 @@ export default (state = initialState, { type, payload } ) => {
 
 			return ({
 				...state,
-				watches: state.watches.filter(watch => {
+				comics: state.comics.filter(watch => {
 					searchArray = []
 					searchArray.push( watch.watch_name.toLowerCase(),
 														watch.watch_maker.toLowerCase(),
@@ -119,54 +119,54 @@ export default (state = initialState, { type, payload } ) => {
 		// SORT WATCHES & WATCH-RELATED
 
 		case WATCH_MAKER_SORT: // sort by name within maker
-			sortedWatches = _.chain( state.watches )
+			sortedComics = _.chain( state.comics )
 			.sortBy('watch_name')
 			.sortBy('watch_maker')
 			.value()
 			return ({
 				...state,
 				isSort: true,
-				watches: sortedWatches
+				comics: sortedComics
 			})
 	
 		case WATCH_NAME_SORT:
-			sortedWatches = _.sortBy( state.watches, 'watch_name' )
+			sortedComics = _.sortBy( state.comics, 'watch_name' )
 			return ({
 				...state,
 				isSort: true,
-				watches: sortedWatches
+				comics: sortedComics
 			})
 
 		case	NEWEST_TO_OLDEST_SORT:
-			sortedWatches = _.sortBy( state.watches, 'date_bought' )
+			sortedComics = _.sortBy( state.comics, 'date_bought' )
 			return ({
 				...state,
 				isSort: true,
-				watches: sortedWatches.reverse()
+				comics: sortedComics.reverse()
 			})
 
 		case	OLDEST_TO_NEWEST_SORT:
-			sortedWatches = _.sortBy( state.watches, 'date_bought' )
+			sortedComics = _.sortBy( state.comics, 'date_bought' )
 			return ({
 				...state,
 				isSort: true,
-				watches: sortedWatches
+				comics: sortedComics
 			})
 
 		case	COST_LOW_TO_HIGH_SORT:
-			sortedWatches = _.sortBy( state.watches, costToNumber )
+			sortedComics = _.sortBy( state.comics, costToNumber )
 			return ({
 				...state,
 				isSort: true,
-				watches: sortedWatches
+				comics: sortedComics
 			})
 
 		case	COST_HIGH_TO_LOW_SORT:
-			sortedWatches = _.sortBy( state.watches, costToNumber)
+			sortedComics = _.sortBy( state.comics, costToNumber)
 			return ({
 				...state,
 				isSort: true,
-				watches: sortedWatches.reverse()
+				comics: sortedComics.reverse()
 			})
 
 		case RESET_SORT:
