@@ -1,15 +1,15 @@
-class Watch < ApplicationRecord
+class Comic < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-  validates :watch_name, :watch_maker, presence: true
+  validates :comic_name, :comic_publisher, presence: true
   validate :image_attached
 
   def image_attached
-    # Check if a watch image has been selected  
+    # Check if a comic image has been selected  
     # and, if not, store a default image
     if !self.image.attached?
-      self.image.attach(io: File.open(Rails.root.join('my-watch-collection-front', 
+      self.image.attach(io: File.open(Rails.root.join('my-comic-collection-front', 
                                                       'src/images',
                                                       'no_image_uploaded.png'
                                                     )
