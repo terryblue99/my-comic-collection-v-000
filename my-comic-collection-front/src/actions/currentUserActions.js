@@ -5,7 +5,7 @@ import {
   DELETE_USER
 } from './types'
 
-const API_URL = '/api/v4'
+const API_URL = '/api/v0'
 
 export const logInAction = (credentials) => {
   return dispatch => {

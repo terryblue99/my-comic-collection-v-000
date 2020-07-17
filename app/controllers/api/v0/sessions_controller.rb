@@ -1,4 +1,4 @@
-class Api::V4::SessionsController < ApplicationController
+class Api::V0::SessionsController < ApplicationController
 
   def create
     @user = User

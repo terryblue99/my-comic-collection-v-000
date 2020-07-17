@@ -1,4 +1,4 @@
-class Api::V4::RegistrationsController < ApplicationController
+class Api::V0::RegistrationsController < ApplicationController
 
   def create
     @user = User.create!( # ! allows any errors to be seen

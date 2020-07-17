@@ -10,7 +10,7 @@ import {
 // The underscore library
 import _ from 'lodash'
 
-const API_URL = '/api/v4'
+const API_URL = '/api/v0'
 let sortedWatches
 
 export const getWatchesAction = (user_id, isSearchFailed = false) => {
