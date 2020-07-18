@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_17_03_194351) do
+ActiveRecord::Schema.define(version: 2020_17_18_212559) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2020_17_03_194351) do
     t.string "comic_publisher"
     t.string "comic_number"
     t.string "year_published"
+    t.string "last_worn"
     t.decimal "cost", precision: 8, scale: 2, default: "0.0"
     t.string "notes"
     t.integer "user_id"
