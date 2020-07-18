@@ -83,7 +83,7 @@ const NavBar = () => {
       <div className='Nav-container'>   
 
         <div className='Nav-logo Gold-color' to='/dashboard'>
-          My Watch Collection
+          My Comic Collection
         </div>
       
         <nav className='Nav'>
@@ -111,8 +111,8 @@ const NavBar = () => {
         >
           <input className='Nav-search-input Center-text'
             type='text'
-            name='watch_search'
-            placeholder='Search My Watch Collection'
+            name='comic_search'
+            placeholder='Search My Comic Collection'
             onChange={handleChange}
           /> 
           <button className='Search-button Button-text' type='submit'><b>Search</b></button> 

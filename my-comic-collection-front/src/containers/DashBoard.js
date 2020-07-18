@@ -8,7 +8,7 @@ const DashBoard = (props) => {
 
     const currentUser = useSelector(state => state.currentUser)
     const comics = useSelector(state => state.myComics.comics)
-    const watchRelated = useSelector(state => state.myComics.watchRelated)
+    const comicRelated = useSelector(state => state.myComics.comicRelated)
     const sortDefaultText = useSelector(state => state.myComics.sortDefaultText)
     const dispatch = useDispatch()
     let sortOptionSelected = sortDefaultText
@@ -31,17 +31,17 @@ const DashBoard = (props) => {
                 }
             }
 
-        // Check if redirected to from WatchDetail and a record has been edited
-        else if (props.location.state.isFromWatchDetail &&
+        // Check if redirected to from ComicDetail and a record has been edited
+        else if (props.location.state.isFromComicDetail &&
                     props.location.state.isEdits) {
                     dispatch(getComicsAction(currentUser.user.id))
                     // Delete the history location state to prevent re-execution of this code
                     delete props.history.location.state   
                 }
 
-        // Check if redirected to from WatchDetail and a record has been deleted
-        else if (props.location.state.isFromWatchDetail &&
-                    props.location.state.isWatchDeleted) {
+        // Check if redirected to from ComicDetail and a record has been deleted
+        else if (props.location.state.isFromComicDetail &&
+                    props.location.state.isComicDeleted) {
                     dispatch(getComicsAction(currentUser.user.id))
                     // Delete the history location state to prevent re-execution of this code
                     delete props.history.location.state   
@@ -60,7 +60,7 @@ const DashBoard = (props) => {
             <NavBar />
             <div className='container Main-container'>
                 <Comics comics={comics}
-                         watchRelated={watchRelated}
+                         comicRelated={comicRelated}
                          sortOptionSelected={sortOptionSelected}
                          isSearchSuccessful={isSearchSuccessful}
                          DashBoardHistory={props.history}

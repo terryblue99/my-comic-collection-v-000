@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import NavBar from './NavBar'
-import { addWatchAction } from '../actions/comicsActions'
+import { addComicAction } from '../actions/comicsActions'
 import ClearForm from '../components/ClearForm'
 import SetFocus from '../components/SetFocus'
 import RedirectTo from '../components/RedirectTo'
@@ -55,7 +55,7 @@ const AddComic = (props) => {
      const handleSubmit = (event) => { 
           event.preventDefault()
       
-          let isWatchRelated = false
+          let isComicRelated = false
           if (stateData.comic_publisher === comicRelated) {
                isComicRelated = true
           } 
@@ -69,7 +69,7 @@ const AddComic = (props) => {
           }   
           // Create the record
           const formData = new FormData()
-          formData.append('comic_maker', stateData.comic_publisher)
+          formData.append('comic_publisher', stateData.comic_publisher)
           formData.append('comic_name', stateData.comic_name)
           formData.append('movement', stateData.movement)
           formData.append('band', stateData.band)
@@ -84,7 +84,7 @@ const AddComic = (props) => {
           if (stateData.image) {
                formData.append('image', stateData.image)
           }
-          dispatch(addWatchAction(formData, stateData.comicData))
+          dispatch(addComicAction(formData, stateData.comicData))
           if (!isComicRelated) {
                alert('The comic has been added and saved!')
           } else alert(`The ${comicRelated} has been added and saved!`)
@@ -107,7 +107,7 @@ const AddComic = (props) => {
           RedirectTo('/dashboard')
      }
 
-     const isAddWatchRelated = props.location.isAddWatchRelated || false
+     const isAddComicRelated = props.location.isAddComicRelated || false
      
      return (
           <div>
@@ -115,31 +115,31 @@ const AddComic = (props) => {
                     <NavBar /> 
                </div>
 
-               <h1 className='WatchForm-header Dark-red-color Center-text'>
-                    {!isAddWatchRelated
-                         ? <>Add a Watch</>
-                         : <>Add a Watch-Related</>
+               <h1 className='ComicForm-header Dark-red-color Center-text'>
+                    {!isAddComicRelated
+                         ? <>Add a Comic</>
+                         : <>Add a Comic-Related</>
                     }
                </h1> 
 
-               <div className='container WatchForm-container'> 
+               <div className='container ComicForm-container'> 
 
                     <button onClick={handleBack} className='btn Back-button Button-text'>Back to dashboard</button>
-                    <form id='AddWatch-Form'
+                    <form id='AddComic-Form'
                          onSubmit={handleSubmit}
                     >
-                         {!isAddWatchRelated
-                              ?    <> <label>Watch Maker</label>
+                         {!isAddComicRelated
+                              ?    <> <label>Comic Publisher</label>
                                         <input autoFocus id='Focus-first-input' 
                                              className='Input-element' required 
                                              type='text'
-                                             name='comic_maker'
+                                             name='comic_publisher'
                                              onChange={handleChange}/>
                                    </>
                               :    <> <input className='Input-element Dark-red-color'
                                              autoComplete='off'
                                              type='text'
-                                             name='comic_maker'
+                                             name='comic_publisher'
                                              value={comicRelated}
                                              readonly/>
                                    </>
@@ -161,7 +161,7 @@ const AddComic = (props) => {
                                    </>
                          }
                          <br />
-                         {!isAddWatchRelated
+                         {!isAddComicRelated
                               ?    <> <label>Movement</label>
                                    <input className='Input-element'
                                              type='text'
@@ -176,7 +176,7 @@ const AddComic = (props) => {
                                    </>
                          }
                          <br />
-                         {!isAddWatchRelated
+                         {!isAddComicRelated
                               ?    <> <label>Complications</label>
                                    <input className='Input-element'
                                              type='text'
@@ -191,7 +191,7 @@ const AddComic = (props) => {
                                    </>
                          }
                          <br />
-                         {!isAddWatchRelated
+                         {!isAddComicRelated
                               ?    <> <label>Band</label>
                                    <input className='Input-element'
                                              type='text'
@@ -206,7 +206,7 @@ const AddComic = (props) => {
                                    </>
                          }
                          <br /> 
-                         {!isAddWatchRelated
+                         {!isAddComicRelated
                               ?    <> <label>Model Number</label>
                                    <input className='Input-element'
                                              type='text'
@@ -221,7 +221,7 @@ const AddComic = (props) => {
                                    </>
                          }
                          <br />
-                         {!isAddWatchRelated
+                         {!isAddComicRelated
                               ?    <> <label>Case Measurement (e.g. 45mm)</label>
                                    <input className='Input-element'
                                              type='text'
@@ -236,7 +236,7 @@ const AddComic = (props) => {
                                    </>
                          }
                          <br />
-                         {!isAddWatchRelated
+                         {!isAddComicRelated
                               ?    <> <label>Water Resistance (e.g. 200 meters)</label>
                                    <input className='Input-element'
                                              type='text'
@@ -251,7 +251,7 @@ const AddComic = (props) => {
                                    </>
                          }
                          <br />
-                         {!isAddWatchRelated
+                         {!isAddComicRelated
                               ?    <> <label>Date Bought/RCVD (yyyy-mm-dd, yyyy-mm or yyyy)</label>
                                    <input className='Input-element' required
                                              type='text'
@@ -261,7 +261,7 @@ const AddComic = (props) => {
                               : null
                          }
                          <br />
-                         {!isAddWatchRelated
+                         {!isAddComicRelated
                               ?    <> <label>Cost (e.g. 199.99 | defaults to 0)</label>
                                    <input className='Input-element'
                                              type='number'
@@ -280,7 +280,7 @@ const AddComic = (props) => {
                                    onChange={handleChange}
                               />
                          <br /> 
-                         <b className='WatchForm-upload-text Dark-red-color Center-text'>
+                         <b className='ComicForm-upload-text Dark-red-color Center-text'>
                               Upload image</b>
                          <input className='Input-element Choose-image'  
                               type='file'

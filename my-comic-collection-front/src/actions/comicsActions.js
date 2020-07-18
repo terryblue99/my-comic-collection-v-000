@@ -1,7 +1,7 @@
 import {
 	GET_COMICS,
 	ADD_COMIC,
-	DELETE_WATCH,
+	DELETE_COMIC,
 	SEARCH_COMICS,
 	RESET_SORT,
 	RESET_COMICS,
@@ -29,7 +29,7 @@ export const getComicsAction = (user_id, isSearchFailed = false) => {
 		})
 		.then(response => {
 			// Sort the comics using the underscore functions _.chain & _.sortBy
-			// Sort by comic name within comic maker for the initial dashboard screen
+			// Sort by comic name within comic publisher for the initial dashboard screen
 			sortedComics = _.chain(response)
 				.sortBy('comic_name')
 				.sortBy('comic_publisher')

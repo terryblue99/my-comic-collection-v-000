@@ -74,7 +74,7 @@ img {
   max-width: 100%;
 }
 
-.Watch-image {
+.Comic-image {
   border-radius: .5em;
   box-shadow: 10px 10px 5px rgba(0,0,0,0.1);
   height: 200px;
@@ -90,7 +90,7 @@ img {
   opacity: .8;
 }
 
-.Dashboard-watch-image {
+.Dashboard-comic-image {
   margin-top: .75em;
 }
 
@@ -115,7 +115,7 @@ img {
 /* Home Page */
 /* Log In */
 /* Sign Up */
-/* Watch Related */
+/* Comic Related */
 
 .Homepage-title {
   background-color: #454140;
@@ -155,7 +155,7 @@ img {
 .Homepage,
 .LogIn,
 .SignUp,
-.WatchRelated
+.ComicRelated
 {
   background-color: gainsboro; /* only displays if the image is delayed or doesn't load */
   background-image: url(./images/watch-background-5.jpg);
@@ -254,7 +254,7 @@ img {
   grid-template: repeat(2, auto) / repeat(3, 1fr); 
   grid-template-areas:
     'Dashboard-initialList Dashboard-sort Dashboard-time' 
-    'Dashboard-newestWatch Dashboard-logo Dashboard-oldestWatch';
+    'Dashboard-newestComic Dashboard-logo Dashboard-oldestComic';
 }
 
 .Dashboard-header {
@@ -279,16 +279,16 @@ img {
   margin-top: 20px;
 }
 
-.Dashboard-newestWatch {
-  grid-area: Dashboard-newestWatch;
+.Dashboard-newestComic {
+  grid-area: Dashboard-newestComic;
 }
 
 .Dashboard-logo {
   grid-area: Dashboard-logo;
 }
 
-.Dashboard-oldestWatch {
-  grid-area: Dashboard-oldestWatch;
+.Dashboard-oldestComic {
+  grid-area: Dashboard-oldestComic;
 }
 
 .Dashboard-item
@@ -298,35 +298,35 @@ img {
 }
 
 .Dashboard-totalComics,
-.Dashboard-totalWatchRelated,
+.Dashboard-totalComicRelated,
 .Sort-header
 {
   margin-top: 10px;
 }
 
-.Dashboard-watchText-new,
-.Dashboard-watchText-old 
+.Dashboard-comicText-new,
+.Dashboard-comicText-old 
 {
   color: #323232; 
   font-size: 1em;
 }
 
-.Dashboard-totalWatchRelated,
+.Dashboard-totalComicRelated,
 .Dashboard-totalComics 
 {
   font-size: 1.2rem; 
 }
 
-.Watch-total {
+.Comic-total {
   font-size: 1.4rem;
 }
 
-.Watch-related-total {
+.Comic-related-total {
   font-size: 1.4rem;
 }
 
-.Oldest-watch,
-.Newest-watch 
+.Oldest-comic,
+.Newest-comic 
 {
   font-size: 1.25rem;
 }
@@ -351,7 +351,7 @@ img {
   width: 100vw;
 }
 
-.Watch-list {
+.Comic-list {
   background-color: khaki;
   border: 1px solid black;
   display: grid;
@@ -363,54 +363,54 @@ img {
   width: 322px;
 }
 
-.Watch-detail {
+.Comic-detail {
   display: flex;
   justify-self: center;
   margin-top: 20px;
 }
 
-/* Watch Detail */
+/* Comic Detail */
 
 .Back-button_and_Image {
   margin-bottom: 25px;
   margin-right: 50px;
 }
 
-.WatchDetail-watch-maker,
-.Watch-maker {
+.ComicDetail-comic-publisher,
+.Comic-publisher {
   font-family: 'Ubuntu, sans-serif';
   font-weight: bold;
   margin-top: 0;
   text-transform: uppercase;   
 }
 
-.Watch-maker {
+.Comic-publisher {
   font-size: .9rem;  
 }
 
-.WatchDetail-watch-maker {
+.ComicDetail-comic-publisher {
   font-size: 1.6rem;  
 }
 
-.Watch-name {
+.Comic-name {
   color: midnightblue;
   font-size: 1.45rem;
   max-width: 455px;
 }
 
-.Watch-maker-and-name {
+.Comic-publisher-and-name {
   border-bottom: 1px solid black;
   font-size: 1rem;
   padding-left: 10px;
   transition: color 800ms;
 }
 
-.Watch-maker-and-name:hover {
+.Comic-publisher-and-name:hover {
   color: blue;
   cursor: pointer;
 }
 
-.Watch-detail-complications {
+.Comic-detail-complications {
   background-color: ghostwhite;
   border: 1px solid black;
   border-radius: .5em;
@@ -422,32 +422,32 @@ img {
   padding: 12px 12px;
 }
 
-/* Watch Related */
+/* Comic Related */
 
-.WatchRelated {
+.ComicRelated {
   display: grid;
   height: 100vh;
 }
 
-.WatchRelated-container {
+.ComicRelated-container {
   align-self: center;
   justify-self: center;
   width: 590px;
 }
 
-.WatchRelated-container p {
+.ComicRelated-container p {
   padding-left: 90px;
 }
 
-.WatchRelated-OL {
+.ComicRelated-OL {
   padding-left: 120px;
 }
 
-.WatchRelated-info-tab {
+.ComicRelated-info-tab {
   margin-left: 40px;
 }
 
-.WatchRelated-note {
+.ComicRelated-note {
   text-shadow: 2px 2px 5px orange;
 }
 
@@ -519,7 +519,7 @@ button:focus,
 }
 
 .Back-button,
-.WatchRelated button
+.ComicRelated button
 {
   font-size: 1rem; 
   height: 1%;
@@ -528,7 +528,7 @@ button:focus,
   padding: 5px 10px; 
 }
 
-.Watch-detail-back-button {
+.Comic-detail-back-button {
   font-size: 1rem; 
   height: 60px;
   margin-bottom: 20px;
@@ -550,7 +550,7 @@ button:focus,
 .Save-button,
 .SignUp-button,
 .SignUp-home-button,
-.Watch-detail-back-button
+.Comic-detail-back-button
 {
   background-color: #454140;
   color: cornsilk;
@@ -587,33 +587,33 @@ button:focus,
   padding: 10px 20px;
 }
 
-.Add-watch-button,
-.Add-watch-related-button
+.Add-comic-button,
+.Add-comic-related-button
 {
   margin-top: .5em;
 }
 
-.Add-watch-button,
-.Add-watch-related-button,
-.Watch-related-info-button
+.Add-comic-button,
+.Add-comic-related-button,
+.Comic-related-info-button
 {
   color: cornsilk;
   margin-left: 5px;
 }
 
-.Add-watch-button,
-.Add-watch-related-button,
+.Add-comic-button,
+.Add-comic-related-button,
 .Edit-button,
-.Watch-related-info-button
+.Comic-related-info-button
 {
   background-color: #454140;
 }
 
-.Add-watch-button,
-.Add-watch-related-button,
+.Add-comic-button,
+.Add-comic-related-button,
 .Delete-button, 
 .Edit-button,
-.Watch-related-info-button
+.Comic-related-info-button
 {
   font-size: 1rem;
   padding: 4px 8px;
@@ -621,7 +621,7 @@ button:focus,
   text-transform: uppercase;
 }
 
-.Watch-related-info-button {
+.Comic-related-info-button {
   margin-top: 3px;
 }
 
@@ -648,11 +648,11 @@ button:focus,
   color: white; 
 }
 
-.WatchRelated-container {
+.ComicRelated-container {
   background-color: gainsboro;
 }
 
-.WatchRelated-container button {
+.ComicRelated-container button {
   background-color: #454140;
   color: white;
   margin-bottom: 20px;
@@ -730,7 +730,7 @@ form input::placeholder {
   margin-bottom: 10px
 }
 
-.WatchForm-header {
+.ComicForm-header {
   margin-bottom: 10px;
   margin-top: 15px;
   align-self: center;
@@ -747,13 +747,13 @@ form input::placeholder {
   margin-bottom: 10px;
 }
 
-.WatchForm-upload-text {
+.ComicForm-upload-text {
   font-size: 1rem; 
   margin-top: 3px;
 }
 
-#AddWatch-Form,
-.EditWatch-Form,
+#AddComic-Form,
+.EditComic-Form,
 .Profile
 {
   display: grid;
@@ -763,8 +763,8 @@ form input::placeholder {
   min-width: 450px;
 }
 
-#AddWatch-Form,
-.EditWatch-Form
+#AddComic-Form,
+.EditComic-Form
 {
   background-color: ghostwhite;
   border: 1px solid black;
@@ -801,8 +801,8 @@ form input::placeholder {
   width: 160px;
 }
 
-#AddWatch-Form label,
-.EditWatch-Form label,
+#AddComic-Form label,
+.EditComic-Form label,
 .Profile label
 {
   font-size: 1rem;
@@ -811,12 +811,12 @@ form input::placeholder {
   text-align: left;
 }
 
-.WatchForm-container-Top {
+.ComicForm-container-Top {
   font-size: 1.25rem;
   font-weight: 900;
 }
 
-.WatchForm-container {
+.ComicForm-container {
   display: flex;
   max-height: 80vh;
   padding-bottom: 15px;
@@ -853,7 +853,7 @@ textarea:required
   border-color: red;
 }
 
-.WatchDetail {
+.ComicDetail {
   margin-bottom: 10px;
 }
 
@@ -879,8 +879,8 @@ textarea:required
 @media (max-width: 600px) {
 
   .Dashboard-initialList,
-  .Dashboard-newestWatch,
-  .Dashboard-oldestWatch,
+  .Dashboard-newestComic,
+  .Dashboard-oldestComic,
   .Dashboard-sort
   {
     align-self: center;
@@ -892,7 +892,7 @@ textarea:required
     margin-bottom: 15px;
   }
 
-  .Dashboard-watchText {
+  .Dashboard-comicText {
     margin-top: 20px;
   }
 
@@ -900,7 +900,7 @@ textarea:required
     min-width: 222px;
   }
 
-  .Watch-detail {
+  .Comic-detail {
     margin-left: 630px;
   }
 
@@ -913,21 +913,21 @@ textarea:required
     padding: 5px 10px;
   }
 
-  .WatchRelated-container {
+  .ComicRelated-container {
     padding-left: 5px;
     padding-right: 10px;
     width: 481px;
   }
 
-  .WatchRelated-container p {
+  .ComicRelated-container p {
     padding-left: 30px;
   }
 
-  .WatchRelated-OL {
+  .ComicRelated-OL {
     padding-left: 60px;
   }
 
-  .WatchRelated-container button {
+  .ComicRelated-container button {
     margin-bottom: 20px;
     margin-left: 145px;
     max-width: 300px;
@@ -980,14 +980,14 @@ textarea:required
 
 @media (max-width: 1040px) {
 
-  .Watch-detail {
+  .Comic-detail {
     flex-direction: column;
     margin-left: 20px;
     margin-right: 130px;
     margin-top: 20px;
   }
 
-  .Watch-detail-complications {
+  .Comic-detail-complications {
       max-width: 320px ;
   }
 
@@ -995,7 +995,7 @@ textarea:required
 
 @media (max-width: 670px) {
 
-  .Watch-detail {
+  .Comic-detail {
     margin-left: 555px;
   }
 
@@ -1080,12 +1080,12 @@ textarea:required
     grid-template-areas:
       'Dashboard-sort' 
       'Dashboard-initialList'
-      'Dashboard-newestWatch'
-      'Dashboard-oldestWatch';
+      'Dashboard-newestComic'
+      'Dashboard-oldestComic';
   }
 
   .Dashboard-totalText,
-  .Dashboard-watchText
+  .Dashboard-comicText
   {
     margin-top: 15px;
   }
@@ -1104,17 +1104,17 @@ textarea:required
     width: 300px;
   }
 
-  .Watch-detail {
+  .Comic-detail {
     margin-right: 30px;
   }
 
-  .WatchForm-container {
+  .ComicForm-container {
     flex-direction: column;
     margin: 25px auto;
     width: 450px;
   }
 
-  .WatchForm-header {
+  .ComicForm-header {
     margin-left: 5px;
   }
 
@@ -1147,15 +1147,15 @@ textarea:required
     margin-top: 40px;
   }
 
-  #AddWatch-Form label,
-  .EditWatch-Form label,
+  #AddComic-Form label,
+  .EditComic-Form label,
   .Profile label  
   {
     font-size: 1.1rem;
   }
 
-  #AddWatch-Form input,
-  .EditWatch-Form input
+  #AddComic-Form input,
+  .EditComic-Form input
   {
     font-size: 1rem;
     min-width: 400px;
@@ -1187,15 +1187,15 @@ textarea:required
     font-size: 1.1rem;
   }
 
-  .Watch-list {
+  .Comic-list {
     width: 370px;
   }
 
-  .Watch-maker-and-name {
+  .Comic-publisher-and-name {
     font-size: 1.25rem;
   }
 
-  .WatchDetail {
+  .ComicDetail {
     font-size: 1.6rem;
     margin-bottom: 10px;
     max-width: 450px;
@@ -1203,17 +1203,17 @@ textarea:required
 
   .ProfileForm-header,
   .ProfileForm-subheader,
-  .WatchForm-header
+  .ComicForm-header
   {
     font-size: 2rem;
   }
 
-  .WatchForm-header
+  .ComicForm-header
   {
     margin-left: 260px;
   }
 
-  .WatchForm-upload-text {
+  .ComicForm-upload-text {
     margin-bottom: 10px;
     margin-top: 10px;
   }
@@ -1222,23 +1222,23 @@ textarea:required
     margin-bottom: 10px;
   }
 
-  .WatchRelated-container {
+  .ComicRelated-container {
     font-size: 1.25rem;
     width: 700px;
   }  
 
-  .WatchRelated-container button {
+  .ComicRelated-container button {
     margin-left: 250px;
   }
 
-  .WatchRelated-container button,
-  .WatchRelated-text 
+  .ComicRelated-container button,
+  .ComicRelated-text 
   {
     margin-bottom: 20px;
     margin-top: 15px;
   }
 
-  .WatchRelated-info-tab {
+  .ComicRelated-info-tab {
     margin-left: 49px;
   }
 
@@ -1247,28 +1247,28 @@ textarea:required
   }
 
 
-  .Oldest-watch,
-  .Newest-watch 
+  .Oldest-comic,
+  .Newest-comic 
   {
     font-size: 1.5rem;
   }
 
-  .Dashboard-totalWatchRelated,
+  .Dashboard-totalComicRelated,
   .Dashboard-totalComics 
   {
     font-size: 1.5rem;
   }
 
-  .Watch-total {
+  .Comic-total {
     font-size: 1.6rem;
   }
 
-  .Watch-related-total {
+  .Comic-related-total {
     font-size: 1.6rem;
   }
 
-  .Dashboard-watchText-new,
-  .Dashboard-watchText-old 
+  .Dashboard-comicText-new,
+  .Dashboard-comicText-old 
   {
     font-size: 1.2em;
   }

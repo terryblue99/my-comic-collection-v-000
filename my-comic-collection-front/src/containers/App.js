@@ -9,11 +9,11 @@ import LogIn from './auth/LogIn'
 import LogOut from './auth/LogOut'
 import SignUp from './auth/SignUp'
 import Homepage from '../components/Homepage'
-import WatchRelatedInfo from '../components/WatchRelatedInfo'
+import ComicRelatedInfo from '../components/ComicRelatedInfo'
 import DashBoard from './DashBoard'
-import AddWatch from './AddWatch'
-import WatchDetail from './WatchDetail'
-import EditWatch from './EditWatch'
+import AddComic from './AddComic'
+import ComicDetail from './ComicDetail'
+import EditComic from './EditComic'
 import EditProfile from './EditProfile'
 import { Redirect } from 'react-router-dom'
 
@@ -58,13 +58,13 @@ const App = () => {
             {/* The following routes are only accessible from within the app as a logged in user */}
             {/* Any attempt to access them, other than within the app, will be redirected to the home page */}
             <PrivateRoute path='/dashboard' component={DashBoard} />
-            <PrivateRoute path='/comics/add_watch' component={AddWatch} />
-            <PrivateRoute path='/comics/add_watch_related' component={AddWatch} />
-            <PrivateRoute path='/comics/:id/watch_detail' component={WatchDetail} />
-            <PrivateRoute path='/comics/:id/edit_watch' component={EditWatch} />
-            <PrivateRoute path='/comics/:id/edit_watch_related' component={EditWatch} />
+            <PrivateRoute path='/comics/add_comic' component={AddComic} />
+            <PrivateRoute path='/comics/add_comic_related' component={AddComic} />
+            <PrivateRoute path='/comics/:id/comic_detail' component={ComicDetail} />
+            <PrivateRoute path='/comics/:id/edit_comic' component={EditComic} />
+            <PrivateRoute path='/comics/:id/edit_comic_related' component={EditComic} />
             <PrivateRoute path='/edit_profile' component={EditProfile} />
-            <PrivateRoute path='/watch_related_info' component={WatchRelatedInfo} />
+            <PrivateRoute path='/comic_related_info' component={ComicRelatedInfo} />
             {/* the following catchall route will redirect unknown routes to the home page */}
             <PrivateRoute from='*' />
         </Switch> 

@@ -24,15 +24,15 @@ const ComicList = (props) => {
                 `}>
                     {props.comics ? 
                         props.comics.map(comic => {
-                            return <li className='Comic-maker-and-name' key={comic.id} 
+                            return <li className='Comic-publisher-and-name' key={comic.id} 
                                 onClick={() => { 
                                     dispatch(resetSortAction())
                                     hashHistory.push(`/comics/${comic.id}/comic_detail`) // set the url for the comic
                                     props.setCurrentComic(comic)
                                     props.setShowComics(false) // on mobiles will allow toggling of comic list
                                 }}>
-                                <b className='Comic-maker Dark-red-color'>
-                                    {comic.comic_maker}:</b> {comic.comic_name}
+                                <b className='Comic-publisher Dark-red-color'>
+                                    {comic.comic_publisher}:</b> {comic.comic_name}
                             </li>
                         })
                     : null}

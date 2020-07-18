@@ -1,6 +1,6 @@
 import { useState } from 'react' // https://reactjs.org/docs/hooks-overview.html
 import _ from 'lodash'  // https://underscorejs.org/)
-import WatchDetail from '../containers/WatchDetail'
+import ComicDetail from '../containers/ComicDetail'
 import ComicList from './ComicList'
 import SidebarMobile from './SidebarMobile'
 // The following comment is required for @emotion to work
@@ -21,8 +21,8 @@ const Comics = ({ comics, comicRelated, sortOptionSelected, isSearchSuccessful, 
         filteredComics = comics.filter(comic => !comic.comic_publisher.includes(comicRelated))
         // Sort the filtered comic records by date bought using the underscore function _.sortBy
         const sortedComics = _.sortBy( filteredComics, 'date_bought' )
-        oldestWatch = sortedComics[0]
-        newestWatch = sortedComics[sortedComics.length-1] 
+        oldestComic = sortedComics[0]
+        newestComic = sortedComics[sortedComics.length-1] 
         
     }    
 
@@ -48,7 +48,7 @@ const Comics = ({ comics, comicRelated, sortOptionSelected, isSearchSuccessful, 
                            comics={comics}
                            setCurrentComic={setCurrentComic}
                 /> 
-                <WatchDetail currentComic={currentComic}
+                <ComicDetail currentComic={currentComic}
                              setCurrentComic={setCurrentComic}
                              newestComic={newestComic}
                              oldestComic={oldestComic}

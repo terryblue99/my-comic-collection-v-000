@@ -1,45 +1,45 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { deleteWatchAction } from '../actions/comicsActions'
+import { deleteComicAction } from '../actions/comicsActions'
 import DashboardMain from './DashboardMain'
 import RedirectTo from '../components/RedirectTo'
 import RedirectToWithState from '../components/RedirectToWithState'
 
-const WatchDetail = (props) => { 
+const ComicDetail = (props) => { 
 
-    const [stateData, setStateData] = useState({isBackToDashboard: false, isWatchDeleted: false})
+    const [stateData, setStateData] = useState({isBackToDashboard: false, isComicDeleted: false})
     const isSort = useSelector(state => state.myComics.isSort)
-    const watchRelated = useSelector(state => state.myComics.watchRelated) // For records that are not related to a specific watch.
+    const comicRelated = useSelector(state => state.myComics.comicRelated) // For records that are not related to a specific comic.
     const isSearchFailed = useSelector(state => state.myComics.isSearchFailed)
     const dispatch = useDispatch()
 
     const handleDelete = () => {
 
-        let isWatchRelated
+        let isComicRelated
         let recordType
 
-        if (props.currentWatch.watch_maker === watchRelated) {
-            isWatchRelated = true
-            recordType = watchRelated
+        if (props.currentComic.comic_publisher === comicRelated) {
+            isComicRelated = true
+            recordType = comicRelated
         } else {
-                isWatchRelated = false
-                recordType = 'watch'
+                isComicRelated = false
+                recordType = 'comic'
                }
 
         if (window.confirm(`Do you realy want to delete this ${recordType}?`)) {
 
-            dispatch(deleteWatchAction(props.currentWatch.id))
+            dispatch(deleteComicAction(props.currentComic.id))
             
-            if (!isWatchRelated) {
-                alert('The watch has been deleted!')
-            } else alert(`The ${watchRelated} has been deleted!`)
+            if (!isComicRelated) {
+                alert('The comic has been deleted!')
+            } else alert(`The ${comicRelated} has been deleted!`)
 
             setStateData(prevStateData => {
                 return {
                     ...prevStateData,
                     isBackToDashboard: true,
-                    isWatchDeleted: true
+                    isComicDeleted: true
                 }
             })
         }
@@ -54,22 +54,22 @@ const WatchDetail = (props) => {
         })
    }
 
-    if (stateData.isBackToDashboard && stateData.isWatchDeleted) {
+    if (stateData.isBackToDashboard && stateData.isComicDeleted) {
         setStateData(prevStateData => {
             return {
                 ...prevStateData,
                 isBackToDashboard: false,
-                isWatchDeleted: false
+                isComicDeleted: false
             }
         })
         // Clear the current detail screen to allow 
         // the dashboard to be displayed there instead
-        props.setCurrentWatch(null)
+        props.setCurrentComic(null)
         return  RedirectToWithState(
                                         '/dashboard',
                                         {
-                                            isFromWatchDetail: true,    
-                                            isWatchDeleted: true
+                                            isFromComicDetail: true,    
+                                            isComicDeleted: true
                                         } 
                                     )
     } 
@@ -82,21 +82,21 @@ const WatchDetail = (props) => {
         }) 
         // Clear the current detail screen to allow 
         // the dashboard to be displayed there instead
-        props.setCurrentWatch(null) 
+        props.setCurrentComic(null) 
         RedirectTo('/dashboard')
     }
 
-    const {currentWatch} = props
+    const {currentComic} = props
     
-    if (currentWatch && 
+    if (currentComic && 
         !props.isSearchSuccessful && 
         !isSearchFailed &&
         !isSort) 
     {
         const {
             id,
-            watch_name,
-            watch_maker,
+            comic_name,
+            comic_publisher,
             movement,
             complications,
             band,
@@ -106,83 +106,83 @@ const WatchDetail = (props) => {
             date_bought,
             cost,
             notes
-        } = currentWatch
+        } = currentComic
 
         return ( 
             
-            <div className='Watch-detail'>
+            <div className='Comic-detail'>
                 <div className='Back-button_and_Image'>    
-                    <button onClick={handleBack} className='Watch-detail-back-button btn Button-text'>Back to dashboard</button>
-                    <div className='Watch-detail-image'> 
-                        <img src={currentWatch.image} alt='current watch' className='Watch-image'/>
+                    <button onClick={handleBack} className='Comic-detail-back-button btn Button-text'>Back to dashboard</button>
+                    <div className='Comic-detail-image'> 
+                        <img src={currentComic.image} alt='current comic' className='Comic-image'/>
                     </div>
                 </div>
-                <div className='Watch-detail-text'>
-                    <h1 className='WatchDetail-watch-maker Dark-red-color'><b>{watch_maker}</b></h1> 
-                    <h2 className='Watch-name'>{watch_name}</h2>
-                    <div className='Watch-detail-complications Center-text'>
-                        {movement && !watch_maker.includes(watchRelated)
+                <div className='Comic-detail-text'>
+                    <h1 className='ComicDetail-comich-publisher Dark-red-color'><b>{comic_publisher}</b></h1> 
+                    <h2 className='Comic-name'>{comic_name}</h2>
+                    <div className='Comic-detail-complications Center-text'>
+                        {movement && !comic_publisher.includes(comicRelated)
                             ?   <>  <p className='Detail-css'>Movement</p>
-                                    <h3 className='WatchDetail'>{movement}</h3>
+                                    <h3 className='ComicDetail'>{movement}</h3>
                                 </>
                             :   null }
-                        {movement && watch_maker.includes(watchRelated) 
-                            ?   <>  <h3 className='WatchDetail'>{movement}</h3>
+                        {movement && comic_publisher.includes(comicRelated) 
+                            ?   <>  <h3 className='ComicDetail'>{movement}</h3>
                                 </>
                             :   null }
-                        {complications && !watch_maker.includes(watchRelated)
+                        {complications && !comic_publisher.includes(comicRelated)
                             ?   <>  <p className='Detail-css'>Complications</p>
-                                    <h3 className='WatchDetail'>{complications}</h3>
+                                    <h3 className='ComicDetail'>{complications}</h3>
                                 </>
                             :   null }
-                        {complications && watch_maker.includes(watchRelated) 
-                            ?   <>  <h3 className='WatchDetail'>{complications}</h3>
+                        {complications && comic_publisher.includes(comicRelated) 
+                            ?   <>  <h3 className='ComicDetail'>{complications}</h3>
                                 </>
                             :   null }
-                        {band && !watch_maker.includes(watchRelated)
+                        {band && !comic_publisher.includes(comicRelated)
                             ?   <>  <p className='Detail-css'>Band</p>
-                                    <h3 className='WatchDetail'>{band}</h3>
+                                    <h3 className='ComicDetail'>{band}</h3>
                                 </>
                             :   null }
-                        {band && watch_maker.includes(watchRelated) 
-                            ?   <>  <h3 className='WatchDetail'>{band}</h3>
+                        {band && comic_publisher.includes(comicRelated) 
+                            ?   <>  <h3 className='ComicDetail'>{band}</h3>
                                 </>
                             :   null }
-                        {model_number && !watch_maker.includes(watchRelated)
+                        {model_number && !comic_publisher.includes(comicRelated)
                             ?   <>  <p className='Detail-css'>Model Number</p>
-                                    <h3 className='WatchDetail'>{model_number}</h3>
+                                    <h3 className='ComicDetail'>{model_number}</h3>
                                 </>
                             :   null }
-                        {model_number && watch_maker.includes(watchRelated) 
-                            ?   <>  <h3 className='WatchDetail'>{model_number}</h3>
+                        {model_number && comic_publisher.includes(comicRelated) 
+                            ?   <>  <h3 className='ComicDetail'>{model_number}</h3>
                                 </>
                             :   null }
-                        {case_measurement && !watch_maker.includes(watchRelated)
+                        {case_measurement && !comic_publisher.includes(comicRelated)
                             ?   <>  <p className='Detail-css'>Case Measurement</p>
-                                    <h3 className='WatchDetail'>{case_measurement}</h3>
+                                    <h3 className='ComicDetail'>{case_measurement}</h3>
                                 </>
                             :   null }
-                        {case_measurement && watch_maker.includes(watchRelated) 
-                            ?   <>  <h3 className='WatchDetail'>{case_measurement}</h3>
+                        {case_measurement && comic_publisher.includes(comicRelated) 
+                            ?   <>  <h3 className='ComicDetail'>{case_measurement}</h3>
                                 </>
                             :   null }
-                        {water_resistance && !watch_maker.includes(watchRelated)
+                        {water_resistance && !comic_publisher.includes(comicRelated)
                             ?   <>  <p className='Detail-css'>Water Resistance</p>
-                                    <h3 className='WatchDetail'>{water_resistance}</h3>
+                                    <h3 className='ComicDetail'>{water_resistance}</h3>
                                 </>
                             :   null }
-                        {water_resistance && watch_maker.includes(watchRelated) 
-                            ?   <>  <h3 className='WatchDetail'>{water_resistance}</h3>
+                        {water_resistance && comic_publisher.includes(comicRelated) 
+                            ?   <>  <h3 className='ComicDetail'>{water_resistance}</h3>
                                 </>
                             :   null }
-                        {date_bought && !watch_maker.includes(watchRelated) 
+                        {date_bought && !comic_publisher.includes(comicRelated) 
                         ?   <>
                                 {cost > 0
                                     ? <> <p className='Detail-css'>Date Bought</p>
-                                        <h3 className='WatchDetail'>{date_bought}</h3>
+                                        <h3 className='ComicDetail'>{date_bought}</h3>
                                     </>
                                     : <> <p className='Detail-css'>Date RCVD</p>
-                                        <h3 className='WatchDetail'>{date_bought}</h3>
+                                        <h3 className='ComicDetail'>{date_bought}</h3>
                                     </>
                                 }    
                             </>
@@ -190,23 +190,23 @@ const WatchDetail = (props) => {
                         {cost > 0
                         ?    <>
                                 <p className='Detail-css'>Cost</p>
-                                <h3 className='WatchDetail'>{parseFloat(cost).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
+                                <h3 className='ComicDetail'>{parseFloat(cost).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
                             </>
                         : null }
                         {notes 
                         ?    <>
                                 <p className='Detail-css'>Notes</p>
-                                <h3 className='WatchDetail'>{notes}</h3>
+                                <h3 className='ComicDetail'>{notes}</h3>
                             </>
                         : null }
                     </div> 
                     <div className="Edit-Delete-buttons">
-                        {!watch_maker.includes(watchRelated)
+                        {!comic_publisher.includes(comicRelated)
                             ? <>
                                 <Link className='btn Edit-button Button-text Center-text' to={{
-                                        pathname: `/comics/${id}/edit_watch`,
+                                        pathname: `/comics/${id}/edit_comic`,
                                         state: {
-                                            watch: currentWatch
+                                            comic: currentComic
                                         }
                                     }}>
                                         Edit
@@ -214,10 +214,10 @@ const WatchDetail = (props) => {
                             </>
                             : <>
                                 <Link className='btn Edit-button Button-text Center-text' to={{
-                                        pathname: `/comics/${id}/edit_watch_related`,
+                                        pathname: `/comics/${id}/edit_comic_related`,
                                         state: {
-                                            watch: currentWatch,
-                                            isEditWatchRelated: true
+                                            comic: currentComic,
+                                            isEditComicRelated: true
                                         }
                                     }}>
                                         Edit
@@ -233,15 +233,15 @@ const WatchDetail = (props) => {
         )     
     } else {
     
-        return <DashboardMain   newestWatch={props.newestWatch}
-                                oldestWatch={props.oldestWatch}
-                                setCurrentWatch={props.setCurrentWatch}
+        return <DashboardMain   newestComic={props.newestComic}
+                                oldestComic={props.oldestComic}
+                                setCurrentComic={props.setCurrentComic}
                                 filteredComics={props.filteredComics}
-                                filteredWatchRelated={props.filteredWatchRelated}
+                                filteredComicRelated={props.filteredComicRelated}
                                 sortOptionSelected={props.sortOptionSelected}
                                 DashBoardHistory={props.DashBoardHistory}              
         />
     }
 }
 
-export default WatchDetail
+export default ComicDetail

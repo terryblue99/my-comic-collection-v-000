@@ -1,10 +1,10 @@
 import _ from 'lodash'
 import { 
-	ADD_WATCH, 
+	ADD_COMIC, 
 	CLEAR_COMICS,
 	COST_HIGH_TO_LOW_SORT,
 	COST_LOW_TO_HIGH_SORT,
-	DELETE_WATCH,
+	DELETE_COMIC,
 	GET_COMICS, 
 	NEWEST_TO_OLDEST_SORT,
 	OLDEST_TO_NEWEST_SORT,
@@ -12,8 +12,8 @@ import {
 	RESET_SORT,
 	RESET_COMICS,
 	SEARCH_COMICS,
-	WATCH_MAKER_SORT,
-	WATCH_NAME_SORT
+	COMIC_MAKER_SORT,
+	COMIC_NAME_SORT
 } from '../actions/types'
 
 const initialState = {
@@ -21,15 +21,15 @@ const initialState = {
 	isSort: false,
 	savedComics: [],
 	sortDefaultText: 'Select a sort option...',
-	watchRelated: 'Watch-Related' // For records that are not related to a specific watch.
+	comicRelated: 'Comic-Related' // For records that are not related to a specific comic.
 }
 let sortedComics
 
 // Used when sorting comics by cost,
 // converting it to a floating point number
-const costToNumber = (watch) => {
-	if (watch.cost) {
-		return parseFloat(watch.cost)
+const costToNumber = (comic) => {
+	if (comic.cost) {
+		return parseFloat(comic.cost)
 	} else return 0.00
 }
 
@@ -37,13 +37,13 @@ export default (state = initialState, { type, payload } ) => {
 
 	switch(type) {
 
-		// UPDATE COMICS & WATCH-RELATED
+		// UPDATE COMICS & COMIC-RELATED
 
 		case GET_COMICS:
 			if (payload) {
 				return ({
 					...state,
-					WatchRelated: state.WatchRelated,
+					ComicRelated: state.ComicRelated,
 					isSearchFailed: payload.isSearchFailed,
 					savedComics: payload.sortedComics,
 					comics: payload.sortedComics
@@ -62,7 +62,7 @@ export default (state = initialState, { type, payload } ) => {
 				isSearchFailed: payload
 			})
 
-		case ADD_WATCH:
+		case ADD_COMIC:
 			if (payload) {
 				return ({
 					...state,
@@ -70,12 +70,12 @@ export default (state = initialState, { type, payload } ) => {
 				}) 	
 			} else return state
 
-		case DELETE_WATCH:
+		case DELETE_COMIC:
 			if (payload) {
 				return ({
 					...state,
-					savedComics: state.savedComics.filter(watch => watch.id !== payload),
-					comics: state.comics.filter(watch => watch.id !== payload)
+					savedComics: state.savedComics.filter(comic => comic.id !== payload),
+					comics: state.comics.filter(comic => comic.id !== payload)
 				})
 			} else return state		
 
@@ -83,7 +83,7 @@ export default (state = initialState, { type, payload } ) => {
 				state = initialState
 				return state
 
-		// SEARCH COMICS & WATCH-RELATED
+		// SEARCH COMICS & COMIC-RELATED
 
 		case SEARCH_COMICS:
 
@@ -97,31 +97,31 @@ export default (state = initialState, { type, payload } ) => {
 
 			return ({
 				...state,
-				comics: state.comics.filter(watch => {
+				comics: state.comics.filter(comic => {
 					searchArray = []
-					searchArray.push( watch.watch_name.toLowerCase(),
-														watch.watch_maker.toLowerCase(),
-														watch.movement.toLowerCase(),
-														watch.complications.toLowerCase(),
-														watch.band.toLowerCase(),
-														watch.model_number.toLowerCase(),
-														watch.case_measurement.toLowerCase(),
-														watch.water_resistance.toLowerCase(),
-														watch.date_bought.toLowerCase(),
-														watch.cost,
-														watch.notes.toLowerCase()
+					searchArray.push( comic.comic_name.toLowerCase(),
+														comic.comic_publisher.toLowerCase(),
+														comic.movement.toLowerCase(),
+														comic.complications.toLowerCase(),
+														comic.band.toLowerCase(),
+														comic.model_number.toLowerCase(),
+														comic.case_measurement.toLowerCase(),
+														comic.water_resistance.toLowerCase(),
+														comic.date_bought.toLowerCase(),
+														comic.cost,
+														comic.notes.toLowerCase()
 													)
 					// check array of record string fields for searchText string/substring
-					return searchArray.some(watchStringField => watchStringField.includes(searchText))
+					return searchArray.some(comicStringField => comicStringField.includes(searchText))
 				})
 			})
 		
-		// SORT COMICS & WATCH-RELATED
+		// SORT COMICS & COMIC-RELATED
 
-		case WATCH_MAKER_SORT: // sort by name within maker
+		case COMIC_PUBLISHER_SORT: // sort by name within publisher
 			sortedComics = _.chain( state.comics )
-			.sortBy('watch_name')
-			.sortBy('watch_maker')
+			.sortBy('comic_name')
+			.sortBy('comic_publisher')
 			.value()
 			return ({
 				...state,
@@ -129,8 +129,8 @@ export default (state = initialState, { type, payload } ) => {
 				comics: sortedComics
 			})
 	
-		case WATCH_NAME_SORT:
-			sortedComics = _.sortBy( state.comics, 'watch_name' )
+		case COMIC_NAME_SORT:
+			sortedComics = _.sortBy( state.comics, 'comic_name' )
 			return ({
 				...state,
 				isSort: true,
