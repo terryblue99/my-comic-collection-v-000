@@ -5,7 +5,6 @@ class CreateComics < ActiveRecord::Migration[6.0]
       t.string     :comic_publisher
       t.string     :comic_number
       t.string     :year_published
-      t.string     :last_worn
       t.decimal    :cost, :precision => 8, :scale => 2, default: 0.00
       t.string     :notes 
       t.integer    :user_id

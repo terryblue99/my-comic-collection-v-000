@@ -12,7 +12,7 @@ export const DELETE_COMIC = 'DELETE_COMIC'
 
 export const SORT_COMICS = 'SORT_COMICS'
 export const RESET_SORT = 'RESET_SORT'
-export const COMIC_MAKER_SORT = 'Comic Publisher'
+export const COMIC_PUBLISHER_SORT = 'Comic Publisher'
 export const COMIC_NAME_SORT = 'Comic Name'
 export const NEWEST_TO_OLDEST_SORT = 'Newest to Oldest'
 export const OLDEST_TO_NEWEST_SORT = 'Oldest to Newest'
