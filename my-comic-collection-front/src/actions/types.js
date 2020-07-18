@@ -2,7 +2,6 @@ export const SET_CURRENT_USER = 'SET_CURRENT_USER'
 export const CLEAR_CURRENT_USER = 'CLEAR_CURRENT_USER'
 export const DELETE_USER = 'DELETE_USER'
 
-export const ADD_COMIC = 'ADD_COMIC'
 export const GET_COMICS = 'GET_COMICS'
 export const SEARCH_COMICS = 'SEARCH_COMICS'
 export const RESET_COMICS = 'RESET_COMICS'

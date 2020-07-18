@@ -14,19 +14,14 @@ const AddComic = (props) => {
      const dispatch = useDispatch()
 
      const initialState = {
-          comic_publisher: comicRelated,
           comic_name: '',
-          movement: '',
-          band: '',
-          model_number: '',
-          case_measurement: '',
-          water_resistance: '',
-          complications: '',
-          date_bought: '',
+          comic_publisher: comicRelated,
+          comic_number,
+          year_published,
           cost: 0.00,
           notes: '',
-          user_id: currentUser.user.id,
-          image: null
+          image: null,
+          user_id: currentUser.user.id
      }
           
      const [backToDashboard, setBackToDashboard] = useState({isBackToDashboard: false})
@@ -69,22 +64,17 @@ const AddComic = (props) => {
           }   
           // Create the record
           const formData = new FormData()
-          formData.append('comic_publisher', stateData.comic_publisher)
           formData.append('comic_name', stateData.comic_name)
-          formData.append('movement', stateData.movement)
-          formData.append('band', stateData.band)
-          formData.append('model_number', stateData.model_number)
-          formData.append('case_measurement', stateData.case_measurement)
-          formData.append('water_resistance', stateData.water_resistance)
-          formData.append('complications', stateData.complications)
-          formData.append('date_bought', stateData.date_bought)
+          formData.append('comic_publisher', stateData.comic_publisher)
+          formData.append('comic_number', stateData.comic_number)
+          formData.append('year_published', stateData.year_published)
           formData.append('cost', stateData.cost)
           formData.append('notes', stateData.notes)
           formData.append('user_id', stateData.user_id)
           if (stateData.image) {
                formData.append('image', stateData.image)
           }
-          dispatch(addComicAction(formData, stateData.comicData))
+          dispatch(addComicAction(formData))
           if (!isComicRelated) {
                alert('The comic has been added and saved!')
           } else alert(`The ${comicRelated} has been added and saved!`)

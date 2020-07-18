@@ -1,6 +1,5 @@
 import {
 	GET_COMICS,
-	ADD_COMIC,
 	DELETE_COMIC,
 	SEARCH_COMICS,
 	RESET_SORT,
@@ -92,7 +91,7 @@ export const resetSearchFailedAction = (isSearchFailed = false) => {
 	}		
 }
 
-export const addComicAction = (formData, comic) => {
+export const addComicAction = (formData) => {
 	return dispatch => {
 		return fetch(`${API_URL}/comics`, {
 			method: 'POST',
@@ -101,12 +100,7 @@ export const addComicAction = (formData, comic) => {
 		.then(response => {
 			if (response.error) {
 				alert('*** addComicAction ERROR 1: ' + response.error.message)
-			} else {
-					dispatch({
-							type: ADD_COMIC,
-							payload: comic
-					})
-				}
+			}
 		})
 		.catch(error => {
 			console.log('*** addComicAction ERROR 2: ' + error.message)

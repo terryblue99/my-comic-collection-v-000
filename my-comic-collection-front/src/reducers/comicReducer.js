@@ -1,6 +1,5 @@
 import _ from 'lodash'
-import { 
-	ADD_COMIC, 
+import {
 	CLEAR_COMICS,
 	COST_HIGH_TO_LOW_SORT,
 	COST_LOW_TO_HIGH_SORT,
@@ -61,14 +60,6 @@ export default (state = initialState, { type, payload } ) => {
 				...state,
 				isSearchFailed: payload
 			})
-
-		case ADD_COMIC:
-			if (payload) {
-				return ({
-					...state,
-					state: state.comics.concat(payload)
-				}) 	
-			} else return state
 
 		case DELETE_COMIC:
 			if (payload) {
