@@ -9,7 +9,7 @@ const Homepage = () => {
         <div>    
             <header className='Homepage'>
                 <div>
-                    <h2 className='Homepage-title Cornsilk-color'>Catalog and view your watch collection</h2>
+                    <h2 className='Homepage-title Cornsilk-color'>Catalog and view your comic collection</h2>
                 </div>
                 <img src={logo} alt='logo' className='Logo'/>
                 <div className='Homepage-container'>

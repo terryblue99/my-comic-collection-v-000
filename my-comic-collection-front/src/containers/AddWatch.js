@@ -7,15 +7,15 @@ import SetFocus from '../components/SetFocus'
 import RedirectTo from '../components/RedirectTo'
 import DateValidation from '../components/DateValidation'
 
-const AddWatch = (props) => {
+const AddComic = (props) => {
 
      const currentUser = useSelector(state => state.currentUser)
-     const watchRelated = useSelector(state => state.myComics.watchRelated) // For records that are not related to a specific watch.
+     const comicRelated = useSelector(state => state.myComics.comicRelated) // For records that are not related to a specific comic.
      const dispatch = useDispatch()
 
      const initialState = {
-          watch_maker: watchRelated,
-          watch_name: '',
+          comic_publisher: comicRelated,
+          comic_name: '',
           movement: '',
           band: '',
           model_number: '',
@@ -56,11 +56,11 @@ const AddWatch = (props) => {
           event.preventDefault()
       
           let isWatchRelated = false
-          if (stateData.watch_maker === watchRelated) {
-               isWatchRelated = true
+          if (stateData.comic_publisher === comicRelated) {
+               isComicRelated = true
           } 
-          // validate the 'Date Bought/RCVD' input for watch records
-          if (!isWatchRelated) {
+          // validate the 'Date Bought/RCVD' input for comic records
+          if (!isComicRelated) {
                const isValidDate = DateValidation(stateData.date_bought)
                if (!isValidDate) {
                     alert('Date Bought/RCVD must be in format yyyy-mm-dd, yyyy-mm or yyyy and contain valid day & month numbers!')
@@ -69,8 +69,8 @@ const AddWatch = (props) => {
           }   
           // Create the record
           const formData = new FormData()
-          formData.append('watch_maker', stateData.watch_maker)
-          formData.append('watch_name', stateData.watch_name)
+          formData.append('comic_maker', stateData.comic_publisher)
+          formData.append('comic_name', stateData.comic_name)
           formData.append('movement', stateData.movement)
           formData.append('band', stateData.band)
           formData.append('model_number', stateData.model_number)
@@ -84,12 +84,12 @@ const AddWatch = (props) => {
           if (stateData.image) {
                formData.append('image', stateData.image)
           }
-          dispatch(addWatchAction(formData, stateData.watchData))
-          if (!isWatchRelated) {
-               alert('The watch has been added and saved!')
-          } else alert(`The ${watchRelated} has been added and saved!`)
+          dispatch(addWatchAction(formData, stateData.comicData))
+          if (!isComicRelated) {
+               alert('The comic has been added and saved!')
+          } else alert(`The ${comicRelated} has been added and saved!`)
           // Clear the form
-          ClearForm('AddWatch-Form')
+          ClearForm('AddComic-Form')
           // Set focus on the first input
           SetFocus('Focus-first-input')
      }
@@ -133,30 +133,30 @@ const AddWatch = (props) => {
                                         <input autoFocus id='Focus-first-input' 
                                              className='Input-element' required 
                                              type='text'
-                                             name='watch_maker'
+                                             name='comic_maker'
                                              onChange={handleChange}/>
                                    </>
                               :    <> <input className='Input-element Dark-red-color'
                                              autoComplete='off'
                                              type='text'
-                                             name='watch_maker'
-                                             value={watchRelated}
+                                             name='comic_maker'
+                                             value={comicRelated}
                                              readonly/>
                                    </>
                          }
                          <br />
-                         {!isAddWatchRelated
-                              ?    <> <label>Watch Name</label>
+                         {!isAddComicRelated
+                              ?    <> <label>Comic Name</label>
                                    <input className='Input-element' required 
                                              type='text'
-                                             name='watch_name'
+                                             name='comic_name'
                                              onChange={handleChange}/>
                                    </>
                               :    <> <label>Title</label>
                                    <input autoFocus id='Focus-first-input' required
                                              className='Input-element'
                                              type='text'
-                                             name='watch_name'
+                                             name='comic_name'
                                              onChange={handleChange}/>
                                    </>
                          }
@@ -296,4 +296,4 @@ const AddWatch = (props) => {
                                     
 }
 
-export default AddWatch
+export default AddComic

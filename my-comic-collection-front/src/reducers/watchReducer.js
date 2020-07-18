@@ -1,17 +1,17 @@
 import _ from 'lodash'
 import { 
 	ADD_WATCH, 
-	CLEAR_WATCHES,
+	CLEAR_COMICS,
 	COST_HIGH_TO_LOW_SORT,
 	COST_LOW_TO_HIGH_SORT,
 	DELETE_WATCH,
-	GET_WATCHES, 
+	GET_COMICS, 
 	NEWEST_TO_OLDEST_SORT,
 	OLDEST_TO_NEWEST_SORT,
 	RESET_SEARCH_FAILED,
 	RESET_SORT,
-	RESET_WATCHES,
-	SEARCH_WATCHES,
+	RESET_COMICS,
+	SEARCH_COMICS,
 	WATCH_MAKER_SORT,
 	WATCH_NAME_SORT
 } from '../actions/types'
@@ -37,9 +37,9 @@ export default (state = initialState, { type, payload } ) => {
 
 	switch(type) {
 
-		// UPDATE WATCHES & WATCH-RELATED
+		// UPDATE COMICS & WATCH-RELATED
 
-		case GET_WATCHES:
+		case GET_COMICS:
 			if (payload) {
 				return ({
 					...state,
@@ -50,7 +50,7 @@ export default (state = initialState, { type, payload } ) => {
 				})
 			} else return state
 
-		case RESET_WATCHES:		
+		case RESET_COMICS:		
 			return ({
 				...state,
 				comics: state.savedComics
@@ -79,13 +79,13 @@ export default (state = initialState, { type, payload } ) => {
 				})
 			} else return state		
 
-		case CLEAR_WATCHES:
+		case CLEAR_COMICS:
 				state = initialState
 				return state
 
-		// SEARCH WATCHES & WATCH-RELATED
+		// SEARCH COMICS & WATCH-RELATED
 
-		case SEARCH_WATCHES:
+		case SEARCH_COMICS:
 
 			if (payload === '') {
 				alert('Please enter a search value!')
@@ -116,7 +116,7 @@ export default (state = initialState, { type, payload } ) => {
 				})
 			})
 		
-		// SORT WATCHES & WATCH-RELATED
+		// SORT COMICS & WATCH-RELATED
 
 		case WATCH_MAKER_SORT: // sort by name within maker
 			sortedComics = _.chain( state.comics )

@@ -1,25 +1,25 @@
 import { useState } from 'react' // https://reactjs.org/docs/hooks-overview.html
 import _ from 'lodash'  // https://underscorejs.org/)
 import WatchDetail from '../containers/WatchDetail'
-import WatchList from './WatchList'
+import ComicList from './ComicList'
 import SidebarMobile from './SidebarMobile'
 // The following comment is required for @emotion to work
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core' // https://github.com/emotion-js/emotion
 
-const Comics = ({ comics, watchRelated, sortOptionSelected, isSearchSuccessful, DashBoardHistory }) => {
+const Comics = ({ comics, comicRelated, sortOptionSelected, isSearchSuccessful, DashBoardHistory }) => {
  
-    let oldestWatch
-    let newestWatch
+    let oldestComic
+    let newestComic
     let filteredComics
-    let filteredWatchRelated
+    let filteredComicRelated
 
     if(comics?.length > 0) {
-        // Filter out watch-related records
-        filteredWatchRelated = comics.filter(watch => watch.watch_maker.includes(watchRelated))
-        // Filter out watch records
-        filteredComics = comics.filter(watch => !watch.watch_maker.includes(watchRelated))
-        // Sort the filtered watch records by date bought using the underscore function _.sortBy
+        // Filter out comic-related records
+        filteredComicRelated = comics.filter(comic => comic.comic_publisher.includes(comicRelated))
+        // Filter out comic records
+        filteredComics = comics.filter(comic => !comic.comic_publisher.includes(comicRelated))
+        // Sort the filtered comic records by date bought using the underscore function _.sortBy
         const sortedComics = _.sortBy( filteredComics, 'date_bought' )
         oldestWatch = sortedComics[0]
         newestWatch = sortedComics[sortedComics.length-1] 
@@ -27,9 +27,9 @@ const Comics = ({ comics, watchRelated, sortOptionSelected, isSearchSuccessful, 
     }    
 
    const [showComics, setShowComics] = useState(false) // used when in a mobile view
-                                                         // to toggle watch list on and off   
+                                                         // to toggle comic list on and off   
 
-   const [currentWatch, setCurrentWatch] = useState(null) 
+   const [currentComic, setCurrentComic] = useState(null) 
 
     return (
         <div className='Sidebar-list-detail-container'>
@@ -43,17 +43,17 @@ const Comics = ({ comics, watchRelated, sortOptionSelected, isSearchSuccessful, 
                 <SidebarMobile  showComics={showComics}   
                                 setShowComics={setShowComics}
                     />
-                <WatchList showComics={showComics}
+                <ComicList showComics={showComics}
                            setShowComics={setShowComics}
                            comics={comics}
-                           setCurrentWatch={setCurrentWatch}
+                           setCurrentComic={setCurrentComic}
                 /> 
-                <WatchDetail currentWatch={currentWatch}
-                             setCurrentWatch={setCurrentWatch}
-                             newestWatch={newestWatch}
-                             oldestWatch={oldestWatch}
+                <WatchDetail currentComic={currentComic}
+                             setCurrentComic={setCurrentComic}
+                             newestComic={newestComic}
+                             oldestComic={oldestComic}
                              filteredComics={filteredComics}
-                             filteredWatchRelated={filteredWatchRelated}
+                             filteredComicRelated={filteredComicRelated}
                              sortOptionSelected={sortOptionSelected}
                              isSearchSuccessful={isSearchSuccessful}
                              DashBoardHistory={DashBoardHistory}

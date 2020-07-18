@@ -5,13 +5,13 @@ import { Provider } from 'react-redux'
 import { createLogger } from 'redux-logger' // https://www.npmjs.com/package/redux-logger
 import thunk from 'redux-thunk'
 import currentUserReducer from './reducers/currentUserReducer'
-import watchReducer from './reducers/watchReducer'
+import comicReducer from './reducers/comicReducer'
 import App from './containers/App'
 import * as serviceWorker from './serviceWorker'
 
 const rootReducer = combineReducers({
     currentUser: currentUserReducer,
-    myComics: watchReducer 
+    myComics: comicReducer 
 })
 
 const store = createStore(

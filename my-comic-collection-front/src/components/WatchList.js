@@ -6,13 +6,13 @@ import { hashHistory } from 'react-router' // Used to change URL without a re-re
 import { css, jsx } from '@emotion/core' // https://github.com/emotion-js/emotion'
 import { resetSortAction } from '../actions/comicsActions'
 
-const WatchList = (props) => { 
+const ComicList = (props) => { 
 
     const dispatch = useDispatch()
 
     return (
         <div>
-            <div className='Watch-list' css={css`
+            <div className='Comic-list' css={css`
                 
                 @media (max-width: 600px) {
                     display: ${props.showComics ? 'block' : 'none'};
@@ -23,42 +23,42 @@ const WatchList = (props) => {
                     list-style: none;
                 `}>
                     {props.comics ? 
-                        props.comics.map(watch => {
-                            return <li className='Watch-maker-and-name' key={watch.id} 
+                        props.comics.map(comic => {
+                            return <li className='Comic-maker-and-name' key={comic.id} 
                                 onClick={() => { 
                                     dispatch(resetSortAction())
-                                    hashHistory.push(`/comics/${watch.id}/watch_detail`) // set the url for the watch
-                                    props.setCurrentWatch(watch)
-                                    props.setShowComics(false) // on mobiles will allow toggling of watch list
+                                    hashHistory.push(`/comics/${comic.id}/comic_detail`) // set the url for the comic
+                                    props.setCurrentComic(comic)
+                                    props.setShowComics(false) // on mobiles will allow toggling of comic list
                                 }}>
-                                <b className='Watch-maker Dark-red-color'>
-                                    {watch.watch_maker}:</b> {watch.watch_name} 
+                                <b className='Comic-maker Dark-red-color'>
+                                    {comic.comic_maker}:</b> {comic.comic_name}
                             </li>
                         })
                     : null}
                 </ul>  
             </div> 
-            <div className='WatchList-buttons' css={css`
+            <div className='ComicList-buttons' css={css`
             
                 @media (max-width: 600px) { {
                     display: ${props.showComics ? 'block' : 'none'};
                     max-width: 400px;
                 }
             `}>   
-                <Link to={{pathname: '/comics/add_watch_related',
-                        isAddWatchRelated: true
+                <Link to={{pathname: '/comics/add_comic_related',
+                        isAddComicRelated: true
                         }}>
-                    <button className='btn Add-watch-related-button Button-text' >Add Watch-Related</button>
+                    <button className='btn Add-comic-related-button Button-text' >Add Comic-Related</button>
                 </Link>
-                <Link to={{pathname: '/comics/add_watch'}}>
-                    <button className='btn Add-watch-button Button-text' >Add Watch</button>
+                <Link to={{pathname: '/comics/add_comic'}}>
+                    <button className='btn Add-comic-button Button-text' >Add Comic</button>
                 </Link>
-                <Link to={{pathname: '/watch_related_info'}}>
-                    <button className='btn Watch-related-info-button Button-text' >Watch-Related Info</button>
+                <Link to={{pathname: '/comic_related_info'}}>
+                    <button className='btn Comich-related-info-button Button-text' >Comic-Related Info</button>
                 </Link>
             </div>
         </div>
     )
 }
 
-export default WatchList
+export default ComicList

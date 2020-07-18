@@ -1,10 +1,10 @@
 import {
-	GET_WATCHES,
-	ADD_WATCH,
+	GET_COMICS,
+	ADD_COMIC,
 	DELETE_WATCH,
-	SEARCH_WATCHES,
+	SEARCH_COMICS,
 	RESET_SORT,
-	RESET_WATCHES,
+	RESET_COMICS,
 	RESET_SEARCH_FAILED
 } from './types'
 // The underscore library
@@ -29,14 +29,14 @@ export const getComicsAction = (user_id, isSearchFailed = false) => {
 		})
 		.then(response => {
 			// Sort the comics using the underscore functions _.chain & _.sortBy
-			// Sort by watch name within watch maker for the initial dashboard screen
+			// Sort by comic name within comic maker for the initial dashboard screen
 			sortedComics = _.chain(response)
-				.sortBy('watch_name')
-				.sortBy('watch_maker')
+				.sortBy('comic_name')
+				.sortBy('comic_publisher')
 				.value()
-			// Update watch states with the sorted result
+			// Update comic states with the sorted result
 			dispatch({
-				type: GET_WATCHES, 
+				type: GET_COMICS, 
 				payload: {sortedComics, isSearchFailed}
 			})
 		})
@@ -57,11 +57,11 @@ export const sortComicsAction = (sortKey) => {
 export const searchComicsAction = (searchText) => {
 	return dispatch => {
 		dispatch({
-			type: RESET_WATCHES
+			type: RESET_COMICS
 		})
 		
 		dispatch({
-			type: SEARCH_WATCHES,
+			type: SEARCH_COMICS,
 			payload: searchText
 		})
 	}		
@@ -70,7 +70,7 @@ export const searchComicsAction = (searchText) => {
 export const resetComicsAction = () => {
 	return dispatch => {
 		dispatch({
-			type: RESET_WATCHES
+			type: RESET_COMICS
 		})
 	}		
 }
@@ -92,7 +92,7 @@ export const resetSearchFailedAction = (isSearchFailed = false) => {
 	}		
 }
 
-export const addWatchAction = (formData, watch) => {
+export const addComicAction = (formData, comic) => {
 	return dispatch => {
 		return fetch(`${API_URL}/comics`, {
 			method: 'POST',
@@ -100,57 +100,57 @@ export const addWatchAction = (formData, watch) => {
 		})
 		.then(response => {
 			if (response.error) {
-				alert('*** addWatchAction ERROR 1: ' + response.error.message)
+				alert('*** addComicAction ERROR 1: ' + response.error.message)
 			} else {
 					dispatch({
-							type: ADD_WATCH,
-							payload: watch
+							type: ADD_COMIC,
+							payload: comic
 					})
 				}
 		})
 		.catch(error => {
-			console.log('*** addWatchAction ERROR 2: ' + error.message)
+			console.log('*** addComicAction ERROR 2: ' + error.message)
 		})
 	}
 }
 
-export const editWatchAction = (formData, watch_id) => {
+export const editComicAction = (formData, comic_id) => {
 	// for(let [name, value] of formData) {
 	// 	console.log(`${name} = ${value}`)
 	// }
 	return dispatch => {
-		return fetch(`${API_URL}/comics/${watch_id}`, {
+		return fetch(`${API_URL}/comics/${comic_id}`, {
 			method: 'PATCH',
 			body: formData
 		})
 		.then(response => {
 			if (response.error) {
-				alert('*** editWatchAction ERROR 1: ' + response.error.message)
+				alert('*** editComicAction ERROR 1: ' + response.error.message)
 			}
 		})
 		.catch(error => {
-			console.log('*** editWatchAction ERROR 2: ' + error.message)
+			console.log('*** editComicAction ERROR 2: ' + error.message)
 		})
 	}
 }
 
-export const deleteWatchAction = (id) => {
+export const deleteComicAction = (id) => {
 	return dispatch => {
 		return fetch(`${API_URL}/comics/${id}`, {
 				method: 'DELETE'
 		})
 		.then(response => {
 			if (response.error) {
-				alert('*** deleteWatchAction ERROR 1: ' + response.error.message)
+				alert('*** deleteComicAction ERROR 1: ' + response.error.message)
 			} else {
 				dispatch({
-					type: DELETE_WATCH,
+					type: DELETE_COMIC,
 					payload: id
 				})
 			}			
 		})
 		.catch(error => {
-			console.log('*** deleteWatchAction ERROR 2: ' + error.message)
+			console.log('*** deleteComicAction ERROR 2: ' + error.message)
 		})
 	}
 }

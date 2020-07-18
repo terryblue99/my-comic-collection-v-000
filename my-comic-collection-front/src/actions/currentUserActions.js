@@ -1,7 +1,7 @@
 import {
   SET_CURRENT_USER,
   CLEAR_CURRENT_USER,
-  CLEAR_WATCHES,
+  CLEAR_COMICS,
   DELETE_USER
 } from './types'
 
@@ -91,7 +91,7 @@ export const logOutAction = () => {
       method: "DELETE"
     })
     .then(dispatch({type: CLEAR_CURRENT_USER}))
-    .then(dispatch({type: CLEAR_WATCHES}))
+    .then(dispatch({type: CLEAR_COMICS}))
     .catch(error => {
       console.log('*** logOutAction Error: ', error)
     })
