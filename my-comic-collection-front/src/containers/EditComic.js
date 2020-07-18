@@ -14,13 +14,8 @@ const EditComic = (props) => {
           id: props.location.state.comic.id,
           comic_publisher: props.location.state.comic.comic_publisher,
           comic_name: props.location.state.comic.comic_name,
-          movement: props.location.state.comic.movement,
-          complications: props.location.state.comic.complications,
-          band: props.location.state.comic.band,
-          model_number: props.location.state.comic.model_number,
-          case_measurement: props.location.state.comic.case_measurement,
-          water_resistance: props.location.state.comic.water_resistance,
-          date_bought: props.location.state.comic.date_bought,
+          comic_number: props.location.state.comic.comic_number,
+          year_published: props.location.state.comic.year_published,
           cost: props.location.state.comic.cost,
           notes: props.location.state.comic.notes,
           user_id: props.location.state.comic.user_id,
@@ -69,11 +64,11 @@ const EditComic = (props) => {
                isComicRelated = true
           } 
           if (formInput.isFormInput) {
-               // validate the 'Date Bought/RCVD' input for comic records
+               // validate the 'Year Published' input for comic records
                if (stateData.comic_publisher && !isComicRelated) {
-                    const isValidDate = DateValidation(stateData.date_bought)
+                    const isValidDate = DateValidation(stateData.year_published)
                     if (!isValidDate) {
-                         alert('Date Bought/RCVD must be in format yyyy-mm-dd, yyyy-mm or yyyy and contain valid day & month numbers!')
+                         alert('Year Bought must be in format yyyy and contain valid year!')
                          return
                     }
                }    
@@ -81,13 +76,8 @@ const EditComic = (props) => {
                const formData = new FormData()
                formData.append('comic_publisher', stateData.comic_publisher)
                formData.append('comic_name', stateData.comic_name)
-               formData.append('movement', stateData.movement)
-               formData.append('band', stateData.band)
-               formData.append('model_number', stateData.model_number)
-               formData.append('case_measurement', stateData.case_measurement)
-               formData.append('water_resistance', stateData.water_resistance)
-               formData.append('complications', stateData.complications)
-               formData.append('date_bought', stateData.date_bought)
+               formData.append('comic_number', stateData.comic_number)
+               formData.append('year_published', stateData.year_published)
                formData.append('cost', stateData.cost)
                formData.append('notes', stateData.notes)
                formData.append('user_id', stateData.user_id)   
@@ -204,116 +194,37 @@ const EditComic = (props) => {
                          }
                          <br />
                          {!isEditComicRelated
-                              ?    <> <label>Movement</label>
-                                        <input className='Input-element'
+                              ?    <> <label>Comic Number</label>
+                                        <input className='Input-element' required 
                                              type='text'
-                                             name='movement'
-                                             defaultValue={comic.movement}
+                                             name='comic_number'
+                                             defaultValue={comic.comic_number}
                                              onChange={handleChange}/>
                                    </>
                               :    <> <input className='Input-element'
                                              autoComplete='off'
                                              type='text'
-                                             name='movement'
-                                             defaultValue={comic.movement}
+                                             name='comic_number'
+                                             defaultValue={comic.comic_number}
                                              onChange={handleChange}/>
                                    </>
                          }
                          <br />
                          {!isEditComicRelated
-                              ?    <> <label>Complications</label>
-                                        <input className='Input-element'
+                              ?    <> <label>Year Published</label>
+                                        <input className='Input-element' required 
                                              type='text'
-                                             name='complications'
-                                             defaultValue={comic.complications}
+                                             name='year_published'
+                                             defaultValue={comic.comic_number}
                                              onChange={handleChange}/>
                                    </>
                               :    <> <input className='Input-element'
                                              autoComplete='off'
                                              type='text'
-                                             name='complications'
-                                             defaultValue={comic.complications}
+                                             name='year_published'
+                                             defaultValue={comic.year_published}
                                              onChange={handleChange}/>
                                    </>
-                         }
-                         <br /> 
-                         {!isEditComicRelated
-                              ?    <> <label>Band</label>
-                                        <input className='Input-element'
-                                             type='text'
-                                             name='band'
-                                             defaultValue={comic.band}
-                                             onChange={handleChange}/>
-                                   </>
-                              :    <> <input className='Input-element'
-                                             autoComplete='off'
-                                             type='text'
-                                             name='band'
-                                             defaultValue={comic.band}
-                                             onChange={handleChange}/>
-                                   </>
-                         }
-                         <br />
-                         {!isEditComicRelated
-                              ?    <> <label>Model Number</label>
-                                        <input className='Input-element'
-                                             type='text'
-                                             name='model_number'
-                                             defaultValue={comic.model_number}
-                                             onChange={handleChange}/>
-                                   </>
-                              :    <> <input className='Input-element'
-                                             autoComplete='off'
-                                             type='text'
-                                             name='model_number'
-                                             defaultValue={comic.model_number}
-                                             onChange={handleChange}/>
-                                   </>
-                         }
-                         <br /> 
-                         {!isEditComicRelated
-                              ?    <> <label>Case Measurement (e.g. 45mm)</label>
-                                        <input className='Input-element'
-                                             type='text'
-                                             name='case_measurement'
-                                             defaultValue={comic.case_measurement}
-                                             onChange={handleChange}/>
-                                   </>
-                              :    <> <input className='Input-element'
-                                             autoComplete='off'
-                                             type='text'
-                                             name='case_measurement'
-                                             defaultValue={comic.case_measurement}
-                                             onChange={handleChange}/>
-                                   </>
-                         }
-                         <br />
-                         {!isEditComicRelated
-                              ?    <> <label>Water Resistance (e.g. 200 meters)</label>
-                                        <input className='Input-element'
-                                             type='text'
-                                             name='water_resistance'
-                                             defaultValue={comic.water_resistance}
-                                             onChange={handleChange}/>
-                                   </>
-                              :    <> <input className='Input-element'
-                                             autoComplete='off'
-                                             type='text'
-                                             name='water_resistance'
-                                             defaultValue={comic.water_resistance}
-                                             onChange={handleChange}/>
-                                   </>
-                         }
-                         <br />
-                         {!isEditComicRelated
-                              ?    <> <label>Date Bought/RCVD (yyyy-mm-dd, yyyy-mm or yyyy)</label>
-                                        <input className='Input-element' required
-                                             type='text'
-                                             name='date_bought'
-                                             defaultValue={comic.date_bought}
-                                             onChange={handleChange}/>
-                                   </>
-                              : null
                          }
                          <br />
                          {!isEditComicRelated
