@@ -54,7 +54,7 @@ const ComicList = (props) => {
                     <button className='btn Add-comic-button Button-text' >Add Comic</button>
                 </Link>
                 <Link to={{pathname: '/comic_related_info'}}>
-                    <button className='btn Comich-related-info-button Button-text' >Comic-Related Info</button>
+                    <button className='btn Comic-related-info-button Button-text' >Comic-Related Info</button>
                 </Link>
             </div>
         </div>
