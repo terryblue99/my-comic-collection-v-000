@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import NavBar from './NavBar'
-import { editComicAction } from '../actions/ComicsActions'
+import { editComicAction } from '../actions/comicsActions'
 import RedirectTo from '../components/RedirectTo'
 import RedirectToWithState from "../components/RedirectToWithState"
 import DateValidation from "../components/DateValidation"

@@ -16,8 +16,8 @@ const AddComic = (props) => {
      const initialState = {
           comic_name: '',
           comic_publisher: comicRelated,
-          comic_number,
-          year_published,
+          comic_number: '',
+          year_published: '',
           cost: 0.00,
           notes: '',
           image: null,
