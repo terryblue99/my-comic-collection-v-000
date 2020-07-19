@@ -56,9 +56,9 @@ const AddComic = (props) => {
           } 
           // validate the 'Date Bought/RCVD' input for comic records
           if (!isComicRelated) {
-               const isValidDate = DateValidation(stateData.date_bought)
+               const isValidDate = DateValidation(stateData.year_published)
                if (!isValidDate) {
-                    alert('Date Bought/RCVD must be in format yyyy-mm-dd, yyyy-mm or yyyy and contain valid day & month numbers!')
+                    alert('Year Published must be in format yyyy and contain a valid year!')
                     return
                }
           }   

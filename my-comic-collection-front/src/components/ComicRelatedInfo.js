@@ -19,8 +19,7 @@ const ComicRelatedInfo = ()  => {
         <h2 className='ComicRelated-text Dark-red-color Center-text'>Comic-Related Information</h2>
         < br/>
         <p>Comic-Related records can contain any type of information</p>
-        <p>related to comics. For example, winders, cases, tools, straps,</p>
-        <p>bracelets, spare parts, 'how to' info, etc.</p>
+        <p>related to comics.</p>
         < br/>
         <p><span className='ComicRelated-note'>Note:</span> Information about a specific saved comic can be entered in</p>
         <p className='ComicRelated-info-tab'>the <span className='Blue-color'>Notes</span> input field of that comic.</p>

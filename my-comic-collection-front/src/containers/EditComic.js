@@ -68,7 +68,7 @@ const EditComic = (props) => {
                if (stateData.comic_publisher && !isComicRelated) {
                     const isValidDate = DateValidation(stateData.year_published)
                     if (!isValidDate) {
-                         alert('Year Bought must be in format yyyy and contain valid year!')
+                         alert('Year Published must be in format yyyy and contain a valid year!')
                          return
                     }
                }    

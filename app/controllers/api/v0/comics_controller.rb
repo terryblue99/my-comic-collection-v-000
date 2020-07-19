@@ -42,7 +42,7 @@ class Api::V0::ComicsController < ApplicationController
       params.permit(
           :comic_name, 
           :comic_publisher,
-          :comic_number
+          :comic_number,
           :year_published,
           :cost,
           :notes,
