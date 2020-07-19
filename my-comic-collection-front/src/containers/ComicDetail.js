@@ -97,13 +97,8 @@ const ComicDetail = (props) => {
             id,
             comic_name,
             comic_publisher,
-            movement,
-            complications,
-            band,
-            model_number,
-            case_measurement,
-            water_resistance,
-            date_bought,
+            comic_number,
+            year_published,
             cost,
             notes
         } = currentComic
@@ -121,72 +116,24 @@ const ComicDetail = (props) => {
                     <h1 className='ComicDetail-comich-publisher Dark-red-color'><b>{comic_publisher}</b></h1> 
                     <h2 className='Comic-name'>{comic_name}</h2>
                     <div className='Comic-detail-complications Center-text'>
-                        {movement && !comic_publisher.includes(comicRelated)
-                            ?   <>  <p className='Detail-css'>Movement</p>
-                                    <h3 className='ComicDetail'>{movement}</h3>
+                        {comic_number && !comic_publisher.includes(comicRelated)
+                            ?   <>  <p className='Detail-css'>Comic Number</p>
+                                    <h3 className='ComicDetail'>{comic_number}</h3>
                                 </>
                             :   null }
-                        {movement && comic_publisher.includes(comicRelated) 
-                            ?   <>  <h3 className='ComicDetail'>{movement}</h3>
+                        {comic_number && comic_publisher.includes(comicRelated) 
+                            ?   <>  <h3 className='ComicDetail'>{comic_number}</h3>
                                 </>
                             :   null }
-                        {complications && !comic_publisher.includes(comicRelated)
-                            ?   <>  <p className='Detail-css'>Complications</p>
-                                    <h3 className='ComicDetail'>{complications}</h3>
-                                </>
-                            :   null }
-                        {complications && comic_publisher.includes(comicRelated) 
-                            ?   <>  <h3 className='ComicDetail'>{complications}</h3>
-                                </>
-                            :   null }
-                        {band && !comic_publisher.includes(comicRelated)
-                            ?   <>  <p className='Detail-css'>Band</p>
-                                    <h3 className='ComicDetail'>{band}</h3>
-                                </>
-                            :   null }
-                        {band && comic_publisher.includes(comicRelated) 
-                            ?   <>  <h3 className='ComicDetail'>{band}</h3>
-                                </>
-                            :   null }
-                        {model_number && !comic_publisher.includes(comicRelated)
-                            ?   <>  <p className='Detail-css'>Model Number</p>
-                                    <h3 className='ComicDetail'>{model_number}</h3>
-                                </>
-                            :   null }
-                        {model_number && comic_publisher.includes(comicRelated) 
-                            ?   <>  <h3 className='ComicDetail'>{model_number}</h3>
-                                </>
-                            :   null }
-                        {case_measurement && !comic_publisher.includes(comicRelated)
-                            ?   <>  <p className='Detail-css'>Case Measurement</p>
-                                    <h3 className='ComicDetail'>{case_measurement}</h3>
-                                </>
-                            :   null }
-                        {case_measurement && comic_publisher.includes(comicRelated) 
-                            ?   <>  <h3 className='ComicDetail'>{case_measurement}</h3>
-                                </>
-                            :   null }
-                        {water_resistance && !comic_publisher.includes(comicRelated)
-                            ?   <>  <p className='Detail-css'>Water Resistance</p>
-                                    <h3 className='ComicDetail'>{water_resistance}</h3>
-                                </>
-                            :   null }
-                        {water_resistance && comic_publisher.includes(comicRelated) 
-                            ?   <>  <h3 className='ComicDetail'>{water_resistance}</h3>
-                                </>
-                            :   null }
-                        {date_bought && !comic_publisher.includes(comicRelated) 
-                        ?   <>
-                                {cost > 0
-                                    ? <> <p className='Detail-css'>Date Bought</p>
-                                        <h3 className='ComicDetail'>{date_bought}</h3>
-                                    </>
-                                    : <> <p className='Detail-css'>Date RCVD</p>
-                                        <h3 className='ComicDetail'>{date_bought}</h3>
-                                    </>
-                                }    
+                        {year_published && !comic_publisher.includes(comicRelated)
+                        ?   <>  <p className='Detail-css'>Year Published</p>
+                                <h3 className='ComicDetail'>{year_published}</h3>
                             </>
-                        : null }
+                        :   null }
+                        {year_published && comic_publisher.includes(comicRelated) 
+                            ?   <>  <h3 className='ComicDetail'>{year_published}</h3>
+                                </>
+                            :   null }
                         {cost > 0
                         ?    <>
                                 <p className='Detail-css'>Cost</p>
