@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import logo from '../../images/logo.jpg'
+import logo from '../../images/Marvel_DC.jpg'
 import { signUpAction } from "../../actions/currentUserActions.js"
 import ClearForm from "../../components/ClearForm"
 import SetFocus from "../../components/SetFocus"
