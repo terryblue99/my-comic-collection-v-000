@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import logo from '../../images/Marvel_DC.jpg'
+import logo from '../../images/Marvel_DC_logo.jpg'
 import { logInAction } from "../../actions/currentUserActions.js"
 import RedirectTo from '../../components/RedirectTo'
 

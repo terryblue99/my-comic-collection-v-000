@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch} from 'react-redux'
 import { hashHistory } from 'react-router' // Used to change URL without a re-render
-import logo from '../images/Marvel_DC.jpg'
+import logo from '../images/Marvel_DC_logo.jpg'
 import { sortComicsAction, resetComicsAction, resetSearchFailedAction, resetSortAction } from '../actions/comicsActions'
 import RedirectToWithState from "../components/RedirectToWithState"
 
