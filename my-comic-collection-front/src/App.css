@@ -158,7 +158,7 @@ img {
 .ComicRelated
 {
   background-color: gainsboro; /* only displays if the image is delayed or doesn't load */
-  background-image: url(./images/watch-background-5.jpg);
+  background-image: url(./images/comic_app_background.jpg);
   background-position: center; /* shows center of image in responsive mode */
   background-size: cover; /* Fills the screen with the whole image */
 }
