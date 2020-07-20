@@ -20,7 +20,7 @@ const Comics = ({ comics, comicRelated, sortOptionSelected, isSearchSuccessful, 
         // Filter out comic records
         filteredComics = comics.filter(comic => !comic.comic_publisher.includes(comicRelated))
         // Sort the filtered comic records by date bought using the underscore function _.sortBy
-        const sortedComics = _.sortBy( filteredComics, 'date_bought' )
+        const sortedComics = _.sortBy( filteredComics, 'year_published' )
         oldestComic = sortedComics[0]
         newestComic = sortedComics[sortedComics.length-1] 
         

@@ -215,7 +215,7 @@ const EditComic = (props) => {
                                         <input className='Input-element' required 
                                              type='text'
                                              name='year_published'
-                                             defaultValue={comic.comic_number}
+                                             defaultValue={comic.year_published}
                                              onChange={handleChange}/>
                                    </>
                               :    <> <input className='Input-element'

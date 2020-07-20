@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Image from 'react-image-enlarger'
 import { deleteComicAction } from '../actions/comicsActions'
 import DashboardMain from './DashboardMain'
 import RedirectTo from '../components/RedirectTo'
@@ -13,6 +14,7 @@ const ComicDetail = (props) => {
     const comicRelated = useSelector(state => state.myComics.comicRelated) // For records that are not related to a specific comic.
     const isSearchFailed = useSelector(state => state.myComics.isSearchFailed)
     const dispatch = useDispatch()
+    const [zoomed, setZoomed] = React.useState(false)
 
     const handleDelete = () => {
 
@@ -53,6 +55,19 @@ const ComicDetail = (props) => {
             }
         })
    }
+
+    const enlargeImage = (image) => {
+        return (
+            <Image
+                style={{ width: '200px', height: 'auto' }}
+                zoomed={zoomed}
+                src={image}
+                alt='enlarged comic image'
+                onClick={() => setZoomed(true)}
+                onRequestClose={() => setZoomed(false)}
+            />
+        )
+    }
 
     if (stateData.isBackToDashboard && stateData.isComicDeleted) {
         setStateData(prevStateData => {
@@ -109,7 +124,7 @@ const ComicDetail = (props) => {
                 <div className='Back-button_and_Image'>    
                     <button onClick={handleBack} className='Comic-detail-back-button btn Button-text'>Back to dashboard</button>
                     <div className='Comic-detail-image'> 
-                        <img src={currentComic.image} alt='current comic' className='Comic-image'/>
+                        {enlargeImage(currentComic.image)}
                     </div>
                 </div>
                 <div className='Comic-detail-text'>
