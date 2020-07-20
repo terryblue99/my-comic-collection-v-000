@@ -62,7 +62,7 @@ const ComicDetail = (props) => {
                 style={{ width: '200px', height: 'auto' }}
                 zoomed={zoomed}
                 src={image}
-                alt='enlarged comic image'
+                alt='comic image'
                 onClick={() => setZoomed(true)}
                 onRequestClose={() => setZoomed(false)}
             />
