@@ -228,7 +228,7 @@ const EditComic = (props) => {
                          }
                          <br />
                          {!isEditComicRelated
-                              ?    <> <label>Cost (e.g. 199.99 | defaults to 0)</label>
+                              ?    <> <label>Cost (e.g. 99.99 | defaults to 0)</label>
                                         <input className='Input-element'
                                              type='number'
                                              step='0.01'

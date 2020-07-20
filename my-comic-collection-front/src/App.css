@@ -78,7 +78,7 @@ img {
   border-radius: .5em;
   box-shadow: 10px 10px 5px rgba(0,0,0,0.1);
   height: 300px;
-  min-width: 200px;
+  width: 200px;
 }
 
 .Choose-image {

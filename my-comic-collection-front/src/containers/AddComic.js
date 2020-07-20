@@ -158,8 +158,8 @@ const AddComic = (props) => {
                                              name='comic_number'
                                              onChange={handleChange}/>
                                    </>
-                              :    <> <input autoFocus id='Focus-first-input' required
-                                             className='Input-element'
+                              :    <> <input className='Input-element'
+                                             autoComplete='off'
                                              type='text'
                                              name='comic_number'
                                              onChange={handleChange}/>
@@ -168,13 +168,13 @@ const AddComic = (props) => {
                          <br />
                          {!isAddComicRelated
                               ?    <> <label>Year Published</label>
-                                   <input className='Input-element' required 
+                                   <input className='Input-element' required
                                              type='text'
                                              name='year_published'
                                              onChange={handleChange}/>
                                    </>
-                              :    <> <input autoFocus id='Focus-first-input' required
-                                             className='Input-element'
+                              :    <> <input className='Input-element'
+                                             autoComplete='off'
                                              type='text'
                                              name='year_published'
                                              onChange={handleChange}/>
@@ -182,7 +182,7 @@ const AddComic = (props) => {
                          }
                          <br />
                          {!isAddComicRelated
-                              ?    <> <label>Cost (e.g. 199.99 | defaults to 0)</label>
+                              ?    <> <label>Cost (e.g. 99.99 | defaults to 0)</label>
                                    <input className='Input-element'
                                              type='number'
                                              step='0.01'
