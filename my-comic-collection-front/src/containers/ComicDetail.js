@@ -113,7 +113,7 @@ const ComicDetail = (props) => {
             comic_name,
             comic_publisher,
             comic_number,
-            year_published,
+            date_published,
             cost,
             notes
         } = currentComic
@@ -140,13 +140,13 @@ const ComicDetail = (props) => {
                             ?   <>  <h3 className='ComicDetail'>{comic_number}</h3>
                                 </>
                             :   null }
-                        {year_published && !comic_publisher.includes(comicRelated)
-                        ?   <>  <p className='Detail-css'>Year Published</p>
-                                <h3 className='ComicDetail'>{year_published}</h3>
+                        {date_published && !comic_publisher.includes(comicRelated)
+                        ?   <>  <p className='Detail-css'>Date Published</p>
+                                <h3 className='ComicDetail'>{date_published}</h3>
                             </>
                         :   null }
-                        {year_published && comic_publisher.includes(comicRelated) 
-                            ?   <>  <h3 className='ComicDetail'>{year_published}</h3>
+                        {date_published && comic_publisher.includes(comicRelated) 
+                            ?   <>  <h3 className='ComicDetail'>{date_published}</h3>
                                 </>
                             :   null }
                         {cost > 0

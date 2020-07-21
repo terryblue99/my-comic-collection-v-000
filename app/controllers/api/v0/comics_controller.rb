@@ -43,7 +43,7 @@ class Api::V0::ComicsController < ApplicationController
           :comic_name, 
           :comic_publisher,
           :comic_number,
-          :year_published,
+          :date_published,
           :cost,
           :notes,
           :image,

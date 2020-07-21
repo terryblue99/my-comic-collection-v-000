@@ -17,7 +17,7 @@ const AddComic = (props) => {
           comic_name: '',
           comic_publisher: comicRelated,
           comic_number: '',
-          year_published: '',
+          date_published: '',
           cost: 0.00,
           notes: '',
           image: null,
@@ -56,9 +56,9 @@ const AddComic = (props) => {
           } 
           // validate the 'Date Bought/RCVD' input for comic records
           if (!isComicRelated) {
-               const isValidDate = DateValidation(stateData.year_published)
+               const isValidDate = DateValidation(stateData.date_published)
                if (!isValidDate) {
-                    alert('Year Published must be in format yyyy and contain a valid year!')
+                    alert('Date Published must be in format yyyy-mm-dd, yyyy-mm or yyyy and contain valid day & month numbers!')
                     return
                }
           }   
@@ -67,7 +67,7 @@ const AddComic = (props) => {
           formData.append('comic_name', stateData.comic_name)
           formData.append('comic_publisher', stateData.comic_publisher)
           formData.append('comic_number', stateData.comic_number)
-          formData.append('year_published', stateData.year_published)
+          formData.append('date_published', stateData.date_published)
           formData.append('cost', stateData.cost)
           formData.append('notes', stateData.notes)
           formData.append('user_id', stateData.user_id)
@@ -167,16 +167,16 @@ const AddComic = (props) => {
                          }
                          <br />
                          {!isAddComicRelated
-                              ?    <> <label>Year Published</label>
+                              ?    <> <label>Date Published (yyyy-mm-dd, yyyy-mm or yyyy)</label>
                                    <input className='Input-element' required
                                              type='text'
-                                             name='year_published'
+                                             name='date_published'
                                              onChange={handleChange}/>
                                    </>
                               :    <> <input className='Input-element'
                                              autoComplete='off'
                                              type='text'
-                                             name='year_published'
+                                             name='date_published'
                                              onChange={handleChange}/>
                                    </>
                          }

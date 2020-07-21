@@ -93,7 +93,7 @@ export default (state = initialState, { type, payload } ) => {
 					searchArray.push( comic.comic_name.toLowerCase(),
 														comic.comic_publisher.toLowerCase(),
 														comic.comic_number.toLowerCase(),
-														comic.year_published.toLowerCase(),
+														comic.date_published.toLowerCase(),
 														comic.cost,
 														comic.notes.toLowerCase()
 													)
@@ -124,7 +124,7 @@ export default (state = initialState, { type, payload } ) => {
 			})
 
 		case	NEWEST_TO_OLDEST_SORT:
-			sortedComics = _.sortBy( state.comics, 'year_published' )
+			sortedComics = _.sortBy( state.comics, 'date_published' )
 			return ({
 				...state,
 				isSort: true,
@@ -132,7 +132,7 @@ export default (state = initialState, { type, payload } ) => {
 			})
 
 		case	OLDEST_TO_NEWEST_SORT:
-			sortedComics = _.sortBy( state.comics, 'year_published' )
+			sortedComics = _.sortBy( state.comics, 'date_published' )
 			return ({
 				...state,
 				isSort: true,

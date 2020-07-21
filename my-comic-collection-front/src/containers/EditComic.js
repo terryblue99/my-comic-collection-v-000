@@ -15,7 +15,7 @@ const EditComic = (props) => {
           comic_publisher: props.location.state.comic.comic_publisher,
           comic_name: props.location.state.comic.comic_name,
           comic_number: props.location.state.comic.comic_number,
-          year_published: props.location.state.comic.year_published,
+          date_published: props.location.state.comic.date_published,
           cost: props.location.state.comic.cost,
           notes: props.location.state.comic.notes,
           user_id: props.location.state.comic.user_id,
@@ -64,11 +64,11 @@ const EditComic = (props) => {
                isComicRelated = true
           } 
           if (formInput.isFormInput) {
-               // validate the 'Year Published' input for comic records
+               // validate the 'Date Published' input for comic records
                if (stateData.comic_publisher && !isComicRelated) {
-                    const isValidDate = DateValidation(stateData.year_published)
+                    const isValidDate = DateValidation(stateData.date_published)
                     if (!isValidDate) {
-                         alert('Year Published must be in format yyyy and contain a valid year!')
+                         alert('Date Published must be in format yyyy-mm-dd, yyyy-mm or yyyy and contain valid day & month numbers!')
                          return
                     }
                }    
@@ -77,7 +77,7 @@ const EditComic = (props) => {
                formData.append('comic_publisher', stateData.comic_publisher)
                formData.append('comic_name', stateData.comic_name)
                formData.append('comic_number', stateData.comic_number)
-               formData.append('year_published', stateData.year_published)
+               formData.append('date_published', stateData.date_published)
                formData.append('cost', stateData.cost)
                formData.append('notes', stateData.notes)
                formData.append('user_id', stateData.user_id)   
@@ -211,18 +211,18 @@ const EditComic = (props) => {
                          }
                          <br />
                          {!isEditComicRelated
-                              ?    <> <label>Year Published</label>
+                              ?    <> <label>Date Published (yyyy-mm-dd, yyyy-mm or yyyy)</label>
                                         <input className='Input-element' required 
                                              type='text'
-                                             name='year_published'
-                                             defaultValue={comic.year_published}
+                                             name='date_published'
+                                             defaultValue={comic.date_published}
                                              onChange={handleChange}/>
                                    </>
                               :    <> <input className='Input-element'
                                              autoComplete='off'
                                              type='text'
-                                             name='year_published'
-                                             defaultValue={comic.year_published}
+                                             name='date_published'
+                                             defaultValue={comic.date_published}
                                              onChange={handleChange}/>
                                    </>
                          }

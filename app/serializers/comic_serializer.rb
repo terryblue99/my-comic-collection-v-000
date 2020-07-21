@@ -3,7 +3,7 @@ class ComicSerializer < ActiveModel::Serializer
   :comic_name, 
   :comic_publisher,
   :comic_number
-  :year_published,
+  :date_published,
   :cost,
   :user_id,
   :notes,

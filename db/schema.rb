@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2020_17_18_212560) do
     t.string "comic_name"
     t.string "comic_publisher"
     t.string "comic_number"
-    t.string "year_published"
+    t.string "date_published"
     t.decimal "cost", precision: 8, scale: 2, default: "0.0"
     t.string "notes"
     t.integer "user_id"
