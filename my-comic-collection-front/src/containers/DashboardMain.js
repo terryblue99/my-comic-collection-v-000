@@ -82,12 +82,12 @@ const DashboardMain = (props) => {
       a_newest_comic_exists = !props.newestComic.comic_publisher.includes(comicRelated)
       newestComicImage = props.newestComic.image 
       newestComicPublisher = props.newestComic.comic_publisher
-      newestComicDate = props.newestComic.date_bought
+      newestComicDate = props.newestComic.date_published
 
       an_oldest_comic_exists = !props.oldestComic.comic_publisher.includes(comicRelated)
       oldestComicImage = props.oldestComic.image
       oldestComicPublisher = props.oldestComic.comic_publisher
-      oldestComicDate = props.oldestComic.date_bought
+      oldestComicDate = props.oldestComic.date_published
 
       number_of_comics = Object.keys(props.filteredComics).length
   }
