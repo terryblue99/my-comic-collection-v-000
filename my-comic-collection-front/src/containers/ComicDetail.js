@@ -113,6 +113,7 @@ const ComicDetail = (props) => {
             comic_name,
             comic_publisher,
             comic_number,
+            comic_title,
             date_published,
             cost,
             notes
@@ -134,6 +135,11 @@ const ComicDetail = (props) => {
                         {comic_number && !comic_publisher.includes(comicRelated)
                             ?   <>  <p className='Detail-css'>Comic Number</p>
                                     <h3 className='ComicDetail'>{comic_number}</h3>
+                                </>
+                            :   null }
+                            {comic_title && !comic_publisher.includes(comicRelated)
+                            ?   <>  <p className='Detail-css'>Comic Title</p>
+                                    <h3 className='ComicDetail'>{comic_title}</h3>
                                 </>
                             :   null }
                         {comic_number && comic_publisher.includes(comicRelated) 
