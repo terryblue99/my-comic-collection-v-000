@@ -14,6 +14,7 @@ const EditComic = (props) => {
           id: props.location.state.comic.id,
           comic_publisher: props.location.state.comic.comic_publisher,
           comic_name: props.location.state.comic.comic_name,
+          comic_title: props.location.state.comic.comic_title,
           comic_number: props.location.state.comic.comic_number,
           date_published: props.location.state.comic.date_published,
           cost: props.location.state.comic.cost,
@@ -76,6 +77,7 @@ const EditComic = (props) => {
                const formData = new FormData()
                formData.append('comic_publisher', stateData.comic_publisher)
                formData.append('comic_name', stateData.comic_name)
+               formData.append('comic_title', stateData.comic_title)
                formData.append('comic_number', stateData.comic_number)
                formData.append('date_published', stateData.date_published)
                formData.append('cost', stateData.cost)
@@ -206,6 +208,23 @@ const EditComic = (props) => {
                                              type='text'
                                              name='comic_number'
                                              defaultValue={comic.comic_number}
+                                             onChange={handleChange}/>
+                                   </>
+                         }
+                         <br />
+                         {!isEditComicRelated
+                              ?    <> <label>Comic Title</label>
+                                        <input className='Input-element'
+                                             type='text'
+                                             name='comic_title'
+                                             defaultValue={comic.comic_title}
+                                             onChange={handleChange}/>
+                                   </>
+                              :    <> <input className='Input-element'
+                                             autoComplete='off'
+                                             type='text'
+                                             name='comic_title'
+                                             defaultValue={comic.comic_title}
                                              onChange={handleChange}/>
                                    </>
                          }

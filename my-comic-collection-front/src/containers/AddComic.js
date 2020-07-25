@@ -16,6 +16,7 @@ const AddComic = (props) => {
      const initialState = {
           comic_name: '',
           comic_publisher: comicRelated,
+          comic_title: '',
           comic_number: '',
           date_published: '',
           cost: 0.00,
@@ -66,6 +67,7 @@ const AddComic = (props) => {
           const formData = new FormData()
           formData.append('comic_name', stateData.comic_name)
           formData.append('comic_publisher', stateData.comic_publisher)
+          formData.append('comic_title', stateData.comic_title)
           formData.append('comic_number', stateData.comic_number)
           formData.append('date_published', stateData.date_published)
           formData.append('cost', stateData.cost)
@@ -162,6 +164,21 @@ const AddComic = (props) => {
                                              autoComplete='off'
                                              type='text'
                                              name='comic_number'
+                                             onChange={handleChange}/>
+                                   </>
+                         }
+                         <br />
+                         {!isAddComicRelated
+                              ?    <> <label>Comic Title</label>
+                                   <input className='Input-element'
+                                             type='text'
+                                             name='comic_title'
+                                             onChange={handleChange}/>
+                                   </>
+                              :    <> <input className='Input-element'
+                                             autoComplete='off'
+                                             type='text'
+                                             name='comic_title'
                                              onChange={handleChange}/>
                                    </>
                          }

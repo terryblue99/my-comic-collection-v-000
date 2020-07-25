@@ -10,11 +10,11 @@ import RedirectToWithState from '../components/RedirectToWithState'
 const ComicDetail = (props) => { 
 
     const [stateData, setStateData] = useState({isBackToDashboard: false, isComicDeleted: false})
+    const [zoomed, setZoomed] = React.useState(false)
     const isSort = useSelector(state => state.myComics.isSort)
     const comicRelated = useSelector(state => state.myComics.comicRelated) // For records that are not related to a specific comic.
     const isSearchFailed = useSelector(state => state.myComics.isSearchFailed)
     const dispatch = useDispatch()
-    const [zoomed, setZoomed] = React.useState(false)
 
     const handleDelete = () => {
 
