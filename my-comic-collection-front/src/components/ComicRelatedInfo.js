@@ -34,8 +34,7 @@ const ComicRelatedInfo = ()  => {
           <li>Click the <span className='Blue-color'>SAVE</span> button to save the record</li>
         </ol>
         < br/>
-        <p><span className='ComicRelated-note'>Note:</span> The <span className='Dark-red-color'>Comic-Related</span> field is fixed and uneditable. It will be used</p>
-        <p className='ComicRelated-info-tab'>to recognize and select Comic-Related records to be processed accordingly. Include words you may want to search on in those records.</p>
+        <p><span className='ComicRelated-note'>Note:</span> Include words you may want to search on in these records.</p>
         < br/>
         <button onClick={handleBack} className='btn Button-text'>Back to dashboard</button>
       </div>

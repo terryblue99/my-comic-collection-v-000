@@ -171,7 +171,7 @@ const EditComic = (props) => {
                                              onChange={handleChange}/>
                                    </>
                               :    <> <input className='Input-element Dark-red-color'
-                                             type='text'
+                                             type='hidden'
                                              name='comic_publisher'
                                              value={stateData.comic_publisher}/>
                                    </>

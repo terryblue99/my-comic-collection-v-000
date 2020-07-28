@@ -128,9 +128,8 @@ const AddComic = (props) => {
                                              name='comic_publisher'
                                              onChange={handleChange}/>
                                    </>
-                              :    <> <input className='Input-element Dark-red-color'
-                                             autoComplete='off'
-                                             type='text'
+                              :    <> <input className='Input-elemen'
+                                             type='hidden'
                                              name='comic_publisher'
                                              value={comicRelated}
                                              readonly/>
