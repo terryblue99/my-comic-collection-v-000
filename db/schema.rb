@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_17_18_212560) do
     t.string "comic_number"
     t.string "date_published"
     t.decimal "cost", precision: 8, scale: 2, default: "0.0"
-    t.string "notes"
+    t.text "notes"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -856,6 +856,11 @@ textarea:required
   margin-bottom: 10px;
 }
 
+.TextDetail {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
 .Detail-css {
   color: darkred;
   font-size: 1rem;
@@ -1194,7 +1199,9 @@ textarea:required
     font-size: 1.25rem;
   }
 
-  .ComicDetail {
+  .ComicDetail,
+  .TextDetail
+  {
     font-size: 1.6rem;
     margin-bottom: 10px;
     max-width: 450px;
