@@ -837,6 +837,7 @@ form input::placeholder {
 }
 
 .Text-area {
+  height: 10rem;
   padding-bottom: 40px;
 }
 
