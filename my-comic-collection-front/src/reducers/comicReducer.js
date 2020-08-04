@@ -93,6 +93,7 @@ export default (state = initialState, { type, payload } ) => {
 					searchArray.push( comic.comic_name.toLowerCase(),
 														comic.comic_publisher.toLowerCase(),
 														comic.comic_number.toLowerCase(),
+														comic.comic_title.toLowerCase(),
 														comic.date_published.toLowerCase(),
 														comic.cost,
 														comic.notes.toLowerCase()
