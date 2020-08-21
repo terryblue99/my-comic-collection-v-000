@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { hashHistory } from 'react-router' // Used to change URL without a re-render
 // The following comment is required for @emotion to work
@@ -8,6 +8,7 @@ import { resetSortAction } from '../actions/comicsActions'
 
 const ComicList = (props) => { 
 
+    const totalCost = useSelector(state => state.totalCost)
     const dispatch = useDispatch()
 
     return (

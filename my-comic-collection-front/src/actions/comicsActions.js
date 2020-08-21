@@ -12,7 +12,7 @@ import _ from 'lodash'
 const API_URL = '/api/v0'
 let sortedComics
 
-export const getComicsAction = (user_id, isSearchFailed = false) => {
+export const getComicsAction = (user_id, isSearchFailed = false, totalCost = 0) => {
 	// Thunk middleware knows how to handle functions.
 	// It passes the dispatch method as an argument to the function,
 	// thus making it able to dispatch actions itself.
@@ -36,7 +36,7 @@ export const getComicsAction = (user_id, isSearchFailed = false) => {
 			// Update comic states with the sorted result
 			dispatch({
 				type: GET_COMICS, 
-				payload: {sortedComics, isSearchFailed}
+				payload: {sortedComics, isSearchFailed, totalCost}
 			})
 		})
 		.catch(error => {

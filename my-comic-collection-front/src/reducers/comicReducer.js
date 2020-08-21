@@ -20,7 +20,8 @@ const initialState = {
 	isSort: false,
 	savedComics: [],
 	sortDefaultText: 'Select a sort option...',
-	comicRelated: 'Comic-Related' // For records that are not related to a specific comic.
+	comicRelated: 'Comic-Related', // For records that are not related to a specific comic.
+	totalCost: 0
 }
 let sortedComics
 
@@ -45,7 +46,8 @@ export default (state = initialState, { type, payload } ) => {
 					ComicRelated: state.ComicRelated,
 					isSearchFailed: payload.isSearchFailed,
 					savedComics: payload.sortedComics,
-					comics: payload.sortedComics
+					comics: payload.sortedComics,
+					totalCost: payload.totalCost
 				})
 			} else return state
 
