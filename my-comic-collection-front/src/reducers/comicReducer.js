@@ -97,7 +97,11 @@ export default (state = initialState, { type, payload } ) => {
 		case SEARCH_COMICS:
 			if (payload === '') {
 				alert('Please enter a search value!')
-				return state
+				return ({
+					...state,
+					comics: state.savedComics,
+					totalCost: state.savedTotalCost
+				})
 			}
 
 			const searchText = payload.toLowerCase()

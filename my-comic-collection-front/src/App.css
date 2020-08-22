@@ -858,8 +858,9 @@ textarea:required
 }
 
 .TextDetail {
-  text-align: left;
   margin-bottom: 10px;
+  text-align: left;
+  white-space: pre-line;
 }
 
 .Detail-css {
