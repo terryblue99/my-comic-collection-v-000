@@ -45,18 +45,14 @@ export default (state = initialState, { type, payload } ) => {
 		case GET_COMICS:			
 			if (payload) {
 
-				payload.sortedComics.map(comic => {
-					state.totalCost += parseFloat(comic.cost)
-					return state.totalCost
-				})
-
 				return ({
 					...state,
 					ComicRelated: state.ComicRelated,
 					isSearchFailed: payload.isSearchFailed,
 					savedComics: payload.sortedComics,
 					comics: payload.sortedComics,
-					savedTotalCost: state.totalCost
+					totalCost: payload.totalCost,
+					savedTotalCost: payload.totalCost
 				})
 			} else return state
 

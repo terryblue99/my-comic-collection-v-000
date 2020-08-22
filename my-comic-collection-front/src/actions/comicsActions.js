@@ -35,6 +35,11 @@ export const getComicsAction = (user_id, isSearchFailed = false) => {
 				.sortBy('comic_name')
 				.sortBy('comic_publisher')
 				.value()
+			// Accumulate the total cost of all watches
+			const totalCost = response.reduce((total, cost, index, array) => {
+				total += parseFloat(array[index].cost)
+				return total
+			}, 0)
 			// Update comic states with the sorted result
 			dispatch({
 				type: CLEAR_COMICS
@@ -42,7 +47,7 @@ export const getComicsAction = (user_id, isSearchFailed = false) => {
 			
 			dispatch({
 				type: GET_COMICS, 
-				payload: {sortedComics, isSearchFailed}
+				payload: {sortedComics, totalCost, isSearchFailed}
 			})
 		})
 		.catch(error => {
