@@ -3,7 +3,6 @@ import {
 	DELETE_COMIC,
 	SEARCH_COMICS,
 	RESET_SORT,
-	CLEAR_COMICS,
 	RESET_COMICS,
 	RESET_TOTAL_COST,
 	RESET_SEARCH_FAILED
@@ -40,11 +39,7 @@ export const getComicsAction = (user_id, isSearchFailed = false) => {
 				total += parseFloat(array[index].cost)
 				return total
 			}, 0)
-			// Update comic states with the sorted result
-			dispatch({
-				type: CLEAR_COMICS
-			})
-			
+			// Update comic state
 			dispatch({
 				type: GET_COMICS, 
 				payload: {sortedComics, totalCost, isSearchFailed}
