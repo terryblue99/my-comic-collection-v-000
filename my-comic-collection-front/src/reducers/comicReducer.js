@@ -18,10 +18,11 @@ import {
 const initialState = {
 	isSearchFailed: false,
 	isSort: false,
+	comics: [],
 	savedComics: [],
 	sortDefaultText: 'Select a sort option...',
 	comicRelated: 'Comic-Related', // For records that are not related to a specific comic.
-	totalCost: 0
+	totalCost: parseFloat(0)
 }
 let sortedComics
 
@@ -39,22 +40,28 @@ export default (state = initialState, { type, payload } ) => {
 
 		// UPDATE COMICS & COMIC-RELATED
 
-		case GET_COMICS:
+		case GET_COMICS:			
 			if (payload) {
+
+				payload.sortedComics.map(comic => {
+					state.totalCost += parseFloat(comic.cost)
+					return state.totalCost
+				})
+
 				return ({
 					...state,
 					ComicRelated: state.ComicRelated,
 					isSearchFailed: payload.isSearchFailed,
 					savedComics: payload.sortedComics,
-					comics: payload.sortedComics,
-					totalCost: payload.totalCost
+					comics: payload.sortedComics
 				})
 			} else return state
 
 		case RESET_COMICS:		
 			return ({
 				...state,
-				comics: state.savedComics
+				comics: state.savedComics,
+				totalCost: parseFloat(0)
 			})
 
 		case RESET_SEARCH_FAILED:
@@ -74,12 +81,14 @@ export default (state = initialState, { type, payload } ) => {
 
 		case CLEAR_COMICS:
 				state = initialState
-				return state
+				return ({
+					...state,
+					totalCost: parseFloat(0)
+				})
 
 		// SEARCH COMICS & COMIC-RELATED
 
 		case SEARCH_COMICS:
-
 			if (payload === '') {
 				alert('Please enter a search value!')
 				return state
@@ -87,7 +96,7 @@ export default (state = initialState, { type, payload } ) => {
 
 			let searchArray
 			const searchText = payload.toLowerCase()
-
+	
 			return ({
 				...state,
 				comics: state.comics.filter(comic => {

@@ -12,6 +12,7 @@ const DashboardMain = (props) => {
   const comicRelated = useSelector(state => state.myComics.comicRelated) // For records that are not related to a specific comic.
   const sortDefaultText = useSelector(state => state.myComics.sortDefaultText)
   const isSearchFailed = useSelector(state => state.myComics.isSearchFailed)
+  const totalCost = useSelector(state => state.myComics.totalCost)
   const dispatch = useDispatch()
 
   const handleSelectedSortKey = (event) =>  {
@@ -144,11 +145,19 @@ const DashboardMain = (props) => {
         }
         <br />
         { number_of_comics > 0
-            ? <p className='Dashboard-totalComics Center-text'>Total comics: <span className='Comic-total'>{number_of_comics}</span></p>
+            ? <p className='Dashboard-totalComics Center-text'>Total Comics: <span className='Comic-total'>{number_of_comics}</span></p>
+            : null
+        }
+        { number_of_comics > 0 && totalCost > 0
+            ?  <p className='Dashboard-totalComics Center-text'>
+                Total Cost: <span className='Comic-total'>
+                              {parseFloat(totalCost).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}
+                            </span>
+              </p>
             : null
         }
         { number_of_comiceRelated > 0
-            ? <p className='Dashboard-totalComicRelated Center-text'>Total comic-related: <span className='Comic-related-total'>{number_of_comiceRelated}</span></p>
+            ? <p className='Dashboard-totalComicRelated Center-text'>Total Comic Related: <span className='Comic-related-total'>{number_of_comiceRelated}</span></p>
             : null
         }   
       </div>

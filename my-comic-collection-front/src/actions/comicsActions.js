@@ -3,6 +3,7 @@ import {
 	DELETE_COMIC,
 	SEARCH_COMICS,
 	RESET_SORT,
+	CLEAR_COMICS,
 	RESET_COMICS,
 	RESET_SEARCH_FAILED
 } from './types'
@@ -34,6 +35,10 @@ export const getComicsAction = (user_id, isSearchFailed = false, totalCost = 0) 
 				.sortBy('comic_publisher')
 				.value()
 			// Update comic states with the sorted result
+			dispatch({
+				type: CLEAR_COMICS
+			})
+			
 			dispatch({
 				type: GET_COMICS, 
 				payload: {sortedComics, isSearchFailed, totalCost}

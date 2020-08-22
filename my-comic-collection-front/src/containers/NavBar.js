@@ -38,7 +38,8 @@ const NavBar = () => {
         setSearchData(prevSearchData => {
           return {
             ...prevSearchData,
-            isSearchRequested: false
+            isSearchRequested: false,
+            searchText: ''
           }
         }) 
       // Clear the form
