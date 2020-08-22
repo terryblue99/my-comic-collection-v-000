@@ -7,6 +7,7 @@ import {
 	GET_COMICS, 
 	NEWEST_TO_OLDEST_SORT,
 	OLDEST_TO_NEWEST_SORT,
+	RESET_TOTAL_COST,
 	RESET_SEARCH_FAILED,
 	RESET_SORT,
 	RESET_COMICS,
@@ -22,7 +23,8 @@ const initialState = {
 	savedComics: [],
 	sortDefaultText: 'Select a sort option...',
 	comicRelated: 'Comic-Related', // For records that are not related to a specific comic.
-	totalCost: parseFloat(0)
+	totalCost: parseFloat(0),
+	savedTotalCost: parseFloat(0)
 }
 let sortedComics
 
@@ -53,7 +55,8 @@ export default (state = initialState, { type, payload } ) => {
 					ComicRelated: state.ComicRelated,
 					isSearchFailed: payload.isSearchFailed,
 					savedComics: payload.sortedComics,
-					comics: payload.sortedComics
+					comics: payload.sortedComics,
+					savedTotalCost: state.totalCost
 				})
 			} else return state
 
@@ -61,8 +64,15 @@ export default (state = initialState, { type, payload } ) => {
 			return ({
 				...state,
 				comics: state.savedComics,
-				totalCost: parseFloat(0)
+				totalCost: state.savedTotalCost
 			})
+
+			case RESET_TOTAL_COST:		
+			return ({
+				...state,
+				comics: state.savedComics,
+				totalCost: parseFloat(0)
+			})	
 
 		case RESET_SEARCH_FAILED:
 			return ({

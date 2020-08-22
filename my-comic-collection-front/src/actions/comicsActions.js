@@ -5,6 +5,7 @@ import {
 	RESET_SORT,
 	CLEAR_COMICS,
 	RESET_COMICS,
+	RESET_TOTAL_COST,
 	RESET_SEARCH_FAILED
 } from './types'
 // The underscore library
@@ -13,7 +14,7 @@ import _ from 'lodash'
 const API_URL = '/api/v0'
 let sortedComics
 
-export const getComicsAction = (user_id, isSearchFailed = false, totalCost = 0) => {
+export const getComicsAction = (user_id, isSearchFailed = false) => {
 	// Thunk middleware knows how to handle functions.
 	// It passes the dispatch method as an argument to the function,
 	// thus making it able to dispatch actions itself.
@@ -41,7 +42,7 @@ export const getComicsAction = (user_id, isSearchFailed = false, totalCost = 0) 
 			
 			dispatch({
 				type: GET_COMICS, 
-				payload: {sortedComics, isSearchFailed, totalCost}
+				payload: {sortedComics, isSearchFailed}
 			})
 		})
 		.catch(error => {
@@ -61,7 +62,7 @@ export const sortComicsAction = (sortKey) => {
 export const searchComicsAction = (searchText) => {
 	return dispatch => {
 		dispatch({
-			type: RESET_COMICS
+			type: RESET_TOTAL_COST
 		})
 		
 		dispatch({
