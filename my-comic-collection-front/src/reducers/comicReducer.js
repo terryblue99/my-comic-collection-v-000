@@ -100,24 +100,33 @@ export default (state = initialState, { type, payload } ) => {
 				return state
 			}
 
-			let searchArray
 			const searchText = payload.toLowerCase()
-	
+			let comicArray
+
+			const searchArray = state.comics.filter(comic => {
+				comicArray = []
+				comicArray.push( comic.comic_name.toLowerCase(),
+													comic.comic_publisher.toLowerCase(),
+													comic.comic_number.toLowerCase(),
+													comic.comic_title.toLowerCase(),
+													comic.date_published.toLowerCase(),
+													comic.cost,
+													comic.notes.toLowerCase()
+												)
+				// check array of record string fields for searchText string/substring								
+				return comicArray.some(comicStringField => comicStringField.includes(searchText))
+			})
+
+			// Accumulate the total cost of all watches
+			const totalCost = searchArray.reduce((total, cost, index, array) => {
+				total += parseFloat(array[index].cost)
+				return total
+			}, 0)
+
 			return ({
 				...state,
-				comics: state.comics.filter(comic => {
-					searchArray = []
-					searchArray.push( comic.comic_name.toLowerCase(),
-														comic.comic_publisher.toLowerCase(),
-														comic.comic_number.toLowerCase(),
-														comic.comic_title.toLowerCase(),
-														comic.date_published.toLowerCase(),
-														comic.cost,
-														comic.notes.toLowerCase()
-													)
-					// check array of record string fields for searchText string/substring
-					return searchArray.some(comicStringField => comicStringField.includes(searchText))
-				})
+				comics: searchArray,
+				totalCost: totalCost
 			})
 		
 		// SORT COMICS & COMIC-RELATED
