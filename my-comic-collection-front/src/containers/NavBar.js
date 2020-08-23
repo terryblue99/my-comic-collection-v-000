@@ -7,7 +7,7 @@ import RedirectToWithState from '../components/RedirectToWithState'
 
 const NavBar = () => {
 
-  const [searchData, setSearchData] = useState({isSearchRequested: false, searchText: ''})
+  const [searchData, setSearchData] = useState({isSearchRequested: false, searchText: null})
   const currentUser = useSelector(state => state.currentUser)
   const comics = useSelector(state => state.myComics.comics)
   const dispatch = useDispatch()
@@ -39,7 +39,7 @@ const NavBar = () => {
           return {
             ...prevSearchData,
             isSearchRequested: false,
-            searchText: ''
+            searchText: null
           }
         }) 
       // Clear the form

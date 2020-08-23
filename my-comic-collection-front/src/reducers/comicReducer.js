@@ -95,8 +95,8 @@ export default (state = initialState, { type, payload } ) => {
 		// SEARCH COMICS & COMIC-RELATED
 
 		case SEARCH_COMICS:
-			if (payload === '') {
-				alert('Please enter a search value!')
+			if (payload === null) {
+				alert('Please enter a search value!\nIf a selection from available history is not working, you may need to retype it in the search box!')
 				return ({
 					...state,
 					comics: state.savedComics,
@@ -104,8 +104,12 @@ export default (state = initialState, { type, payload } ) => {
 				})
 			}
 
-			const searchText = payload.toLowerCase()
 			let comicArray
+			let searchText
+
+			if (payload !== null) {
+				searchText = payload.toLowerCase()
+			}
 
 			const searchArray = state.comics.filter(comic => {
 				comicArray = []
