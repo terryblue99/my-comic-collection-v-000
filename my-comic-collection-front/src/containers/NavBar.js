@@ -60,7 +60,7 @@ const NavBar = () => {
                   return {
                     ...prevSearchData,
                     isSearchRequested: false,
-                    searchText: ''
+                    searchText: null
                   }
                 })
                 // Clear the form
