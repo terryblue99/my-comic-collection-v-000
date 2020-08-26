@@ -96,7 +96,7 @@ export default (state = initialState, { type, payload } ) => {
 
 		case SEARCH_COMICS:
 			if (payload === null) {
-				alert('Please enter a search value!\nIf a selection from available history is not working, you may need to retype it in the search box!')
+				alert('Please enter a search value!')
 				return ({
 					...state,
 					comics: state.savedComics,

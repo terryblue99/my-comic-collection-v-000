@@ -114,7 +114,7 @@ const NavBar = () => {
             type='text'
             name='comic_search'
             placeholder='Search My Comic Collection'
-            onChange={handleChange}
+            onInput={handleChange}
           /> 
           <button className='Search-button Button-text' type='submit'><b>Search</b></button> 
         </form>
