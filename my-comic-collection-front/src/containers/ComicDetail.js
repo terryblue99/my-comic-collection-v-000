@@ -110,13 +110,21 @@ const ComicDetail = (props) => {
     {
         const {
             id,
-            comic_name,
             comic_publisher,
+            comic_name,
             comic_number,
             comic_title,
             date_published,
             cost,
             notes
+        } = currentComic
+
+        const {
+            comic_publisher: comic_related,
+            comic_name: related_title,
+            comic_number: related_input1,
+            comic_title: related_input2,
+            date_published: related_input3
         } = currentComic
 
         return ( 
@@ -129,48 +137,51 @@ const ComicDetail = (props) => {
                     </div>
                 </div>
                 <div className='Comic-detail-text'>
-                    <h1 className='ComicDetail-comich-publisher Dark-red-color'><b>{comic_publisher}</b></h1> 
-                    <h2 className='Comic-name'>{comic_name}</h2>
+                    {comic_number && !comic_related.includes(comicRelated)
+                        ? <h1 className='ComicDetail-comich-publisher Dark-red-color'><b>{comic_publisher}</b></h1>
+                        : <h1 className='ComicDetail-comich-publisher Dark-red-color'><b>{comic_related}</b></h1> 
+                    }
+                    {comic_number && !comic_related.includes(comicRelated)
+                        ? <h2 className='Comic-name'>{comic_name}</h2>
+                        : <h2 className='Comic-name'>{related_title}</h2> 
+                    }
                     <div className='Comic-detail-complications Center-text'>
                         {comic_number && !comic_publisher.includes(comicRelated)
                             ?   <>  <p className='Detail-css'>Comic Number</p>
                                     <h3 className='ComicDetail'>{comic_number}</h3>
                                 </>
                             :   null }
-                        {comic_number && comic_publisher.includes(comicRelated) 
-                        ?   <>  <h3 className='ComicDetail'>{comic_number}</h3>
-                            </>
-                        :   null }
+                        {related_input1 && comic_related.includes(comicRelated) 
+                            ?   <h3 className='ComicDetail'>{related_input1}</h3>
+                            :   null }
                         {comic_title && !comic_publisher.includes(comicRelated)
-                        ?   <>  <p className='Detail-css'>Comic Title</p>
-                                <h3 className='ComicDetail'>{comic_title}</h3>
-                            </>
-                        :   null }
-                        {comic_title && comic_publisher.includes(comicRelated) 
-                            ?   <>  <h3 className='ComicDetail'>{comic_title}</h3>
+                            ?   <>  <p className='Detail-css'>Comic Title</p>
+                                    <h3 className='ComicDetail'>{comic_title}</h3>
                                 </>
+                            :   null }
+                        {related_input2 && comic_related.includes(comicRelated) 
+                            ?   <h3 className='ComicDetail'>{related_input2}</h3>
                             :   null }
                         {date_published && !comic_publisher.includes(comicRelated)
-                        ?   <>  <p className='Detail-css'>Date Published</p>
-                                <h3 className='ComicDetail'>{date_published}</h3>
-                            </>
-                        :   null }
-                        {date_published && comic_publisher.includes(comicRelated) 
-                            ?   <>  <h3 className='ComicDetail'>{date_published}</h3>
+                            ?   <>  <p className='Detail-css'>Date Published</p>
+                                    <h3 className='ComicDetail'>{date_published}</h3>
                                 </>
                             :   null }
+                        {related_input3 && comic_related.includes(comicRelated) 
+                            ?   <h3 className='ComicDetail'>{related_input3}</h3>
+                            :   null }
                         {cost > 0
-                        ?    <>
-                                <p className='Detail-css'>Cost</p>
-                                <h3 className='ComicDetail'>{parseFloat(cost).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
-                            </>
-                        : null }
+                            ?   <>
+                                    <p className='Detail-css'>Cost</p>
+                                    <h3 className='ComicDetail'>{parseFloat(cost).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
+                                </>
+                            : null }
                         {notes 
-                        ?    <>
-                                <p className='Detail-css'>Notes</p>
-                                <h3 className='TextDetail'>{notes}</h3>
-                            </>
-                        : null }
+                            ?   <>
+                                    <p className='Detail-css'>Notes</p>
+                                    <h3 className='TextDetail'>{notes}</h3>
+                                </>
+                            : null }
                     </div> 
                     <div className="Edit-Delete-buttons">
                         {!comic_publisher.includes(comicRelated)
