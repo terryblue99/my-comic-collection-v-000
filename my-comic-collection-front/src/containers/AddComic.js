@@ -152,7 +152,7 @@ const AddComic = (props) => {
                               :    <input className='Input-elemen'
                                         type='hidden'
                                         name='comic_related'
-                                        value={comicRelated}
+                                        value={comic_related}
                                    />
                          }
                          <br />
