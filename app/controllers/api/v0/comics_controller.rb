@@ -48,7 +48,12 @@ class Api::V0::ComicsController < ApplicationController
           :cost,
           :notes,
           :image,
-          :user_id
+          :user_id,
+          :comic_related,
+          :related_title,
+          :related_input1,
+          :related_input2,
+          :related_input3
       )
   end
   

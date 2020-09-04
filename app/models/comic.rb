@@ -1,5 +1,12 @@
 class Comic < ApplicationRecord
   belongs_to :user
+
+  alias_attribute :comic_related, :comic_publisher
+  alias_attribute :related_title, :comic_name
+  alias_attribute :related_input1, :comic_number
+  alias_attribute :related_input2, :comic_title
+  alias_attribute :related_input3, :date_published
+
   has_one_attached :image
 
   validates :comic_name, :comic_publisher, presence: true

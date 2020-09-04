@@ -14,16 +14,24 @@ const AddComic = (props) => {
      const dispatch = useDispatch()
 
      const initialState = {
-          comic_name: '',
           comic_publisher: comicRelated,
-          comic_title: '',
+          comic_name: '',
           comic_number: '',
+          comic_title: '',
           date_published: '',
           cost: 0.00,
           notes: '',
           image: null,
           user_id: currentUser.user.id
      }
+
+     const {
+          comic_publisher: comic_related,
+          comic_name: related_title,
+          comic_number: related_input1,
+          comic_title: related_input2,
+          date_published: related_input3
+     } = initialState
           
      const [backToDashboard, setBackToDashboard] = useState({isBackToDashboard: false})
      const [stateData, setStateData] = useState(initialState)
@@ -65,16 +73,29 @@ const AddComic = (props) => {
           }   
           // Create the record
           const formData = new FormData()
-          formData.append('comic_name', stateData.comic_name)
-          formData.append('comic_publisher', stateData.comic_publisher)
-          formData.append('comic_title', stateData.comic_title)
-          formData.append('comic_number', stateData.comic_number)
-          formData.append('date_published', stateData.date_published)
-          formData.append('cost', stateData.cost)
-          formData.append('notes', stateData.notes)
-          formData.append('user_id', stateData.user_id)
-          if (stateData.image) {
-               formData.append('image', stateData.image)
+          if (!isComicRelated) {
+               formData.append('comic_publisher', stateData.comic_publisher)
+               formData.append('comic_name', stateData.comic_name)
+               formData.append('comic_number', stateData.comic_number)
+               formData.append('comic_title', stateData.comic_title)         
+               formData.append('date_published', stateData.date_published)
+               formData.append('cost', stateData.cost)
+               formData.append('notes', stateData.notes)
+               formData.append('user_id', stateData.user_id)
+               if (stateData.image) {
+                    formData.append('image', stateData.image)
+               }
+          } else {
+               formData.append('comic_related', comic_related)
+               formData.append('related_title', stateData.related_title)
+               formData.append('related_input1', stateData.related_input1)
+               formData.append('related_input2', stateData.related_input2)
+               formData.append('related_input3', stateData.related_input3)
+               formData.append('notes', stateData.notes)
+               formData.append('user_id', currentUser.user.id)
+               if (stateData.image) {
+                    formData.append('image', stateData.image)
+               }
           }
           dispatch(addComicAction(formData))
           if (!isComicRelated) {
@@ -128,11 +149,11 @@ const AddComic = (props) => {
                                              name='comic_publisher'
                                              onChange={handleChange}/>
                                    </>
-                              :    <> <input className='Input-elemen'
+                              :    <>   <input className='Input-elemen'
                                              type='hidden'
-                                             name='comic_publisher'
+                                             name='comic_related'
                                              value={comicRelated}
-                                             readonly/>
+                                        />
                                    </>
                          }
                          <br />
@@ -147,7 +168,7 @@ const AddComic = (props) => {
                                    <input autoFocus id='Focus-first-input' required
                                              className='Input-element'
                                              type='text'
-                                             name='comic_name'
+                                             name='related_title'
                                              onChange={handleChange}/>
                                    </>
                          }
@@ -162,7 +183,7 @@ const AddComic = (props) => {
                               :    <> <input className='Input-element'
                                              autoComplete='off'
                                              type='text'
-                                             name='comic_number'
+                                             name='related_input1'
                                              onChange={handleChange}/>
                                    </>
                          }
@@ -177,24 +198,23 @@ const AddComic = (props) => {
                               :    <> <input className='Input-element'
                                              autoComplete='off'
                                              type='text'
-                                             name='comic_title'
+                                             name='related_input2'
                                              onChange={handleChange}/>
                                    </>
                          }
                          <br />
                          {!isAddComicRelated
-                              ?    <> <label>Date Published (yyyy-mm-dd, yyyy-mm or yyyy)</label>
-                                   <input className='Input-element' required
+                              ?    <>   <label>Date Published (yyyy-mm-dd, yyyy-mm or yyyy)</label>
+                                        <input className='Input-element' required
                                              type='text'
                                              name='date_published'
                                              onChange={handleChange}/>
                                    </>
-                              :    <> <input className='Input-element'
-                                             autoComplete='off'
-                                             type='text'
-                                             name='date_published'
-                                             onChange={handleChange}/>
-                                   </>
+                              :    <input className='Input-element'
+                                        autoComplete='off'
+                                        type='text'
+                                        name='related_input3'
+                                        onChange={handleChange}/>
                          }
                          <br />
                          {!isAddComicRelated
@@ -218,11 +238,19 @@ const AddComic = (props) => {
                          <br /> 
                          <b className='ComicForm-upload-text Dark-red-color Center-text'>
                               Upload image</b>
-                         <input className='Input-element Choose-image'  
-                              type='file'
-                              name='image'
-                              onChange={handleFile}
-                         />
+                         {!isAddComicRelated
+                              ?    <input className='Input-element Choose-image'  
+                                        type='file'
+                                        name='image'
+                                        onChange={handleFile}
+                                   />
+                              :    <input className='Input-element Choose-image'  
+                                        type='file'
+                                        name='image'
+                                        onChange={handleFile}
+                                   />
+                         }
+                         <br />
                          <button className='btn Save-button Button-text' type='submit'>Save</button>
                     </form>
                </div>
