@@ -142,30 +142,29 @@ const AddComic = (props) => {
                          onSubmit={handleSubmit}
                     >
                          {!isAddComicRelated
-                              ?    <> <label>Comic Publisher</label>
+                              ?    <>   <label>Comic Publisher</label>
                                         <input autoFocus id='Focus-first-input' 
                                              className='Input-element' required 
                                              type='text'
                                              name='comic_publisher'
                                              onChange={handleChange}/>
                                    </>
-                              :    <>   <input className='Input-elemen'
-                                             type='hidden'
-                                             name='comic_related'
-                                             value={comicRelated}
-                                        />
-                                   </>
+                              :    <input className='Input-elemen'
+                                        type='hidden'
+                                        name='comic_related'
+                                        value={comicRelated}
+                                   />
                          }
                          <br />
                          {!isAddComicRelated
-                              ?    <> <label>Comic Name</label>
-                                   <input className='Input-element' required 
+                              ?    <>   <label>Comic Name</label>
+                                        <input className='Input-element' required 
                                              type='text'
                                              name='comic_name'
                                              onChange={handleChange}/>
                                    </>
-                              :    <> <label>Title</label>
-                                   <input autoFocus id='Focus-first-input' required
+                              :    <>   <label>Title</label>
+                                        <input autoFocus id='Focus-first-input' required
                                              className='Input-element'
                                              type='text'
                                              name='related_title'
@@ -174,33 +173,31 @@ const AddComic = (props) => {
                          }
                          <br />
                          {!isAddComicRelated
-                              ?    <> <label>Comic Number</label>
-                                   <input className='Input-element' required 
+                              ?    <>   <label>Comic Number</label>
+                                        <input className='Input-element' required 
                                              type='text'
                                              name='comic_number'
                                              onChange={handleChange}/>
                                    </>
-                              :    <> <input className='Input-element'
-                                             autoComplete='off'
-                                             type='text'
-                                             name='related_input1'
-                                             onChange={handleChange}/>
-                                   </>
+                              :    <input className='Input-element'
+                                        autoComplete='off'
+                                        type='text'
+                                        name='related_input1'
+                                        onChange={handleChange}/>
                          }
                          <br />
                          {!isAddComicRelated
                               ?    <> <label>Comic Title</label>
-                                   <input className='Input-element'
+                                        <input className='Input-element'
                                              type='text'
                                              name='comic_title'
                                              onChange={handleChange}/>
                                    </>
-                              :    <> <input className='Input-element'
+                              :         <input className='Input-element'
                                              autoComplete='off'
                                              type='text'
                                              name='related_input2'
                                              onChange={handleChange}/>
-                                   </>
                          }
                          <br />
                          {!isAddComicRelated
@@ -219,14 +216,13 @@ const AddComic = (props) => {
                          <br />
                          {!isAddComicRelated
                               ?    <> <label>Cost (e.g. 99.99 | defaults to 0)</label>
-                                   <input className='Input-element'
+                                        <input className='Input-element'
                                              type='number'
                                              step='0.01'
                                              min='0'
                                              name='cost'
-                                             onChange={handleChange}
-                                   /> 
-                                   <br />    
+                                             onChange={handleChange}/> 
+                                        <br />    
                                    </>
                               : null
                          }

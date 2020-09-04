@@ -151,7 +151,7 @@ const ComicDetail = (props) => {
                                     <h3 className='ComicDetail'>{comic_number}</h3>
                                 </>
                             :   null }
-                        {related_input1 && comic_related.includes(comicRelated) 
+                        {related_input1 !== 'undefined' && comic_related.includes(comicRelated) 
                             ?   <h3 className='ComicDetail'>{related_input1}</h3>
                             :   null }
                         {comic_title && !comic_publisher.includes(comicRelated)
@@ -159,7 +159,7 @@ const ComicDetail = (props) => {
                                     <h3 className='ComicDetail'>{comic_title}</h3>
                                 </>
                             :   null }
-                        {related_input2 && comic_related.includes(comicRelated) 
+                        {related_input2 !== 'undefined' && comic_related.includes(comicRelated) 
                             ?   <h3 className='ComicDetail'>{related_input2}</h3>
                             :   null }
                         {date_published && !comic_publisher.includes(comicRelated)
@@ -167,18 +167,16 @@ const ComicDetail = (props) => {
                                     <h3 className='ComicDetail'>{date_published}</h3>
                                 </>
                             :   null }
-                        {related_input3 && comic_related.includes(comicRelated) 
+                        {related_input3 !== 'undefined' && comic_related.includes(comicRelated) 
                             ?   <h3 className='ComicDetail'>{related_input3}</h3>
                             :   null }
                         {cost > 0
-                            ?   <>
-                                    <p className='Detail-css'>Cost</p>
+                            ?   <>  <p className='Detail-css'>Cost</p>
                                     <h3 className='ComicDetail'>{parseFloat(cost).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
                                 </>
                             : null }
                         {notes 
-                            ?   <>
-                                    <p className='Detail-css'>Notes</p>
+                            ?   <>  <p className='Detail-css'>Notes</p>
                                     <h3 className='TextDetail'>{notes}</h3>
                                 </>
                             : null }
