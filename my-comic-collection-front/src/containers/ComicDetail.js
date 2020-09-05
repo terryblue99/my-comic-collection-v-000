@@ -126,7 +126,7 @@ const ComicDetail = (props) => {
             comic_title: related_input2,
             date_published: related_input3
         } = currentComic
-
+        
         return ( 
             
             <div className='Comic-detail'>
@@ -138,12 +138,12 @@ const ComicDetail = (props) => {
                 </div>
                 <div className='Comic-detail-text'>
                     {comic_number && !comic_related.includes(comicRelated)
-                        ? <h1 className='ComicDetail-comich-publisher Dark-red-color'><b>{comic_publisher}</b></h1>
-                        : <h1 className='ComicDetail-comich-publisher Dark-red-color'><b>{comic_related}</b></h1> 
+                        ? <h1 className='ComicDetail-comic-publisher Dark-red-color'><b>{comic_publisher}</b></h1>
+                        : <h1 className='ComicDetail-comic-related Dark-red-color'><b>{comic_related}</b></h1> 
                     }
                     {comic_number && !comic_related.includes(comicRelated)
                         ? <h2 className='Comic-name'>{comic_name}</h2>
-                        : <h2 className='Comic-name'>{related_title}</h2> 
+                        : <h2 className='Related-title'>{related_title}</h2> 
                     }
                     <div className='Comic-detail-complications Center-text'>
                         {comic_number && !comic_publisher.includes(comicRelated)

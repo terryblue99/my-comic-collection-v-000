@@ -376,6 +376,7 @@ img {
 }
 
 .ComicDetail-comic-publisher,
+.ComicDetail-comic-related,
 .Comic-publisher {
   font-family: 'Ubuntu, sans-serif';
   font-weight: bold;
@@ -387,11 +388,15 @@ img {
   font-size: .9rem;  
 }
 
-.ComicDetail-comic-publisher {
+.ComicDetail-comic-publisher,
+.ComicDetail-comic-related
+{
   font-size: 1.6rem;  
 }
 
-.Comic-name {
+.Comic-name,
+.Related-title
+{
   color: midnightblue;
   font-size: 1.56rem;
   max-width: 455px;
