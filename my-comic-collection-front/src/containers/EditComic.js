@@ -14,8 +14,8 @@ const EditComic = (props) => {
           id: props.location.state.comic.id,
           comic_publisher: props.location.state.comic.comic_publisher,
           comic_name: props.location.state.comic.comic_name,
-          comic_title: props.location.state.comic.comic_title,
           comic_number: props.location.state.comic.comic_number,
+          comic_title: props.location.state.comic.comic_title,
           date_published: props.location.state.comic.date_published,
           cost: props.location.state.comic.cost,
           notes: props.location.state.comic.notes,
@@ -25,6 +25,14 @@ const EditComic = (props) => {
      const [stateData, setStateData] = useState(initialState)
      const [formInput, setFormInput] = useState({isFormInput: false})  
      const [backToDashboard, setBackToDashboard] = useState({isBackToDashboard: false})
+
+     const {
+          comic_publisher: comic_related,
+          comic_name: related_title,
+          comic_number: related_input1,
+          comic_title: related_input2,
+          date_published: related_input3
+     } = stateData
 
      const setFormInputTrue = () => { 
           setFormInput(prevFormInput => {
@@ -75,16 +83,29 @@ const EditComic = (props) => {
                }    
                // Edit the record
                const formData = new FormData()
-               formData.append('comic_publisher', stateData.comic_publisher)
-               formData.append('comic_name', stateData.comic_name)
-               formData.append('comic_title', stateData.comic_title)
-               formData.append('comic_number', stateData.comic_number)
-               formData.append('date_published', stateData.date_published)
-               formData.append('cost', stateData.cost)
-               formData.append('notes', stateData.notes)
-               formData.append('user_id', stateData.user_id)   
-               if (stateData.image) {
-                    formData.append('image', stateData.image)
+               if (!isComicRelated) {
+                    formData.append('comic_publisher', stateData.comic_publisher)
+                    formData.append('comic_name', stateData.comic_name)
+                    formData.append('comic_number', stateData.comic_number)
+                    formData.append('comic_title', stateData.comic_title)         
+                    formData.append('date_published', stateData.date_published)
+                    formData.append('cost', stateData.cost)
+                    formData.append('notes', stateData.notes)
+                    formData.append('user_id', stateData.user_id)
+                    if (stateData.image) {
+                         formData.append('image', stateData.image)
+                    }
+               } else {
+                    formData.append('comic_related', comic_related)
+                    formData.append('related_title', related_title)
+                    formData.append('related_input1', related_input1)
+                    formData.append('related_input2', related_input2)
+                    formData.append('related_input3', related_input3)
+                    formData.append('notes', stateData.notes)
+                    formData.append('user_id', stateData.user_id)
+                    if (stateData.image) {
+                         formData.append('image', stateData.image)
+                    }
                }
                dispatch(editComicAction(formData, stateData.id))
                if (!isComicRelated) {
@@ -173,7 +194,7 @@ const EditComic = (props) => {
                               :    <> <input className='Input-element Dark-red-color'
                                              type='hidden'
                                              name='comic_publisher'
-                                             value={stateData.comic_publisher}/>
+                                             value={comic_related}/>
                                    </>
                          }
                          <br />
@@ -186,11 +207,11 @@ const EditComic = (props) => {
                                              onChange={handleChange}/>
                                    </>
                               :    <> <label>Title</label>
-                                        <input className='Input-element'
+                                        <input className='Input-element' required
                                              autoComplete='off'
                                              type='text'
                                              name='comic_name'
-                                             defaultValue={comic.comic_name}
+                                             defaultValue={related_title}
                                              onChange={handleChange}/>
                                    </>
                          }
@@ -207,7 +228,7 @@ const EditComic = (props) => {
                                              autoComplete='off'
                                              type='text'
                                              name='comic_number'
-                                             defaultValue={comic.comic_number}
+                                             defaultValue={related_input1}
                                              onChange={handleChange}/>
                                    </>
                          }
@@ -224,7 +245,7 @@ const EditComic = (props) => {
                                              autoComplete='off'
                                              type='text'
                                              name='comic_title'
-                                             defaultValue={comic.comic_title}
+                                             defaultValue={related_input2}
                                              onChange={handleChange}/>
                                    </>
                          }
@@ -241,7 +262,7 @@ const EditComic = (props) => {
                                              autoComplete='off'
                                              type='text'
                                              name='date_published'
-                                             defaultValue={comic.date_published}
+                                             defaultValue={related_input3}
                                              onChange={handleChange}/>
                                    </>
                          }
