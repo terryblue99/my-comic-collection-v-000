@@ -26,13 +26,23 @@ const EditComic = (props) => {
      const [formInput, setFormInput] = useState({isFormInput: false})  
      const [backToDashboard, setBackToDashboard] = useState({isBackToDashboard: false})
 
-     const {
+    let {
           comic_publisher: comic_related,
           comic_name: related_title,
           comic_number: related_input1,
           comic_title: related_input2,
           date_published: related_input3
      } = stateData
+ 
+     if (related_input1 === 'undefined') {
+          related_input1 = ' '
+     }
+     if (related_input2 === 'undefined') {
+          related_input2 = ' '
+     }
+     if (related_input3 === 'undefined') {
+          related_input3 = ' '
+     }
 
      const setFormInputTrue = () => { 
           setFormInput(prevFormInput => {
