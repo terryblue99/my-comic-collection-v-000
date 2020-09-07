@@ -137,11 +137,11 @@ const ComicDetail = (props) => {
                     </div>
                 </div>
                 <div className='Comic-detail-text'>
-                    {comic_number && !comic_related.includes(comicRelated)
+                    {comic_publisher && !comic_related.includes(comicRelated)
                         ? <h1 className='ComicDetail-comic-publisher Dark-red-color'><b>{comic_publisher}</b></h1>
                         : <h1 className='ComicDetail-comic-related Dark-red-color'><b>{comic_related}</b></h1> 
                     }
-                    {comic_number && !comic_related.includes(comicRelated)
+                    {comic_name && !comic_related.includes(comicRelated)
                         ? <h2 className='Comic-name'>{comic_name}</h2>
                         : <h2 className='Related-title'>{related_title}</h2> 
                     }
