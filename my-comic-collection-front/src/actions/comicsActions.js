@@ -34,7 +34,7 @@ export const getComicsAction = (user_id, isSearchFailed = false) => {
 				.sortBy('comic_name')
 				.sortBy('comic_publisher')
 				.value()
-			// Accumulate the total cost of all watches
+			// Accumulate the total cost of all comics
 			const totalCost = response.reduce((total, cost, index, array) => {
 				total += parseFloat(array[index].cost)
 				return total

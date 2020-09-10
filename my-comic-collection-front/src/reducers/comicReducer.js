@@ -125,7 +125,7 @@ export default (state = initialState, { type, payload } ) => {
 				return comicArray.some(comicStringField => comicStringField.includes(searchText))
 			})
 
-			// Accumulate the total cost of all watches
+			// Accumulate the total cost of all comics
 			const totalCost = searchArray.reduce((total, cost, index, array) => {
 				total += parseFloat(array[index].cost)
 				return total

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Fresca:300,400,900&display=swap');
 
+/*#region Main*/
 html { /* everything will inherit from html */
   box-sizing: border-box;  /* paddings and borders will be included inside the element  */
 }
@@ -67,9 +68,9 @@ select {
 .Center-text {
   text-align: center;
 }
+/*#endregion Main*/
 
-/* Images */
-
+/*#region Images*/
 img {
   max-width: 100%;
 }
@@ -92,9 +93,9 @@ img {
 .Dashboard-comic-image {
   margin-top: .75em;
 }
+/*#endregion Images*/
 
-/* Colors */
-
+/*#region Colors*/
 .Blue-color {
   color: darkblue;
 }
@@ -110,12 +111,9 @@ img {
 .Gold-color {
   color: gold;
 }
+/*#endregion Colors*/
 
-/* Home Page */
-/* Log In */
-/* Sign Up */
-/* Comic Related */
-
+/*#region Homepage - LogIn - Register - SignUp - ComicRelated */
 .Homepage-title {
   background-color: #454140;
   margin-bottom: 60px;
@@ -139,12 +137,6 @@ img {
                     Default flex-direction is row */
   flex-direction: column;
   justify-content: center;
-}
-
-.Register {
-  font-size: .25rem;
-  margin: 0 auto; /* centers horizontally & vertically */
-  max-width: 300px;
 }
 
 .Homepage {
@@ -171,8 +163,14 @@ img {
   padding: 10px;
 }
 
-/* Nav */
+.Register {
+  font-size: .25rem;
+  margin: 0 auto; /* centers horizontally & vertically */
+  max-width: 300px;
+}
+/*#endregion Homepage - LogIn - Register - SignUp - ComicRelated */
 
+/*#region Nav*/
 .Nav-header {
   background-color: #454140;
   padding: .5em .75em;
@@ -244,9 +242,9 @@ img {
   color: khaki;
   cursor: pointer;
 }
+/*#endregion Nav*/
 
-/* Dashboard */
-
+/*#region Dashboard*/
 .DashboardMain {
   background-color: gainsboro;
   display: grid;
@@ -361,14 +359,14 @@ img {
   text-align: left;
   width: 322px;
 }
+/*#endregion Dashboard*/
 
+/*#region Comic Detail*/
 .Comic-detail {
   display: flex;
   justify-self: center;
   margin-top: 20px;
 }
-
-/* Comic Detail */
 
 .Back-button_and_Image {
   margin-bottom: 25px;
@@ -425,9 +423,9 @@ img {
   overflow-y: auto;
   padding: 12px 12px;
 }
+/*#endregion Comic Detail*/
 
-/* Comic Related */
-
+/*#region Comic Related*/
 .ComicRelated {
   display: grid;
   height: 100vh;
@@ -454,9 +452,9 @@ img {
 .ComicRelated-note {
   text-shadow: 2px 2px 5px orange;
 }
+/*#endregion Comic Related*/
 
-/* buttons */
-
+/*#region buttons*/
 .active {
   color: gold;
 }
@@ -678,10 +676,9 @@ button:focus,
 input[type=file] {
   cursor:pointer;
 }
+/*#endregion buttons*/
 
-/*  ==================
-      hamburger icon
-    ================== */
+/*#region Hamburger Icon*/
 
 .SidebarMobile-list-icon {
   margin: 1em;
@@ -716,11 +713,9 @@ input[type=file] {
 .SidebarMobile-list-icon:hover div {
   transform: scale(0);
 }
+/*#endregion Hamburger Icon*/
 
-/*  =================
-          forms
-    ================= */
-
+/*#region Forms*/
 form {
   border-radius: .5em;
 }
@@ -873,7 +868,9 @@ textarea:required
   font-size: 1rem;
   text-transform: uppercase;
 }
+/*#endregion Forms*/
 
+/*#region Media Queries*/
 /*  ===================================
       media queries - placed last
       to override any other settings
@@ -1287,3 +1284,4 @@ textarea:required
   }
 
 }
+/*#endregion Media Queries*/
