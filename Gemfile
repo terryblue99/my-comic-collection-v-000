@@ -35,7 +35,9 @@ gem 'pry-byebug'
 gem 'bcrypt'
 gem 'rake'
 gem 'nokogiri', '~> 1.10.4'
-gem "loofah", ">= 2.3.1"
+gem 'loofah', '>= 2.3.1'
+gem 'actionview', '>= 6.0.3.3'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
