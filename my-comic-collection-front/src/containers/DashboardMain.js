@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch} from 'react-redux'
-import { hashHistory } from 'react-router' // Used to change URL without a re-render
+import { createHashHistory } from 'history' // Used to change URL without a re-render
 import logo from '../images/Marvel_DC_logo.jpg'
 import { sortComicsAction, resetComicsAction, resetSearchFailedAction, resetSortAction } from '../actions/comicsActions'
 import RedirectToWithState from "../components/RedirectToWithState"
 
 const DashboardMain = (props) => {
 
+  const hashHistory = createHashHistory() // Used to change URL without a re-render
   const [stateData, setStateData] = useState({isSortRequired: false, sortOptionSelected: ''})
   const savedComics = useSelector(state => state.myComics.savedComics)
   const comicRelated = useSelector(state => state.myComics.comicRelated) // For records that are not related to a specific comic.
