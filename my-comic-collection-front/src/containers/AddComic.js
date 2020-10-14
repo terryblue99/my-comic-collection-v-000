@@ -26,11 +26,7 @@ const AddComic = (props) => {
      }
 
      const {
-          comic_publisher: comic_related,
-          comic_name: related_title,
-          comic_number: related_input1,
-          comic_title: related_input2,
-          date_published: related_input3
+          comic_publisher: comic_related
      } = initialState
           
      const [backToDashboard, setBackToDashboard] = useState({isBackToDashboard: false})

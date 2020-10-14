@@ -7,27 +7,20 @@ import SidebarMobile from './SidebarMobile'
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core' // https://github.com/emotion-js/emotion
 
-const Comics = ({ comics, comicRelated, sortOptionSelected, isSearchSuccessful, DashBoardHistory }) => {
+const Comics = ({ comics, sortOptionSelected, isSearchSuccessful, DashBoardHistory }) => {
  
     let oldestComic
     let newestComic
-    let filteredComics
-    let filteredComicRelated
 
     if(comics?.length > 0) {
-        // Filter out comic-related records
-        filteredComicRelated = comics.filter(comic => comic.comic_publisher.includes(comicRelated))
-        // Filter out comic records
-        filteredComics = comics.filter(comic => !comic.comic_publisher.includes(comicRelated))
         // Sort the filtered comic records by date bought using the underscore function _.sortBy
-        const sortedComics = _.sortBy( filteredComics, 'date_published' )
+        const sortedComics = _.sortBy( comics, 'date_published' )
         oldestComic = sortedComics[0]
-        newestComic = sortedComics[sortedComics.length-1] 
-        
+        newestComic = sortedComics[sortedComics.length-1]   
     }    
 
    const [showComics, setShowComics] = useState(false) // used when in a mobile view
-                                                         // to toggle comic list on and off   
+                                                       // to toggle comic list on and off   
 
    const [currentComic, setCurrentComic] = useState(null) 
 
@@ -52,8 +45,6 @@ const Comics = ({ comics, comicRelated, sortOptionSelected, isSearchSuccessful, 
                              setCurrentComic={setCurrentComic}
                              newestComic={newestComic}
                              oldestComic={oldestComic}
-                             filteredComics={filteredComics}
-                             filteredComicRelated={filteredComicRelated}
                              sortOptionSelected={sortOptionSelected}
                              isSearchSuccessful={isSearchSuccessful}
                              DashBoardHistory={DashBoardHistory}

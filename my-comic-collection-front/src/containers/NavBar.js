@@ -10,6 +10,7 @@ const NavBar = () => {
   const [searchData, setSearchData] = useState({isSearchRequested: false, searchText: null})
   const currentUser = useSelector(state => state.currentUser)
   const comics = useSelector(state => state.myComics.comics)
+  const savedComics = useSelector(state => state.myComics.savedComics)
   const dispatch = useDispatch()
 
   const handleChange = (event) => {
@@ -66,7 +67,11 @@ const NavBar = () => {
                 // Clear the form
                 ClearForm('Nav-search-form')
 
-                alert('Search not found. Please correct and try again!')
+                if (savedComics.length > 0) {
+                  alert('Search not found. Please correct and try again!')
+                } else {
+                  alert('There is nothing to search on!')
+                }  
                 // Display original list on the dashboard
                 return  RedirectToWithState (
                                               '/dashboard',

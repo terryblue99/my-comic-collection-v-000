@@ -2,15 +2,20 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch} from 'react-redux'
 import { createHashHistory } from 'history' // Used to change URL without a re-render
 import logo from '../images/Marvel_DC_logo.jpg'
-import { sortComicsAction, resetComicsAction, resetSearchFailedAction, resetSortAction } from '../actions/comicsActions'
+import { sortComicsAction, resetComicsAction, 
+         comicRelatedAction, resetSearchFailedAction, 
+         resetSortAction } from '../actions/comicsActions'
 import RedirectToWithState from "../components/RedirectToWithState"
 
 const DashboardMain = (props) => {
 
   const hashHistory = createHashHistory() // Used to change URL without a re-render
   const [stateData, setStateData] = useState({isSortRequired: false, sortOptionSelected: ''})
+  const Comics = useSelector(state => state.myComics.comics)
   const savedComics = useSelector(state => state.myComics.savedComics)
   const comicRelated = useSelector(state => state.myComics.comicRelated) // For records that are not related to a specific comic.
+  const isComicRelatedDisplayed = useSelector(state => state.myComics.isComicRelatedDisplayed)
+  const savedComicRelated = useSelector(state => state.myComics.savedComicRelated)
   const sortDefaultText = useSelector(state => state.myComics.sortDefaultText)
   const isSearchFailed = useSelector(state => state.myComics.isSearchFailed)
   const totalCost = useSelector(state => state.myComics.totalCost)
@@ -39,10 +44,6 @@ const DashboardMain = (props) => {
   let oldestComicPublisher
   let oldestComicDate
 
-  let number_of_comics = 0
-  let number_of_comiceRelated = 0
-
-  const number_of_saved_comics = Object.keys(savedComics).length
   const sortElement = [
     <>
       <h2 className='Center-text'>Sort By</h2>
@@ -62,7 +63,6 @@ const DashboardMain = (props) => {
       </select>
     </>
   ]
-
 
   if (props.sortOptionSelected && props.sortOptionSelected === sortDefaultText ) {
       if (document.getElementById('Select-sort') !== null) {
@@ -90,13 +90,11 @@ const DashboardMain = (props) => {
       oldestComicImage = props.oldestComic.image
       oldestComicPublisher = props.oldestComic.comic_publisher
       oldestComicDate = props.oldestComic.date_published
-
-      number_of_comics = Object.keys(props.filteredComics).length
   }
 
-  if (props.filteredComicRelated) {
-      number_of_comiceRelated = Object.keys(props.filteredComicRelated).length
-  }
+  const number_of_comics = Object.keys(Comics).length
+  const number_of_saved_comics = Object.keys(savedComics).length
+  const number_of_comicRelated = Object.keys(savedComicRelated).length
 
   if (stateData.isSortRequired) {
       setStateData(prevStateData => {
@@ -128,10 +126,10 @@ const DashboardMain = (props) => {
     <div className='DashboardMain'>
 
       <div className='Dashboard-item Dashboard-initialList'>
-        { number_of_saved_comics > 1
+        { number_of_saved_comics > 0
           ? <>
               <button className='btn FullList-button Button-text' 
-                // Fetch all records and delete the DashBoard history location state
+                // Fetch all comic records and delete the DashBoard history location state
                 // so that the initial sort option text can be displayed
                 onClick={() => {  dispatch(resetComicsAction())
                                   if (props.DashBoardHistory && props.DashBoardHistory.location.state) {
@@ -139,17 +137,17 @@ const DashboardMain = (props) => {
                                   }             
                 }               
               }> 
-                Redisplay Initial List
+                Display All Comics
               </button>
             </>
           : null
         }
         <br />
-        { number_of_comics > 0
+        { number_of_comics > 0 && !isComicRelatedDisplayed
             ? <p className='Dashboard-totalComics Center-text'>Total Comics: <span className='Comic-total'>{number_of_comics}</span></p>
             : null
         }
-        { number_of_comics > 0 && totalCost > 0
+        { number_of_comics > 0 && totalCost > 0 && !isComicRelatedDisplayed
             ?  <p className='Dashboard-totalComics Center-text'>
                 Total Cost: <span className='Comic-total'>
                               {parseFloat(totalCost).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}
@@ -157,10 +155,27 @@ const DashboardMain = (props) => {
               </p>
             : null
         }
-        { number_of_comiceRelated > 0
-            ? <p className='Dashboard-totalComicRelated Center-text'>Total Comic Related: <span className='Comic-related-total'>{number_of_comiceRelated}</span></p>
-            : null
-        }   
+        { number_of_comicRelated > 0 && number_of_comics > 0
+          ? <>
+              <button className='btn FullList-button Button-text' 
+                // Fetch all comic related records and delete the DashBoard history location state
+                // so that the initial sort option text can be displayed
+                onClick={() => {  dispatch(comicRelatedAction())
+                                  if (props.DashBoardHistory && props.DashBoardHistory.location.state) {
+                                        delete props.DashBoardHistory.location.state                                                                               
+                                  }             
+                }               
+              }> 
+                Display Comic Related
+              </button>
+            </>
+          : null
+        }
+        <br />
+        { number_of_comicRelated > 0 && number_of_comics > 0
+          ? <p className='Dashboard-totalComicRelated Center-text'>Total Comic Related: <span className='Comic-related-total'>{number_of_comicRelated}</span></p>
+          : null
+        } 
       </div>
       <div className='Dashboard-item Dashboard-sort'> 
         <h1 className='Dashboard-header Dark-red-color Center-text'>Dashboard</h1>
@@ -170,12 +185,12 @@ const DashboardMain = (props) => {
           ? sortElement
           : null
         }
-        { number_of_comics === 0 && number_of_saved_comics === 0
+        { number_of_saved_comics === 0
           ? welcome
           : null
         }
       </div>
-      { number_of_comics !== 0 && number_of_saved_comics !== 0
+      { number_of_comics !== 0
           ? <div className='Dashboard-item'>
               <iframe className='Dashboard-time' 
                       title='clockFrame' 
@@ -216,7 +231,7 @@ const DashboardMain = (props) => {
         }
         <br />
       </div>
-      {number_of_comics !== 0 && number_of_saved_comics !== 0
+      {number_of_comics !== 0 
         ? <div className='Dashboard-item Dashboard-logo'>
             <img src={logo} alt='logo' />
           </div>

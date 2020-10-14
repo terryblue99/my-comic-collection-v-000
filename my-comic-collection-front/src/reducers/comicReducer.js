@@ -13,18 +13,21 @@ import {
 	RESET_COMICS,
 	SEARCH_COMICS,
 	COMIC_PUBLISHER_SORT,
-	COMIC_NAME_SORT
+	COMIC_NAME_SORT,
+	COMIC_RELATED
 } from '../actions/types'
 
 const initialState = {
-	isSearchFailed: false,
-	isSort: false,
 	comics: [],
 	savedComics: [],
-	sortDefaultText: 'Select a sort option...',
+	savedComicRelated: [],
 	comicRelated: 'Comic-Related', // For records that are not related to a specific comic.
+	sortDefaultText: 'Select a sort option for comics...',
 	totalCost: parseFloat(0),
-	savedTotalCost: parseFloat(0)
+	savedTotalCost: parseFloat(0),
+	isSearchFailed: false,
+	isSort: false,
+	isComicRelatedDisplayed: false
 }
 let sortedComics
 
@@ -44,13 +47,15 @@ export default (state = initialState, { type, payload } ) => {
 
 		case GET_COMICS:			
 			if (payload) {
-
+				const comicsData = payload.sortedComicData.filter(comic => comic.comic_publisher !== state.comicRelated)
+				const relatedData = payload.sortedComicData.filter(comic => comic.comic_publisher === state.comicRelated)
 				return ({
 					...state,
 					ComicRelated: state.ComicRelated,
-					isSearchFailed: payload.isSearchFailed,
-					savedComics: payload.sortedComics,
-					comics: payload.sortedComics,
+					isSearchFailed: false,
+					comics: comicsData,
+					savedComics: comicsData,
+					savedComicRelated: relatedData,
 					totalCost: payload.totalCost,
 					savedTotalCost: payload.totalCost
 				})
@@ -60,7 +65,14 @@ export default (state = initialState, { type, payload } ) => {
 			return ({
 				...state,
 				comics: state.savedComics,
-				totalCost: state.savedTotalCost
+				totalCost: state.savedTotalCost,
+				isComicRelatedDisplayed: false
+			})
+		case COMIC_RELATED:		
+			return ({
+				...state,
+				comics: state.savedComicRelated,
+				isComicRelatedDisplayed: true
 			})
 
 			case RESET_TOTAL_COST:		
@@ -73,7 +85,7 @@ export default (state = initialState, { type, payload } ) => {
 		case RESET_SEARCH_FAILED:
 			return ({
 				...state,
-				isSearchFailed: payload
+				isSearchFailed: false
 			})
 
 		case DELETE_COMIC:
