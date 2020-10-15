@@ -136,7 +136,7 @@ export default (state = initialState, { type, payload } ) => {
 													comic.comic_publisher.toLowerCase(),
 													comic.comic_number.toLowerCase(),
 													comic.comic_title.toLowerCase(),
-													comic.date_published.toLowerCase(),
+													comic.date_published,
 													comic.cost,
 													comic.notes.toLowerCase()
 												)
