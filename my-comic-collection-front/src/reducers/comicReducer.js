@@ -123,7 +123,9 @@ export default (state = initialState, { type, payload } ) => {
 				searchText = payload.toLowerCase()
 			}
 
-			const searchArray = state.comics.filter(comic => {
+			const comics_and_related = state.savedComics.concat(state.savedComicRelated)
+
+			const searchArray = comics_and_related.filter(comic => {
 				comicArray = []
 				comicArray.push( comic.comic_name.toLowerCase(),
 													comic.comic_publisher.toLowerCase(),
