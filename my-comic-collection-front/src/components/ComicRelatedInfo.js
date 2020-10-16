@@ -20,7 +20,7 @@ const ComicRelatedInfo = ()  => {
         < br/>
         <p>Comic-Related records can contain any type of information</p>
         <p>related to comics. Images for these will not be displayed</p>
-        <p>on the main dashboard</p>
+        <p>on the main dashboard.</p>
         < br/>
         <p><span className='ComicRelated-note'>Note:</span> Information about a specific saved comic can be entered in</p>
         <p className='ComicRelated-info-tab'>the <span className='Blue-color'>Notes</span> input field of that comic.</p>

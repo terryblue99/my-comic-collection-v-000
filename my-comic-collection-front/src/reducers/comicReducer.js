@@ -92,8 +92,9 @@ export default (state = initialState, { type, payload } ) => {
 			if (payload) {
 				return ({
 					...state,
+					comics: state.comics.filter(comic => comic.id !== payload),
 					savedComics: state.savedComics.filter(comic => comic.id !== payload),
-					comics: state.comics.filter(comic => comic.id !== payload)
+					savedComicRelated: state.savedComicRelated.filter(comic => comic.id !== payload)
 				})
 			} else return state		
 
