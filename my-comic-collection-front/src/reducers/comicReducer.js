@@ -124,7 +124,7 @@ export default (state = initialState, { type, payload } ) => {
 			}
 
 			let comicsSearchData
-			if (!state.savedComicRelated) {
+			if (state.savedComicRelated.length === 0) {
 				comicsSearchData = state.savedComics
 			} else {
 				comicsSearchData = state.savedComics.concat(state.savedComicRelated)
