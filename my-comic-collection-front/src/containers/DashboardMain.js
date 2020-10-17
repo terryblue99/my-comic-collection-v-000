@@ -5,7 +5,7 @@ import logo from '../images/Marvel_DC_logo.jpg'
 import { sortComicsAction, resetComicsAction, 
          comicRelatedAction, resetSearchFailedAction, 
          resetSortAction } from '../actions/comicsActions'
-import RedirectToWithState from "../components/RedirectToWithState"
+import RedirectTo from "../components/RedirectToWithState"
 
 const DashboardMain = (props) => {
 
@@ -105,13 +105,7 @@ const DashboardMain = (props) => {
         }
       })  
       // Display the sorted list on the dashboard
-      return  RedirectToWithState(
-                                    '/dashboard',
-                                    {
-                                      isFromDashboardMain: true,
-                                      sortOptionSelected: stateData.sortOptionSelected
-                                    } 
-                                  )
+      return  RedirectTo('/dashboard')
   }
 
   if (isSearchFailed) {
@@ -149,7 +143,7 @@ const DashboardMain = (props) => {
             : null
         }
         { number_of_comics > 0 && !isComicRelatedDisplayed && isSearchResultRelated
-            ? <p className='Dashboard-totalComics Center-text'>Search results: <span className='Comic-total'>{number_of_comics}</span></p>
+            ? <p className='Dashboard-totalComics Center-text'>Search results: <span className='Comic-total'>{number_search_result}</span></p>
             : null
         }
         { number_of_comics > 0 && totalCost > 0 && !isComicRelatedDisplayed

@@ -7,7 +7,7 @@ import SidebarMobile from './SidebarMobile'
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core' // https://github.com/emotion-js/emotion
 
-const Comics = ({ comics, sortOptionSelected, isSearchSuccessful, DashBoardHistory }) => {
+const Comics = ({ comics, sortOptionSelected, DashBoardHistory }) => {
  
     let oldestComic
     let newestComic
@@ -46,7 +46,6 @@ const Comics = ({ comics, sortOptionSelected, isSearchSuccessful, DashBoardHisto
                              newestComic={newestComic}
                              oldestComic={oldestComic}
                              sortOptionSelected={sortOptionSelected}
-                             isSearchSuccessful={isSearchSuccessful}
                              DashBoardHistory={DashBoardHistory}
                 />
 

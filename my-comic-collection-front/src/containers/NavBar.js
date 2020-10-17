@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { searchComicsAction } from '../actions/comicsActions'
 import ClearForm from '../components/ClearForm'
-import RedirectToWithState from '../components/RedirectToWithState'
+import RedirectTo from '../components/RedirectToWithState'
 
 const NavBar = () => {
 
@@ -46,13 +46,7 @@ const NavBar = () => {
       // Clear the form
       ClearForm('Nav-search-form')
       // Display list from the search on the dashboard
-      return  RedirectToWithState(
-                                    '/dashboard',
-                                    {
-                                      isFromNavBar: true,    
-                                      isSearchSuccessful: true
-                                    } 
-                                  )
+      return  RedirectTo('/dashboard')
       
   } else if (searchData.isSearchRequested &&
              comics.length === 0) 
@@ -73,13 +67,7 @@ const NavBar = () => {
                   alert('There is nothing to search on!')
                 }  
                 // Display original list on the dashboard
-                return  RedirectToWithState (
-                                              '/dashboard',
-                                              {
-                                                isFromNavBar: true,    
-                                                isSearchFailed: true
-                                              } 
-                                            )
+                return  RedirectTo('/dashboard')
               }
 
   return (

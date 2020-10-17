@@ -103,8 +103,7 @@ const ComicDetail = (props) => {
 
     const {currentComic} = props
     
-    if (currentComic && 
-        !props.isSearchSuccessful && 
+    if (currentComic &&
         !isSearchFailed &&
         !isSort) 
     {
