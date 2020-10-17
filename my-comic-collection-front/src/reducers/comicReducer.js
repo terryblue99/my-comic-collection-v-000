@@ -25,6 +25,7 @@ const initialState = {
 	sortDefaultText: 'Select a sort option for comics...',
 	totalCost: parseFloat(0),
 	savedTotalCost: parseFloat(0),
+	isSearchResultRelated: false,
 	isSearchFailed: false,
 	isSort: false,
 	isComicRelatedDisplayed: false
@@ -52,6 +53,7 @@ export default (state = initialState, { type, payload } ) => {
 				return ({
 					...state,
 					ComicRelated: state.ComicRelated,
+					isSearchResultRelated: false,
 					isSearchFailed: false,
 					comics: comicsData,
 					savedComics: comicsData,
@@ -66,6 +68,7 @@ export default (state = initialState, { type, payload } ) => {
 				...state,
 				comics: state.savedComics,
 				totalCost: state.savedTotalCost,
+				isSearchResultRelated: false,
 				isComicRelatedDisplayed: false
 			})
 		case COMIC_RELATED:		
@@ -125,6 +128,7 @@ export default (state = initialState, { type, payload } ) => {
 			}
 
 			let comicsSearchData
+			let relatedFound = false
 			if (state.savedComicRelated.length === 0) {
 				comicsSearchData = state.savedComics
 			} else {
@@ -151,10 +155,15 @@ export default (state = initialState, { type, payload } ) => {
 				return total
 			}, 0)
 
+			if (searchArray.some(item => item.comic_publisher === state.comicRelated)) {
+				relatedFound = state.comicRelated
+			}
+
 			return ({
 				...state,
 				comics: searchArray,
-				totalCost: totalCost
+				totalCost: totalCost,
+				isSearchResultRelated: relatedFound
 			})
 		
 		// SORT COMICS & COMIC-RELATED

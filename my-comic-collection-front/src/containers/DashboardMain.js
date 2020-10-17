@@ -15,6 +15,7 @@ const DashboardMain = (props) => {
   const savedComics = useSelector(state => state.myComics.savedComics)
   const comicRelated = useSelector(state => state.myComics.comicRelated) // For records that are not related to a specific comic.
   const isComicRelatedDisplayed = useSelector(state => state.myComics.isComicRelatedDisplayed)
+  const isSearchResultRelated = useSelector(state => state.myComics.isSearchResultRelated)
   const savedComicRelated = useSelector(state => state.myComics.savedComicRelated)
   const sortDefaultText = useSelector(state => state.myComics.sortDefaultText)
   const isSearchFailed = useSelector(state => state.myComics.isSearchFailed)
@@ -92,7 +93,7 @@ const DashboardMain = (props) => {
       oldestComicDate = props.oldestComic.date_published
   }
 
-  const number_of_comics = Object.keys(Comics).length
+  let [number_of_comics, number_search_result] = Array(2).fill(Object.keys(Comics).length)
   const number_of_saved_comics = Object.keys(savedComics).length
   const number_of_comicRelated = Object.keys(savedComicRelated).length
 
@@ -143,8 +144,12 @@ const DashboardMain = (props) => {
           : null
         }
         <br />
-        { number_of_comics > 0 && !isComicRelatedDisplayed
+        { number_of_comics > 0 && !isComicRelatedDisplayed && !isSearchResultRelated
             ? <p className='Dashboard-totalComics Center-text'>Total Comics: <span className='Comic-total'>{number_of_comics}</span></p>
+            : null
+        }
+        { number_of_comics > 0 && !isComicRelatedDisplayed && isSearchResultRelated
+            ? <p className='Dashboard-totalComics Center-text'>Search results: <span className='Comic-total'>{number_of_comics}</span></p>
             : null
         }
         { number_of_comics > 0 && totalCost > 0 && !isComicRelatedDisplayed
