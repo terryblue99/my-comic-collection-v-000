@@ -77,8 +77,8 @@ img {
 
 .Comic-image {
   box-shadow: 10px 10px 5px rgba(0,0,0,0.1);
-  height: 300px;
-  width: 200px;
+  height: 200px;
+  width: 150px;
 }
 
 .Choose-image {
@@ -1283,5 +1283,13 @@ textarea:required
     font-size: 1.2em;
   }
 
+}
+
+@media (min-width: 1600px) {
+  .Comic-image {
+    box-shadow: 10px 10px 5px rgba(0,0,0,0.1);
+    height: 300px;
+    width: 200px;
+  }
 }
 /*#endregion Media Queries*/
