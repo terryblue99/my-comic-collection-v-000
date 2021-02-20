@@ -34,7 +34,7 @@ gem 'foreman'
 gem 'pry-byebug'
 gem 'bcrypt'
 gem 'rake'
-gem 'nokogiri', '~> 1.10.4'
+gem 'nokogiri', '~> 1.11.0'
 gem 'loofah', '>= 2.3.1'
 gem 'actionview', '>= 6.0.3.3'
 
