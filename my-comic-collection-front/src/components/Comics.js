@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux'
 import { useState } from 'react' // https://reactjs.org/docs/hooks-overview.html
 import _ from 'lodash'  // https://underscorejs.org/)
 import ComicDetail from '../containers/ComicDetail'
@@ -12,17 +13,21 @@ const Comics = ({ comics, sortOptionSelected, DashBoardHistory }) => {
     let oldestComic
     let newestComic
 
+    const comicRelated = useSelector(state => state.myComics.comicRelated) // For records that are not related to a specific comic.
+
     if(comics?.length > 0) {
         // Sort the filtered comic records by date bought using the underscore function _.sortBy
-        const sortedComics = _.sortBy( comics, 'date_published' )
-        oldestComic = sortedComics[0]
-        newestComic = sortedComics[sortedComics.length-1]   
+        const sortedComicRecords = _.sortBy( comics, 'date_published' )
+        // Remove any watch related records
+        const comicsOnlyData = sortedComicRecords.filter(comic => comic.comic_publisher !== comicRelated)
+        // Extract the oldest and newest comics
+        oldestComic = comicsOnlyData[0]
+        newestComic = comicsOnlyData[comicsOnlyData.length-1]
     }    
 
-   const [showComics, setShowComics] = useState(false) // used when in a mobile view
-                                                       // to toggle comic list on and off   
-
-   const [currentComic, setCurrentComic] = useState(null) 
+    const [showComics, setShowComics] = useState(false) // used when in a mobile view
+                                                       // to toggle comic list on and off
+    const [currentComic, setCurrentComic] = useState(null) 
 
     return (
         <div className='Sidebar-list-detail-container'>
