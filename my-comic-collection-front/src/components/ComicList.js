@@ -1,7 +1,8 @@
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { createHashHistory } from 'history' // Used to change URL without a re-render
-// The following comment is required for @emotion to work
+// The following commens are required for @emotion to work
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core' // https://github.com/emotion-js/emotion'
 import { resetSortAction } from '../actions/comicsActions'

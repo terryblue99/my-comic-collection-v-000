@@ -4,7 +4,8 @@ import _ from 'lodash'  // https://underscorejs.org/)
 import ComicDetail from '../containers/ComicDetail'
 import ComicList from './ComicList'
 import SidebarMobile from './SidebarMobile'
-// The following comment is required for @emotion to work
+// The following comments are required for @emotion to work
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core' // https://github.com/emotion-js/emotion
 
