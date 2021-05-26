@@ -8,7 +8,7 @@ gem 'rails', '~> 6.0.2', '>= 6.0.3.1'
 # Use mysql2 as the database for Active Record
 gem 'mysql2', '>= 0.4.4'
 # Use Puma as the app server
-gem 'puma', '~> 4.1'
+gem 'puma', '>= 4.3.8'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
@@ -26,7 +26,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors'
 
 gem 'rack', '>= 2.2.3'
-gem 'actionpack', '>= 6.0.3.5'
+gem 'actionpack', '>= 6.0.3.7'
 gem 'activerecord', '>= 6.0.3.5'
 gem 'sinatra-activerecord'
 gem 'active_model_serializers', '~> 0.10.0'
@@ -35,7 +35,7 @@ gem 'foreman'
 gem 'pry-byebug'
 gem 'bcrypt'
 gem 'rake'
-gem 'nokogiri', '>= 1.11.0'
+gem 'nokogiri', '>= 1.11.4'
 gem 'loofah', '>= 2.3.1'
 gem 'actionview', '>= 6.0.3.3'
 
