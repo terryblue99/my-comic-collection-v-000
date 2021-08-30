@@ -26,7 +26,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors'
 
 gem 'rack', '>= 2.2.3'
-gem 'actionpack', '>= 6.0.3.7'
+gem 'actionpack', '>= 6.0.4.1'
 gem 'activerecord', '>= 6.0.3.5'
 gem 'sinatra-activerecord'
 gem 'active_model_serializers', '~> 0.10.0'
