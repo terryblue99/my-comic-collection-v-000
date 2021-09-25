@@ -59,7 +59,7 @@ const AddComic = (props) => {
           if (stateData.comic_publisher === comicRelated) {
                isComicRelated = true
           } 
-          // validate the 'Date Bought/RCVD' input for comic records
+          // validate the 'Date Published' input for comic records
           if (!isComicRelated) {
                const isValidDate = DateValidation(stateData.date_published)
                if (!isValidDate) {
