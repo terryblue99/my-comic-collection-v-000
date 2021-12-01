@@ -18,6 +18,8 @@ const EditComic = (props) => {
           comic_title: props.location.state.comic.comic_title,
           date_published: props.location.state.comic.date_published,
           cost: props.location.state.comic.cost,
+          fmv_low: props.location.state.comic.fmv_low,
+          fmv_high: props.location.state.comic.fmv_high,
           notes: props.location.state.comic.notes,
           user_id: props.location.state.comic.user_id,
           image: null
@@ -100,6 +102,8 @@ const EditComic = (props) => {
                     formData.append('comic_title', stateData.comic_title)         
                     formData.append('date_published', stateData.date_published)
                     formData.append('cost', stateData.cost)
+                    formData.append('fmv_low', stateData.fmv_low)
+                    formData.append('fmv_high', stateData.fmv_high)
                     formData.append('notes', stateData.notes)
                     formData.append('user_id', stateData.user_id)
                     if (stateData.image) {
@@ -285,6 +289,34 @@ const EditComic = (props) => {
                                              min='0'
                                              name='cost'
                                              defaultValue={comic.cost}
+                                             onChange={handleChange}
+                                        />
+                                        <br />
+                                   </>
+                              : null
+                         }
+                         {!isEditComicRelated
+                              ?    <> <label>Fair Market Value (FMV) Low (e.g. 99.99 | defaults to 0)</label>
+                                        <input className='Input-element'
+                                             type='number'
+                                             step='0.01'
+                                             min='0'
+                                             name='fmv_low'
+                                             defaultValue={comic.fmv_low}
+                                             onChange={handleChange}
+                                        />
+                                        <br />
+                                   </>
+                              : null
+                         }
+                         {!isEditComicRelated
+                              ?    <> <label>Fair Market Value (FMV) High (e.g. 999.99 | defaults to 0)</label>
+                                        <input className='Input-element'
+                                             type='number'
+                                             step='0.01'
+                                             min='0'
+                                             name='fmv_high'
+                                             defaultValue={comic.fmv_high}
                                              onChange={handleChange}
                                         />
                                         <br />

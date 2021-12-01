@@ -61,6 +61,8 @@ const DashboardMain = (props) => {
         <option value='Oldest to Newest'>Oldest to Newest</option>
         <option value='Cost Low to High'>Cost Low to High</option>
         <option value='Cost High to Low'>Cost High to Low</option>
+        <option value='Fmvhigh Low to High'>High FMV Low to High</option>
+        <option value='Fmvhigh High to Low'>High FMV High to Low</option>
       </select>
     </>
   ]

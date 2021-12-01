@@ -6,6 +6,8 @@ class ComicSerializer < ActiveModel::Serializer
   :comic_number
   :date_published,
   :cost,
+  :fmv_low,
+  :fmv_high,
   :user_id,
   :notes,
   :image

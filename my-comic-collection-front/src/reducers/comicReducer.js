@@ -3,6 +3,8 @@ import {
 	CLEAR_COMICS,
 	COST_HIGH_TO_LOW_SORT,
 	COST_LOW_TO_HIGH_SORT,
+	FMVHIGH_LOW_TO_HIGH_SORT,
+  FMVHIGH_HIGH_TO_LOW_SORT,
 	DELETE_COMIC,
 	GET_COMICS, 
 	NEWEST_TO_OLDEST_SORT,
@@ -37,6 +39,13 @@ let sortedComics
 const costToNumber = (comic) => {
 	if (comic.cost) {
 		return parseFloat(comic.cost)
+	} else return 0.00
+}
+// Used when sorting comics by fmv_high,
+// converting it to a floating point number
+const fmvHighToNumber = (comic) => {
+	if (comic.fmv_high) {
+		return parseFloat(comic.fmv_high)
 	} else return 0.00
 }
 
@@ -143,6 +152,8 @@ export default (state = initialState, { type, payload } ) => {
 													comic.comic_title.toLowerCase(),
 													comic.date_published,
 													comic.cost,
+													comic.fmv_low,
+													comic.fmv_high,
 													comic.notes.toLowerCase()
 												)
 				// check array of record string fields for searchText string/substring								
@@ -219,6 +230,22 @@ export default (state = initialState, { type, payload } ) => {
 				comics: sortedComics.reverse()
 			})
 
+		case	FMVHIGH_LOW_TO_HIGH_SORT:
+			sortedComics = _.sortBy( state.comics, fmvHighToNumber )
+			return ({
+				...state,
+				isSort: true,
+				comics: sortedComics
+			})
+	
+		case	FMVHIGH_HIGH_TO_LOW_SORT:
+			sortedComics = _.sortBy( state.comics, fmvHighToNumber)
+			return ({
+				...state,
+				isSort: true,
+				comics: sortedComics.reverse()
+			})
+			
 		case RESET_SORT:
 			return ({
 				...state,

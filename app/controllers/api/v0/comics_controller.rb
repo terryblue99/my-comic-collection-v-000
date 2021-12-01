@@ -46,6 +46,8 @@ class Api::V0::ComicsController < ApplicationController
           :date_published,
           :comic_title,
           :cost,
+          :fmv_low,
+          :fmv_high,
           :notes,
           :image,
           :user_id,
