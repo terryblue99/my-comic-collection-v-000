@@ -67,7 +67,7 @@
     "ansi-html": ">=0.0.8",
     "ansi-regex": ">=4.1.1",
     "async": ">=2.6.4",
-    "babel-core": "^4.7.16",
+    "babel-core": "^6.26.3",
     "babel-preset-airbnb": "^2.1.1",
     "bcrypt": ">=5.0.0",
     "braces": ">=2.3.1",
