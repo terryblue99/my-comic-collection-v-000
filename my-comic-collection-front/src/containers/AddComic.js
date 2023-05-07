@@ -20,8 +20,8 @@ const AddComic = (props) => {
           comic_title: '',
           date_published: '',
           cost: 0.00,
-          fmv_low: 0.00,
-          fmv_high: 0.00,
+          sold_for: 0.00,
+          fmv: 0.00,
           notes: '',
           image: null,
           user_id: currentUser.user.id
@@ -78,8 +78,7 @@ const AddComic = (props) => {
                formData.append('comic_title', stateData.comic_title)         
                formData.append('date_published', stateData.date_published)
                formData.append('cost', stateData.cost)
-               formData.append('fmv_low', stateData.fmv_low)
-               formData.append('fmv_high', stateData.fmv_high)
+               formData.append('fmv', stateData.fmv)
                formData.append('notes', stateData.notes)
                formData.append('user_id', stateData.user_id)
                if (stateData.image) {
@@ -227,24 +226,24 @@ const AddComic = (props) => {
                               : null
                          }
                          {!isAddComicRelated
-                              ?    <> <label>Fair Market Value (FMV) Low (e.g. 99.99 | defaults to 0)</label>
+                              ?    <> <label>Sold For (e.g. 99.99 | defaults to 0)</label>
                                         <input className='Input-element'
                                              type='number'
                                              step='0.01'
                                              min='0'
-                                             name='fmv_low'
+                                             name='sold_for'
                                              onChange={handleChange}/> 
                                         <br />    
                                    </>
                               : null
                          }
                          {!isAddComicRelated
-                              ?    <> <label>Fair Market Value (FMV) High (e.g. 999.99 | defaults to 0)</label>
+                              ?    <> <label>Fair Market Value (FMV) (e.g. 999.99 | defaults to 0)</label>
                                         <input className='Input-element'
                                              type='number'
                                              step='0.01'
                                              min='0'
-                                             name='fmv_high'
+                                             name='fmv'
                                              onChange={handleChange}/> 
                                         <br />    
                                    </>

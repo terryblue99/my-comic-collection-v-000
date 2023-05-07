@@ -3,7 +3,8 @@ import { useSelector, useDispatch} from 'react-redux'
 import { createHashHistory } from 'history' // Used to change URL without a re-render
 import logo from '../images/Marvel_DC_logo.jpg'
 import { sortComicsAction, resetComicsAction, 
-         comicRelatedAction, resetSearchFailedAction, 
+         comicRelatedAction, comicsSoldAction,
+         resetSearchFailedAction, 
          resetSortAction } from '../actions/comicsActions'
 import RedirectTo from "../components/RedirectToWithState"
 
@@ -15,11 +16,15 @@ const DashboardMain = (props) => {
   const savedComics = useSelector(state => state.myComics.savedComics)
   const comicRelated = useSelector(state => state.myComics.comicRelated) // For records that are not related to a specific comic.
   const isComicRelatedDisplayed = useSelector(state => state.myComics.isComicRelatedDisplayed)
+  const isComicSoldDisplayed = useSelector(state => state.myComics.isComicSoldDisplayed)
   const isSearchResultRelated = useSelector(state => state.myComics.isSearchResultRelated)
   const savedComicRelated = useSelector(state => state.myComics.savedComicRelated)
+  const savedComicsSold = useSelector(state => state.myComics.savedComicsSold)
   const sortDefaultText = useSelector(state => state.myComics.sortDefaultText)
   const isSearchFailed = useSelector(state => state.myComics.isSearchFailed)
   const totalCost = useSelector(state => state.myComics.totalCost)
+  const totalSoldFor = useSelector(state => state.myComics.totalSoldFor)
+  const totalSold = useSelector(state => state.myComics.totalSold)
   const dispatch = useDispatch()
 
   const handleSelectedSortKey = (event) =>  {
@@ -61,8 +66,10 @@ const DashboardMain = (props) => {
         <option value='Oldest to Newest'>Oldest to Newest</option>
         <option value='Cost Low to High'>Cost Low to High</option>
         <option value='Cost High to Low'>Cost High to Low</option>
-        <option value='Fmvhigh Low to High'>High FMV Low to High</option>
-        <option value='Fmvhigh High to Low'>High FMV High to Low</option>
+        <option value='Sold For Low to High'>Sold For Low to High</option>
+        <option value='Sold For High to Low'>Sold For High to Low</option>
+        <option value='Fmv Low to High'>FMV Low to High</option>
+        <option value='Fmv High to Low'>FMV High to Low</option>
       </select>
     </>
   ]
@@ -98,6 +105,7 @@ const DashboardMain = (props) => {
   let [number_of_comics, number_search_result] = Array(2).fill(Object.keys(Comics).length)
   const number_of_saved_comics = Object.keys(savedComics).length
   const number_of_comicRelated = Object.keys(savedComicRelated).length
+  const number_of_comicsSold = Object.keys(savedComicsSold).length
 
   if (stateData.isSortRequired) {
       setStateData(prevStateData => {
@@ -140,15 +148,15 @@ const DashboardMain = (props) => {
           : null
         }
         <br />
-        { number_of_comics > 0 && !isComicRelatedDisplayed && !isSearchResultRelated
+        { number_of_comics > 0 && !isComicRelatedDisplayed && !isComicSoldDisplayed && !isSearchResultRelated
             ? <p className='Dashboard-totalComics Center-text'>Total Comics: <span className='Comic-total'>{number_of_comics}</span></p>
             : null
         }
-        { number_of_comics > 0 && !isComicRelatedDisplayed && isSearchResultRelated
+        { number_of_comics > 0 && !isComicRelatedDisplayed && !isComicSoldDisplayed && isSearchResultRelated
             ? <p className='Dashboard-totalComics Center-text'>Search results: <span className='Comic-total'>{number_search_result}</span></p>
             : null
         }
-        { number_of_comics > 0 && totalCost > 0 && !isComicRelatedDisplayed
+        { number_of_comics > 0 && totalCost > 0 && !isComicRelatedDisplayed && !isComicSoldDisplayed
             ?  <p className='Dashboard-totalComics Center-text'>
                 Total Cost: <span className='Comic-total'>
                               {parseFloat(totalCost).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}
@@ -156,7 +164,7 @@ const DashboardMain = (props) => {
               </p>
             : null
         }
-        { number_of_comicRelated > 0 && number_of_comics > 0
+        { number_of_comicRelated > 0 && number_of_comics > 0 
           ? <>
               <button className='btn FullList-button Button-text' 
                 // Fetch all comic related records and delete the DashBoard history location state
@@ -173,10 +181,39 @@ const DashboardMain = (props) => {
           : null
         }
         <br />
-        { number_of_comicRelated > 0 && number_of_comics > 0
+        { number_of_comicRelated > 0 && number_of_comics > 0 && !isComicSoldDisplayed
           ? <p className='Dashboard-totalComicRelated Center-text'>Total Comic Related: <span className='Comic-related-total'>{number_of_comicRelated}</span></p>
           : null
-        } 
+        }
+        { number_of_comicsSold > 0 && number_of_comics > 0
+          ? <>
+              <button className='btn FullList-button Button-text' 
+                // Fetch all comics sold records and delete the DashBoard history location state
+                // so that the initial sort option text can be displayed
+                onClick={() => {  dispatch(comicsSoldAction())
+                                  if (props.DashBoardHistory && props.DashBoardHistory.location.state) {
+                                        delete props.DashBoardHistory.location.state                                                                               
+                                  }             
+                }               
+              }> 
+                Display Comics Sold
+              </button>
+            </>
+          : null
+        }
+        <br />
+        { number_of_comics > 0 && totalSold > 0 && !isComicRelatedDisplayed
+            ? <p className='Dashboard-totalComics Center-text'>Total Comics Sold: <span className='Comic-total'>{totalSold}</span></p>
+            : null
+        }
+        { number_of_comics > 0 && totalSoldFor > 0 && !isComicRelatedDisplayed
+            ?  <p className='Dashboard-totalComics Center-text'>
+                Sold For Total: <span className='Comic-total'>
+                              {parseFloat(totalSoldFor).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}
+                            </span>
+              </p>
+            : null
+        }
       </div>
       <div className='Dashboard-item Dashboard-sort'> 
         <h1 className='Dashboard-header Dark-red-color Center-text'>Dashboard</h1>

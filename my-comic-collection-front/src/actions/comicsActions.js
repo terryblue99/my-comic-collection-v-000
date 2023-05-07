@@ -5,7 +5,8 @@ import {
 	RESET_SORT,
 	RESET_COMICS,
 	RESET_SEARCH_FAILED,
-	COMIC_RELATED
+	COMIC_RELATED,
+	COMICS_SOLD
 } from './types'
 // The underscore library
 import _ from 'lodash'
@@ -39,10 +40,17 @@ export const getComicsAction = (user_id) => {
 				total += parseFloat(array[index].cost)
 				return total
 			}, 0)
+			// Accumulate the sold for total of all comics
+			const totalSoldFor = response.reduce((total, sold_for, index, array) => {
+				total += parseFloat(array[index].sold_for)
+				return total
+			}, 0)
+			// Calculate the total number of comics sold
+			const totalSold = response.filter(e => e.sold_for > 0).length;
 			// Update comic state
 			dispatch({
 				type: GET_COMICS, 
-				payload: {sortedComicData, totalCost}
+				payload: {sortedComicData, totalCost, totalSoldFor, totalSold}
 			})
 		})
 		.catch(error => {
@@ -92,6 +100,14 @@ export const comicRelatedAction = () => {
 	return dispatch => {
 		dispatch({
 			type: COMIC_RELATED
+		})
+	}		
+}
+
+export const comicsSoldAction = () => {
+	return dispatch => {
+		dispatch({
+			type: COMICS_SOLD
 		})
 	}		
 }

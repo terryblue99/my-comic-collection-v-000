@@ -29,7 +29,7 @@ const ComicDetail = (props) => {
                 recordType = 'comic'
                }
 
-        if (window.confirm(`Do you realy want to delete this ${recordType}?`)) {
+        if (window.confirm(`Do you really want to delete this ${recordType}?`)) {
 
             dispatch(deleteComicAction(props.currentComic.id))
             
@@ -115,8 +115,8 @@ const ComicDetail = (props) => {
             comic_title,
             date_published,
             cost,
-            fmv_low,
-            fmv_high,
+            sold_for,
+            fmv,
             notes
         } = currentComic
 
@@ -176,14 +176,14 @@ const ComicDetail = (props) => {
                                     <h3 className='ComicDetail'>{parseFloat(cost).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
                                 </>
                             : null }
-                        {fmv_low > 0
-                            ?   <>  <p className='Detail-css'>Fair Market Value (FMV) Low</p>
-                                    <h3 className='ComicDetail'>{parseFloat(fmv_low).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
+                        { sold_for > 0
+                            ?   <>  <p className='Detail-css'>Sold For</p>
+                                    <h3 className='ComicDetail'>{parseFloat(sold_for).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
                                 </>
                             : null }
-                        {fmv_high > 0
-                            ?   <>  <p className='Detail-css'>Fair Market Value (FMV) High</p>
-                                    <h3 className='ComicDetail'>{parseFloat(fmv_high).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
+                        {fmv > 0
+                            ?   <>  <p className='Detail-css'>Fair Market Value (FMV)</p>
+                                    <h3 className='ComicDetail'>{parseFloat(fmv).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
                                 </>
                             : null }   
                         {notes 

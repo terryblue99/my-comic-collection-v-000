@@ -298,7 +298,7 @@ img {
 .Dashboard-totalComicRelated,
 .Sort-header
 {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .Dashboard-comicText-new,
@@ -539,7 +539,7 @@ button:focus,
 
 .FullList-button {
   font-size: 1rem;
-  margin-top: 50px;
+  margin-top: 15px;
   padding: 10px 20px;
 }
 
@@ -1266,15 +1266,15 @@ textarea:required
   .Dashboard-totalComicRelated,
   .Dashboard-totalComics 
   {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   .Comic-total {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
   }
 
   .Comic-related-total {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
   }
 
   .Dashboard-comicText-new,

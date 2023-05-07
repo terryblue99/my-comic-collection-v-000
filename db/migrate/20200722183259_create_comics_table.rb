@@ -6,6 +6,7 @@ class CreateComicsTable < ActiveRecord::Migration[6.0]
       t.string     :comic_number
       t.string     :date_published
       t.decimal    :cost, :precision => 8, :scale => 2, default: 0.00
+      t.decimal    :sold_for, :precision => 8, :scale => 2, default: 0.00
       t.string     :notes 
       t.integer    :user_id
 
