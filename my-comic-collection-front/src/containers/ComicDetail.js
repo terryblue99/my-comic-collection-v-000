@@ -116,6 +116,7 @@ const ComicDetail = (props) => {
             date_published,
             cost,
             sold_for,
+            date_sold,
             fmv,
             notes
         } = currentComic
@@ -125,7 +126,8 @@ const ComicDetail = (props) => {
             comic_name: related_title,
             comic_number: related_input1,
             comic_title: related_input2,
-            date_published: related_input3
+            date_published: related_input3,
+            date_sold: related_input4
         } = currentComic
         
         return ( 
@@ -181,6 +183,14 @@ const ComicDetail = (props) => {
                                     <h3 className='ComicDetail'>{parseFloat(sold_for).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
                                 </>
                             : null }
+                        {date_sold && !comic_publisher.includes(comicRelated)
+                            ?   <>  <p className='Detail-css'>Date Sold</p>
+                                    <h3 className='ComicDetail'>{date_sold}</h3>
+                                </>
+                            :   null }
+                        {related_input4 !== 'undefined' && comic_related.includes(comicRelated) 
+                            ?   <h3 className='ComicDetail'>{related_input4}</h3>
+                            :   null }    
                         {fmv > 0
                             ?   <>  <p className='Detail-css'>Fair Market Value (FMV)</p>
                                     <h3 className='ComicDetail'>{parseFloat(fmv).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>

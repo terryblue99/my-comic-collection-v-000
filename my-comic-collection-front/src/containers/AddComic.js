@@ -21,6 +21,7 @@ const AddComic = (props) => {
           date_published: '',
           cost: 0.00,
           sold_for: 0.00,
+          date_sold: '',
           fmv: 0.00,
           notes: '',
           image: null,
@@ -68,7 +69,15 @@ const AddComic = (props) => {
                     alert('Date Published must be in format yyyy-mm-dd, yyyy-mm or yyyy and contain valid day & month numbers!')
                     return
                }
-          }   
+          }
+          // validate the 'Date Sold' input for comic records
+          if (!isComicRelated) {
+               const isValidDate = DateValidation(stateData.date_sold)
+               if (!isValidDate) {
+                    alert('Date Sold must be in format yyyy-mm-dd, yyyy-mm or yyyy and contain valid day & month numbers!')
+                    return
+               }
+          } 
           // Create the record
           const formData = new FormData()
           if (!isComicRelated) {
@@ -79,6 +88,8 @@ const AddComic = (props) => {
                formData.append('date_published', stateData.date_published)
                formData.append('cost', stateData.cost)
                formData.append('fmv', stateData.fmv)
+               formData.append('sold_for', stateData.sold_for)
+               formData.append('date_sold', stateData.date_sold)
                formData.append('notes', stateData.notes)
                formData.append('user_id', stateData.user_id)
                if (stateData.image) {
@@ -90,6 +101,7 @@ const AddComic = (props) => {
                formData.append('related_input1', stateData.related_input1)
                formData.append('related_input2', stateData.related_input2)
                formData.append('related_input3', stateData.related_input3)
+               formData.append('related_input4', stateData.related_input4)
                formData.append('notes', stateData.notes)
                formData.append('user_id', currentUser.user.id)
                if (stateData.image) {
@@ -237,6 +249,20 @@ const AddComic = (props) => {
                                    </>
                               : null
                          }
+                         {!isAddComicRelated
+                              ?    <>   <label>Date Sold (yyyy-mm-dd, yyyy-mm or yyyy)</label>
+                                        <input className='Input-element'
+                                             type='text'
+                                             name='date_sold'
+                                             onChange={handleChange}/>
+                                   </>
+                              :    <input className='Input-element'
+                                        autoComplete='off'
+                                        type='text'
+                                        name='related_input4'
+                                        onChange={handleChange}/>
+                         }
+                         <br />
                          {!isAddComicRelated
                               ?    <> <label>Fair Market Value (FMV) (e.g. 999.99 | defaults to 0)</label>
                                         <input className='Input-element'

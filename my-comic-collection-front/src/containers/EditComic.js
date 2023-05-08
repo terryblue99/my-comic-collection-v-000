@@ -19,6 +19,7 @@ const EditComic = (props) => {
     date_published: props.location.state.comic.date_published,
     cost: props.location.state.comic.cost,
     sold_for: props.location.state.comic.sold_for,
+    date_sold: props.location.state.comic.date_sold,
     fmv: props.location.state.comic.fmv,
     notes: props.location.state.comic.notes,
     user_id: props.location.state.comic.user_id,
@@ -33,7 +34,8 @@ const EditComic = (props) => {
     comic_name: related_title,
     comic_number: related_input1,
     comic_title: related_input2,
-    date_published: related_input3
+    date_published: related_input3,
+    date_sold: related_input4
   } = stateData
 
   if (related_input1 === 'undefined') {
@@ -44,6 +46,9 @@ const EditComic = (props) => {
   }
   if (related_input3 === 'undefined') {
     related_input3 = ' '
+  }
+  if (related_input4 === 'undefined') {
+    related_input4 = ' '
   }
 
   const setFormInputTrue = () => {
@@ -92,6 +97,15 @@ const EditComic = (props) => {
           return
         }
       }
+      if (formInput.isFormInput) { // validate the 'Date Sold' input for comic records
+        if (stateData.comic_publisher && ! isComicRelated) {
+          const isValidDate = DateValidation(stateData.date_sold)
+          if (! isValidDate) {
+            alert('Date Sold must be in format yyyy-mm-dd, yyyy-mm or yyyy and contain valid day & month numbers!')
+            return
+          }
+        }
+      }  
       // Edit the record
       const formData = new FormData()
       if (! isComicRelated) {
@@ -102,6 +116,7 @@ const EditComic = (props) => {
         formData.append('date_published', stateData.date_published)
         formData.append('cost', stateData.cost)
         formData.append('sold_for', stateData.sold_for)
+        formData.append('date_sold', stateData.date_sold)
         formData.append('fmv', stateData.fmv)
         formData.append('notes', stateData.notes)
         formData.append('user_id', stateData.user_id)
@@ -114,6 +129,7 @@ const EditComic = (props) => {
         formData.append('related_input1', related_input1)
         formData.append('related_input2', related_input2)
         formData.append('related_input3', related_input3)
+        formData.append('related_input4', related_input4)
         formData.append('notes', stateData.notes)
         formData.append('user_id', stateData.user_id)
         if (stateData.image) {
@@ -284,15 +300,29 @@ const EditComic = (props) => {
           </> : null
         }
           {
-          ! isEditComicRelated ? <>
-            <label>Fair Market Value (FMV) (e.g. 999.99 | defaults to 0)</label>
-            <input className='Input-element' type='number' step='0.01' min='0' name='fmv'
-              defaultValue={
-                comic.fmv
-              }
-              onChange={handleChange}/>
-            <br/>
-          </> : null
+            ! isEditComicRelated ? <>
+              <label>Date Sold (yyyy-mm-dd, yyyy-mm or yyyy)</label>
+              <input className='Input-element' type='text' name='date_sold'
+                defaultValue={
+                  comic.date_sold
+                }
+                onChange={handleChange}/>
+            </> : <>
+              <input className='Input-element' autoComplete='off' type='text' name='date_sold'
+                defaultValue={related_input4}
+                onChange={handleChange}/>
+            </>
+        }
+          <br/> {
+            ! isEditComicRelated ? <>
+              <label>Fair Market Value (FMV) (e.g. 999.99 | defaults to 0)</label>
+              <input className='Input-element' type='number' step='0.01' min='0' name='fmv'
+                defaultValue={
+                  comic.fmv
+                }
+                onChange={handleChange}/>
+              <br/>
+            </> : null
         }
           <label>Notes</label>
           <textarea className='Text-area' name='notes'

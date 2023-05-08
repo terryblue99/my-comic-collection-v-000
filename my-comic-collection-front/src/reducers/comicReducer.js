@@ -5,6 +5,8 @@ import {
 	COST_LOW_TO_HIGH_SORT,
 	SOLD_FOR_HIGH_TO_LOW_SORT,
 	SOLD_FOR_LOW_TO_HIGH_SORT,
+	DATE_SOLD_NEWEST_TO_OLDEST_SORT,
+	DATE_SOLD_OLDEST_TO_NEWEST_SORT,
 	FMV_LOW_TO_HIGH_SORT,
   FMV_HIGH_TO_LOW_SORT,
 	DELETE_COMIC,
@@ -203,6 +205,9 @@ export default (state = initialState, { type, payload } ) => {
 
 			const searchArray = comicsSearchData.filter(comic => {
 				comicArray = []
+				if (comic.date_sold === null) {
+					comic.date_sold = ''
+				}
 				comicArray.push( comic.comic_name.toLowerCase(),
 													comic.comic_publisher.toLowerCase(),
 													comic.comic_number.toLowerCase(),
@@ -210,6 +215,7 @@ export default (state = initialState, { type, payload } ) => {
 													comic.date_published,
 													comic.cost,
 													comic.sold_for,
+													comic.date_sold,
 													comic.fmv,
 													comic.notes.toLowerCase()
 												)
@@ -298,21 +304,37 @@ export default (state = initialState, { type, payload } ) => {
 				comics: sortedComics.reverse()
 			})
 
-			case	SOLD_FOR_LOW_TO_HIGH_SORT:
-				sortedComics = _.sortBy( state.comics, soldForToNumber )
-				return ({
-					...state,
-					isSort: true,
-					comics: sortedComics
-				})
-	
-			case	SOLD_FOR_HIGH_TO_LOW_SORT:
-				sortedComics = _.sortBy( state.comics, soldForToNumber)
-				return ({
-					...state,
-					isSort: true,
-					comics: sortedComics.reverse()
-				})
+		case	SOLD_FOR_LOW_TO_HIGH_SORT:
+			sortedComics = _.sortBy( state.comics, soldForToNumber )
+			return ({
+				...state,
+				isSort: true,
+				comics: sortedComics
+			})
+
+		case	SOLD_FOR_HIGH_TO_LOW_SORT:
+			sortedComics = _.sortBy( state.comics, soldForToNumber)
+			return ({
+				...state,
+				isSort: true,
+				comics: sortedComics.reverse()
+			})
+
+		case	DATE_SOLD_NEWEST_TO_OLDEST_SORT:
+			sortedComics = _.sortBy( state.comics, 'date_sold' )
+			return ({
+				...state,
+				isSort: true,
+				comics: sortedComics.reverse()
+			})
+
+		case	DATE_SOLD_OLDEST_TO_NEWEST_SORT:
+			sortedComics = _.sortBy( state.comics, 'date_sold' )
+			return ({
+				...state,
+				isSort: true,
+				comics: sortedComics
+			})
 
 		case	FMV_LOW_TO_HIGH_SORT:
 			sortedComics = _.sortBy( state.comics, fmvToNumber )

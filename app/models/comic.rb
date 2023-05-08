@@ -6,6 +6,7 @@ class Comic < ApplicationRecord
   alias_attribute :related_input1, :comic_number
   alias_attribute :related_input2, :comic_title
   alias_attribute :related_input3, :date_published
+  alias_attribute :related_input4, :date_sold
 
   has_one_attached :image
 
