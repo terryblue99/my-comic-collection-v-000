@@ -45,12 +45,17 @@ export const getComicsAction = (user_id) => {
 				total += parseFloat(array[index].sold_for)
 				return total
 			}, 0)
+			// Accumulate the net payout total of all comics sold
+			const netPayoutTotal = response.reduce((total, net_payout, index, array) => {
+				total += parseFloat(array[index].net_payout)
+				return total
+			}, 0)
 			// Calculate the total number of comics sold
 			const totalSold = response.filter(e => e.sold_for > 0).length;
 			// Update comic state
 			dispatch({
 				type: GET_COMICS, 
-				payload: {sortedComicData, totalCost, totalSoldFor, totalSold}
+				payload: {sortedComicData, totalCost, totalSoldFor, netPayoutTotal, totalSold}
 			})
 		})
 		.catch(error => {

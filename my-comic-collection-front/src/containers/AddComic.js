@@ -21,7 +21,10 @@ const AddComic = (props) => {
           date_published: '',
           cost: 0.00,
           sold_for: 0.00,
+          net_payout: 0.00,
           date_sold: '',
+          payout_date: '',
+          sale_venue: '',
           fmv: 0.00,
           notes: '',
           image: null,
@@ -71,13 +74,21 @@ const AddComic = (props) => {
                }
           }
           // validate the 'Date Sold' input for comic records
-          if (!isComicRelated) {
+          if (!isComicRelated && stateData.date_sold !== '') {
                const isValidDate = DateValidation(stateData.date_sold)
                if (!isValidDate) {
                     alert('Date Sold must be in format yyyy-mm-dd, yyyy-mm or yyyy and contain valid day & month numbers!')
                     return
                }
-          } 
+          }
+          // validate the 'Payout Date' input for comic records
+          if (!isComicRelated && stateData.payout_date !== '') {
+               const isValidDate = DateValidation(stateData.payout_date)
+               if (!isValidDate) {
+                    alert('Payout Date must be in format yyyy-mm-dd, yyyy-mm or yyyy and contain valid day & month numbers!')
+                    return
+               }
+          }
           // Create the record
           const formData = new FormData()
           if (!isComicRelated) {
@@ -89,7 +100,10 @@ const AddComic = (props) => {
                formData.append('cost', stateData.cost)
                formData.append('fmv', stateData.fmv)
                formData.append('sold_for', stateData.sold_for)
+               formData.append('net_payout', stateData.net_payout)
                formData.append('date_sold', stateData.date_sold)
+               formData.append('payout_date', stateData.payout_date)
+               formData.append('sale_venue', stateData.sale_venue)
                formData.append('notes', stateData.notes)
                formData.append('user_id', stateData.user_id)
                if (stateData.image) {
@@ -102,6 +116,8 @@ const AddComic = (props) => {
                formData.append('related_input2', stateData.related_input2)
                formData.append('related_input3', stateData.related_input3)
                formData.append('related_input4', stateData.related_input4)
+               formData.append('related_input5', stateData.related_input5)
+               formData.append('related_input6', stateData.related_input6)
                formData.append('notes', stateData.notes)
                formData.append('user_id', currentUser.user.id)
                if (stateData.image) {
@@ -160,7 +176,7 @@ const AddComic = (props) => {
                                              name='comic_publisher'
                                              onChange={handleChange}/>
                                    </>
-                              :    <input className='Input-elemen'
+                              :    <input className='Input-element'
                                         type='hidden'
                                         name='comic_related'
                                         value={comic_related}
@@ -250,6 +266,18 @@ const AddComic = (props) => {
                               : null
                          }
                          {!isAddComicRelated
+                              ?    <> <label>Net Payout (e.g. 99.99 | defaults to 0)</label>
+                                        <input className='Input-element'
+                                             type='number'
+                                             step='0.01'
+                                             min='0'
+                                             name='net_payout'
+                                             onChange={handleChange}/> 
+                                        <br />    
+                                   </>
+                              : null
+                         }
+                         {!isAddComicRelated
                               ?    <>   <label>Date Sold (yyyy-mm-dd, yyyy-mm or yyyy)</label>
                                         <input className='Input-element'
                                              type='text'
@@ -260,6 +288,34 @@ const AddComic = (props) => {
                                         autoComplete='off'
                                         type='text'
                                         name='related_input4'
+                                        onChange={handleChange}/>
+                         }
+                         <br />
+                         {!isAddComicRelated
+                              ?    <>   <label>Payout Date (yyyy-mm-dd, yyyy-mm or yyyy)</label>
+                                        <input className='Input-element'
+                                             type='text'
+                                             name='payout_date'
+                                             onChange={handleChange}/>
+                                   </>
+                              :    <input className='Input-element'
+                                        autoComplete='off'
+                                        type='text'
+                                        name='related_input5'
+                                        onChange={handleChange}/>
+                         }
+                         <br />
+                         {!isAddComicRelated
+                              ?    <>   <label>Sale Venue</label>
+                                        <input className='Input-element'
+                                             type='text'
+                                             name='sale_venue'
+                                             onChange={handleChange}/>
+                                   </>
+                                   :    <input className='Input-element'
+                                        autoComplete='off'
+                                        type='text'
+                                        name='related_input6'
                                         onChange={handleChange}/>
                          }
                          <br />

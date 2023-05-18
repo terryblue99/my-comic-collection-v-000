@@ -19,7 +19,10 @@ const EditComic = (props) => {
     date_published: props.location.state.comic.date_published,
     cost: props.location.state.comic.cost,
     sold_for: props.location.state.comic.sold_for,
+    net_payout: props.location.state.comic.net_payout,
     date_sold: props.location.state.comic.date_sold,
+    payout_date: props.location.state.comic.payout_date,
+    sale_venue: props.location.state.comic.sale_venue,
     fmv: props.location.state.comic.fmv,
     notes: props.location.state.comic.notes,
     user_id: props.location.state.comic.user_id,
@@ -35,7 +38,9 @@ const EditComic = (props) => {
     comic_number: related_input1,
     comic_title: related_input2,
     date_published: related_input3,
-    date_sold: related_input4
+    date_sold: related_input4,
+    payout_date: related_input5,
+    sale_venue: related_input6
   } = stateData
 
   if (related_input1 === 'undefined') {
@@ -49,6 +54,12 @@ const EditComic = (props) => {
   }
   if (related_input4 === 'undefined') {
     related_input4 = ' '
+  }
+  if (related_input5 === 'undefined') {
+    related_input5 = ' '
+  }
+  if (related_input6 === 'undefined') {
+    related_input6 = ' '
   }
 
   const setFormInputTrue = () => {
@@ -98,10 +109,19 @@ const EditComic = (props) => {
         }
       }
       if (formInput.isFormInput) { // validate the 'Date Sold' input for comic records
-        if (stateData.comic_publisher && ! isComicRelated) {
+        if (stateData.comic_publisher && ! isComicRelated && stateData.date_sold !== '') {
           const isValidDate = DateValidation(stateData.date_sold)
           if (! isValidDate) {
             alert('Date Sold must be in format yyyy-mm-dd, yyyy-mm or yyyy and contain valid day & month numbers!')
+            return
+          }
+        }
+      }
+      if (formInput.isFormInput) { // validate the 'Payout Date' input for comic records
+        if (stateData.comic_publisher && ! isComicRelated && stateData.payout_date !== '') {
+          const isValidDate = DateValidation(stateData.payout_date)
+          if (! isValidDate) {
+            alert('Payout Date must be in format yyyy-mm-dd, yyyy-mm or yyyy and contain valid day & month numbers!')
             return
           }
         }
@@ -116,7 +136,10 @@ const EditComic = (props) => {
         formData.append('date_published', stateData.date_published)
         formData.append('cost', stateData.cost)
         formData.append('sold_for', stateData.sold_for)
+        formData.append('net_payout', stateData.net_payout)
         formData.append('date_sold', stateData.date_sold)
+        formData.append('payout_date', stateData.payout_date)
+        formData.append('sale_venue', stateData.sale_venue)
         formData.append('fmv', stateData.fmv)
         formData.append('notes', stateData.notes)
         formData.append('user_id', stateData.user_id)
@@ -130,6 +153,8 @@ const EditComic = (props) => {
         formData.append('related_input2', related_input2)
         formData.append('related_input3', related_input3)
         formData.append('related_input4', related_input4)
+        formData.append('related_input5', related_input5)
+        formData.append('related_input6', related_input6)
         formData.append('notes', stateData.notes)
         formData.append('user_id', stateData.user_id)
         if (stateData.image) {
@@ -300,6 +325,17 @@ const EditComic = (props) => {
           </> : null
         }
           {
+          ! isEditComicRelated ? <>
+            <label>Net Payout (e.g. 99.99 | defaults to 0)</label>
+            <input className='Input-element' type='number' step='0.01' min='0' name='net_payout'
+              defaultValue={
+                comic.net_payout
+              }
+              onChange={handleChange}/>
+            <br/>
+          </> : null
+        }
+          {
             ! isEditComicRelated ? <>
               <label>Date Sold (yyyy-mm-dd, yyyy-mm or yyyy)</label>
               <input className='Input-element' type='text' name='date_sold'
@@ -312,6 +348,34 @@ const EditComic = (props) => {
                 defaultValue={related_input4}
                 onChange={handleChange}/>
             </>
+          }
+          <br/> {
+            ! isEditComicRelated ? <>
+              <label>Payout Date (yyyy-mm-dd, yyyy-mm or yyyy)</label>
+              <input className='Input-element' type='text' name='payout_date'
+                defaultValue={
+                  comic.payout_date
+                }
+                onChange={handleChange}/>
+            </> : <>
+              <input className='Input-element' autoComplete='off' type='text' name='payout_date'
+                defaultValue={related_input5}
+                onChange={handleChange}/>
+            </>
+          }
+          <br/> {
+          ! isEditComicRelated ? <>
+            <label>Sale Venue</label>
+            <input className='Input-element' type='text' name='sale_venue'
+              defaultValue={
+                comic.sale_venue
+              }
+              onChange={handleChange}/>
+          </> : <>
+            <input className='Input-element' autoComplete='off' type='text' name='sale_venue'
+              defaultValue={related_input6}
+              onChange={handleChange}/>
+          </>
         }
           <br/> {
             ! isEditComicRelated ? <>

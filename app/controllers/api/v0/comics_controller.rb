@@ -47,7 +47,10 @@ class Api::V0::ComicsController < ApplicationController
           :comic_title,
           :cost,
           :sold_for,
+          :net_payout,
           :date_sold,
+          :payout_date,
+          :sale_venue,
           :fmv,
           :notes,
           :image,
@@ -57,7 +60,9 @@ class Api::V0::ComicsController < ApplicationController
           :related_input1,
           :related_input2,
           :related_input3,
-          :related_input4
+          :related_input4,
+          :related_input5,
+          :related_input6
       )
   end
   

@@ -24,6 +24,7 @@ const DashboardMain = (props) => {
   const isSearchFailed = useSelector(state => state.myComics.isSearchFailed)
   const totalCost = useSelector(state => state.myComics.totalCost)
   const totalSoldFor = useSelector(state => state.myComics.totalSoldFor)
+  const netPayoutTotal = useSelector(state => state.myComics.netPayoutTotal)
   const totalSold = useSelector(state => state.myComics.totalSold)
   const dispatch = useDispatch()
 
@@ -68,6 +69,8 @@ const DashboardMain = (props) => {
         <option value='Cost High to Low'>Cost High to Low</option>
         <option value='Sold For Low to High'>Sold For Low to High</option>
         <option value='Sold For High to Low'>Sold For High to Low</option>
+        <option value='Net Payout Low to High'>Net Payout Low to High</option>
+        <option value='Net Payout High to Low'>Net Payout High to Low</option>
         <option value='Fmv Low to High'>FMV Low to High</option>
         <option value='Fmv High to Low'>FMV High to Low</option>
       </select>
@@ -210,6 +213,14 @@ const DashboardMain = (props) => {
             ?  <p className='Dashboard-totalComics Center-text'>
                 Sold For Total: <span className='Comic-total'>
                               {parseFloat(totalSoldFor).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}
+                            </span>
+              </p>
+            : null
+        }
+        { number_of_comics > 0 && netPayoutTotal > 0 && !isComicRelatedDisplayed
+            ?  <p className='Dashboard-totalComics Center-text'>
+                Net Payout Total: <span className='Comic-total'>
+                              {parseFloat(netPayoutTotal).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}
                             </span>
               </p>
             : null
