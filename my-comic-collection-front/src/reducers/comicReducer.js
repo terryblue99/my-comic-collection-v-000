@@ -16,6 +16,7 @@ import {
   NEWEST_TO_OLDEST_SORT,
   OLDEST_TO_NEWEST_SORT,
   RESET_TOTAL_COST,
+  RESET_TOTAL_SOLD_COST,
   RESET_TOTAL_SOLD_FOR,
   RESET_TOTAL_NET_PAYOUT,
   RESET_TOTAL_SOLD,
@@ -37,10 +38,12 @@ const initialState = {
   comicRelated: 'Comic-Related', // For records that are not related to a specific comic.
   sortDefaultText: 'Select a sort option for comics...',
   totalCost: parseFloat(0),
-  totalSoSoldFor: parseFloat(0),
+  totalSoldCost: parseFloat(0),
+  totalSoldFor: parseFloat(0),
   netPayoutTotal: parseFloat(0),
   totalSold: parseFloat(0),
   savedTotalCost: parseFloat(0),
+  savedTotalSoldCost: parseFloat(0),
   savedTotalSoldFor: parseFloat(0),
   savedNetPayoutTotal: parseFloat(0),
   savedTotalSold: parseFloat(0),
@@ -58,7 +61,10 @@ const costToNumber = (comic) => {
   if (comic.cost) {
     return parseFloat(comic.cost)
   } else 
-    return 0.00 
+    return 0.00
+
+  
+
 }
 
 // Used when sorting comics by sold_for,
@@ -67,7 +73,10 @@ const soldForToNumber = (comic) => {
   if (comic.sold_for) {
     return parseFloat(comic.sold_for)
   } else 
-    return 0.00  
+    return 0.00
+
+  
+
 }
 
 // Used when sorting comics by net_payout,
@@ -76,7 +85,10 @@ const netPayOutToNumber = (comic) => {
   if (comic.net_payout) {
     return parseFloat(comic.net_payout)
   } else 
-    return 0.00  
+    return 0.00
+
+  
+
 }
 
 // Used when sorting comics by fmv,
@@ -85,7 +97,10 @@ const fmvToNumber = (comic) => {
   if (comic.fmv) {
     return parseFloat(comic.fmv)
   } else 
-    return 0.00 
+    return 0.00
+
+  
+
 }
 
 export default(state = initialState, {type, payload}) => {
@@ -96,7 +111,14 @@ export default(state = initialState, {type, payload}) => {
       if (payload) {
         const comicsData = payload.sortedComicData.filter(comic => comic.comic_publisher !== state.comicRelated)
         const relatedData = payload.sortedComicData.filter(comic => comic.comic_publisher === state.comicRelated)
-        const comicsSoldData = payload.sortedComicData.filter(comic => comic.sold_for > 0)
+        const comicsSoldData = comicsData.filter(comic => comic.sold_for > 0)
+
+        // Accumulate the Cost total of all sold comics
+        const comicsCostSoldForArray = comicsSoldData.filter(comic => comic.sold_for > 0)
+        const comicsTotalSoldCost = comicsCostSoldForArray.reduce((total, cost, index, array) => {
+          total += parseFloat(array[index].cost)
+          return total
+        }, 0)
 
         return({
           ...state,
@@ -109,6 +131,8 @@ export default(state = initialState, {type, payload}) => {
           savedComicsSold: comicsSoldData,
           totalCost: payload.totalCost,
           savedTotalCost: payload.totalCost,
+          totalSoldCost: comicsTotalSoldCost,
+          savedTotalSoldCost: comicsTotalSoldCost,
           totalSoldFor: payload.totalSoldFor,
           savedTotalSoldFor: payload.totalSoldFor,
           netPayoutTotal: payload.netPayoutTotal,
@@ -119,11 +143,16 @@ export default(state = initialState, {type, payload}) => {
       } else 
         return state
 
+
+      
+
+
     case RESET_COMICS:
       return({
         ...state,
         comics: state.savedComics,
         totalCost: state.savedTotalCost,
+        totalSoldCost: state.savedTotalSoldCost,
         totalSoldFor: state.savedTotalSoldFor,
         netPayoutTotal: state.savedNetPayoutTotal,
         totalSold: state.savedTotalSold,
@@ -155,6 +184,13 @@ export default(state = initialState, {type, payload}) => {
         ...state,
         comics: state.savedComics,
         totalCost: parseFloat(0)
+      })
+
+    case RESET_TOTAL_SOLD_COST:
+      return({
+        ...state,
+        comics: state.savedComics,
+        totalSoldCost: parseFloat(0)
       })
 
     case RESET_TOTAL_SOLD_FOR:
@@ -195,11 +231,16 @@ export default(state = initialState, {type, payload}) => {
       } else 
         return state
 
+
+      
+
+
     case CLEAR_COMICS:
       state = initialState
       return({
         ...state,
         totalCost: parseFloat(0),
+        totalSoldCost: parseFloat(0),
         totalSoldFor: parseFloat(0),
         netPayoutTotal: parseFloat(0),
         totalSold: parseFloat(0)
@@ -214,6 +255,7 @@ export default(state = initialState, {type, payload}) => {
           ...state,
           comics: state.savedComics,
           totalCost: state.savedTotalCost,
+          totalSoldCost: state.savedTotalSoldCost,
           totalSoldFor: state.savedTotalSoldFor,
           netPayoutTotal: state.savedNetPayoutTotal,
           totalSold: state.savedTotalSold
@@ -228,12 +270,20 @@ export default(state = initialState, {type, payload}) => {
       }
 
       let comicsSearchData
+      let comicsCostSoldForArray
       let relatedFound = false
       if (state.savedComicRelated.length === 0) {
         comicsSearchData = state.savedComics
       } else {
         comicsSearchData = state.savedComics.concat(state.savedComicRelated)
       }
+
+      // Accumulate the Cost total of all sold comics
+      comicsCostSoldForArray = comicsSearchData.filter(comic => comic.sold_for > 0)
+      const totalSoldCost = comicsCostSoldForArray.reduce((total, cost, index, array) => {
+        total += parseFloat(array[index].cost)
+        return total
+      }, 0)
 
       const searchArray = comicsSearchData.filter(comic => {
         comicArray = []
@@ -249,19 +299,9 @@ export default(state = initialState, {type, payload}) => {
         if (comic.sale_venue === null) {
           comic.sale_venue = ''
         }
-        comicArray.push(comic.comic_name.toLowerCase(), 
-                        comic.comic_publisher.toLowerCase(), 
-                        comic.comic_number.toLowerCase(), 
-                        comic.comic_title.toLowerCase(), 
-                        comic.date_published, 
-                        comic.cost, 
-                        comic.sold_for, 
-                        comic.net_payout, 
-                        comic.date_sold, 
-                        comic.payout_date, 
-                        comic.sale_venue.toLowerCase(), 
-                        comic.fmv, 
-                        comic.notes.toLowerCase())
+
+        comicArray.push(comic.comic_name.toLowerCase(), comic.comic_publisher.toLowerCase(), comic.comic_number.toLowerCase(), comic.comic_title.toLowerCase(), comic.date_published, comic.cost, comic.sold_for, comic.net_payout, comic.date_sold, comic.payout_date, comic.sale_venue.toLowerCase(), comic.fmv, comic.notes.toLowerCase())
+
         // check array of record string fields for searchText string/substring
         return comicArray.some(comicStringField => comicStringField.includes(searchText))
       })
@@ -274,8 +314,10 @@ export default(state = initialState, {type, payload}) => {
 
       // Accumulate the Sold For total of all comics
       const totalSoldFor = searchArray.reduce((total, sold_for, index, array) => {
-        total += parseFloat(array[index].sold_for)
-        return total
+        if (array[index].sold_for > 0) {
+          total += parseFloat(array[index].sold_for)
+          return total
+        }
       }, 0)
 
       // Accumulate the Net Payout total of all comics
@@ -295,13 +337,14 @@ export default(state = initialState, {type, payload}) => {
         ...state,
         comics: searchArray,
         totalCost: totalCost,
+        totalSoldCost: totalSoldCost,
         totalSoldFor: totalSoldFor,
         netPayoutTotal: netPayoutTotal,
         totalSold: totalSold,
         isSearchResultRelated: relatedFound
       })
 
-    // SORT COMICS & COMIC-RELATED
+      // SORT COMICS & COMIC-RELATED
 
     case COMIC_PUBLISHER_SORT: // sort by name within publisher
       sortedComics = _.chain(state.comics).sortBy('comic_name').sortBy('comic_publisher').value()

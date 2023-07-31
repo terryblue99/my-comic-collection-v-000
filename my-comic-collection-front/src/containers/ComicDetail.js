@@ -219,7 +219,7 @@ const ComicDetail = (props) => {
                             ?   <h3 className='ComicDetail'>{related_input6}</h3>
                             :   null } 
                         {fmv > 0
-                            ?   <>  <p className='Detail-css'>Fair Market Value (FMV)</p>
+                            ?   <>  <p className='Detail-css'>Fair Market Value (FMV) Low</p>
                                     <h3 className='ComicDetail'>{parseFloat(fmv).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
                                 </>
                             : null }   

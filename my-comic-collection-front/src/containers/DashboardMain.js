@@ -26,6 +26,7 @@ const DashboardMain = (props) => {
   const totalSoldFor = useSelector(state => state.myComics.totalSoldFor)
   const netPayoutTotal = useSelector(state => state.myComics.netPayoutTotal)
   const totalSold = useSelector(state => state.myComics.totalSold)
+  const totalSoldCost = useSelector(state => state.myComics.totalSoldCost)
   const dispatch = useDispatch()
 
   const handleSelectedSortKey = (event) =>  {
@@ -207,6 +208,14 @@ const DashboardMain = (props) => {
         <br />
         { number_of_comics > 0 && totalSold > 0 && !isComicRelatedDisplayed
             ? <p className='Dashboard-totalComics Center-text'>Total Comics Sold: <span className='Comic-total'>{totalSold}</span></p>
+            : null
+        }
+        { number_of_comics > 0 && totalSoldCost > 0 && !isComicRelatedDisplayed // && !isComicSoldDisplayed
+            ?  <p className='Dashboard-totalComics Center-text'>
+                Total Sold Cost: <span className='Comic-total'>
+                              {parseFloat(totalSoldCost).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}
+                            </span>
+              </p>
             : null
         }
         { number_of_comics > 0 && totalSoldFor > 0 && !isComicRelatedDisplayed
