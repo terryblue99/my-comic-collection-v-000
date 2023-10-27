@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_14_231955) do
+ActiveRecord::Schema.define(version: 2023_10_26_054700) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -46,10 +46,11 @@ ActiveRecord::Schema.define(version: 2023_05_14_231955) do
     t.string "comic_title"
     t.decimal "fmv", precision: 10, scale: 2, default: "0.0"
     t.decimal "sold_for", precision: 8, scale: 2, default: "0.0"
-    t.string "date_sold", default: ''
+    t.string "date_sold"
     t.decimal "net_payout", precision: 8, scale: 2, default: "0.0"
-    t.string "payout_date", default: ''
-    t.string "sale_venue", default: ''
+    t.string "payout_date"
+    t.string "sale_venue"
+    t.string "date_for_sale"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|

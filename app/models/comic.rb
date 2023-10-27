@@ -9,7 +9,7 @@ class Comic < ApplicationRecord
   alias_attribute :related_input4, :date_sold
   alias_attribute :related_input5, :payout_date
   alias_attribute :related_input6, :sale_venue
-
+  alias_attribute :related_input7, :date_for_sale
   has_one_attached :image
 
   validates :comic_name, :comic_publisher, presence: true

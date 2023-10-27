@@ -117,6 +117,7 @@ const ComicDetail = (props) => {
             cost,
             sold_for,
             net_payout,
+            date_for_sale,
             date_sold,
             payout_date,
             sale_venue,
@@ -132,7 +133,8 @@ const ComicDetail = (props) => {
             date_published: related_input3,
             date_sold: related_input4,
             payout_date: related_input5,
-            sale_venue: related_input6
+            sale_venue: related_input6,
+            date_for_sale: related_input7
 
         } = currentComic
         
@@ -194,6 +196,11 @@ const ComicDetail = (props) => {
                                     <h3 className='ComicDetail'>{parseFloat(net_payout).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
                                 </>
                             : null }
+                        {date_for_sale && !comic_publisher.includes(comicRelated)  && date_for_sale !== ''
+                            ?   <>  <p className='Detail-css'>Date For Sale</p>
+                                    <h3 className='ComicDetail'>{date_for_sale}</h3>
+                                </>
+                            :   null }    
                         {date_sold && !comic_publisher.includes(comicRelated)  && date_sold !== ''
                             ?   <>  <p className='Detail-css'>Date Sold</p>
                                     <h3 className='ComicDetail'>{date_sold}</h3>

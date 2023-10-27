@@ -7,6 +7,8 @@ import {
   SOLD_FOR_LOW_TO_HIGH_SORT,
   NET_PAYOUT_LOW_TO_HIGH_SORT,
   NET_PAYOUT_HIGH_LOW_TO_SORT,
+  DATE_FOR_SALE_NEWEST_TO_OLDEST_SORT,
+  DATE_FOR_SALE_OLDEST_TO_NEWEST_SORT,
   DATE_SOLD_NEWEST_TO_OLDEST_SORT,
   DATE_SOLD_OLDEST_TO_NEWEST_SORT,
   FMV_LOW_TO_HIGH_SORT,
@@ -290,6 +292,9 @@ export default(state = initialState, {type, payload}) => {
         if (comic.date_published === null) {
           comic.date_published = ''
         }
+        if (comic.date_for_sale === null) {
+          comic.date_for_sale = ''
+        }
         if (comic.date_sold === null) {
           comic.date_sold = ''
         }
@@ -300,7 +305,7 @@ export default(state = initialState, {type, payload}) => {
           comic.sale_venue = ''
         }
 
-        comicArray.push(comic.comic_name.toLowerCase(), comic.comic_publisher.toLowerCase(), comic.comic_number.toLowerCase(), comic.comic_title.toLowerCase(), comic.date_published, comic.cost, comic.sold_for, comic.net_payout, comic.date_sold, comic.payout_date, comic.sale_venue.toLowerCase(), comic.fmv, comic.notes.toLowerCase())
+        comicArray.push(comic.comic_name.toLowerCase(), comic.comic_publisher.toLowerCase(), comic.comic_number.toLowerCase(), comic.comic_title.toLowerCase(), comic.date_published, comic.cost, comic.sold_for, comic.net_payout, comic.date_for_sale, comic.date_sold, comic.payout_date, comic.sale_venue.toLowerCase(), comic.fmv, comic.notes.toLowerCase())
 
         // check array of record string fields for searchText string/substring
         return comicArray.some(comicStringField => comicStringField.includes(searchText))
@@ -416,6 +421,20 @@ export default(state = initialState, {type, payload}) => {
         isSort: true,
         comics: sortedComics.reverse()
       })
+    
+    case DATE_FOR_SALE_NEWEST_TO_OLDEST_SORT: sortedComics = _.sortBy(state.comics, 'date_for_sale')
+      return({
+        ...state,
+        isSort: true,
+        comics: sortedComics.reverse()
+      })
+
+    case DATE_FOR_SALE_OLDEST_TO_NEWEST_SORT: sortedComics = _.sortBy(state.comics, 'date_for_sale')
+      return({
+        ...state,
+        isSort: true,
+        comics: sortedComics
+      })  
 
     case DATE_SOLD_NEWEST_TO_OLDEST_SORT: sortedComics = _.sortBy(state.comics, 'date_sold')
       return({

@@ -22,6 +22,7 @@ const AddComic = (props) => {
           cost: 0.00,
           sold_for: 0.00,
           net_payout: 0.00,
+          date_for_sale: '',
           date_sold: '',
           payout_date: '',
           sale_venue: '',
@@ -73,6 +74,14 @@ const AddComic = (props) => {
                     return
                }
           }
+          // validate the 'Date For Sale' input for comic records
+          if (!isComicRelated && stateData.date_for_sale !== '') {
+               const isValidDate = DateValidation(stateData.date_for_sale)
+               if (!isValidDate) {
+                    alert('Date For Sale must be in format yyyy-mm-dd, yyyy-mm or yyyy and contain valid day & month numbers!')
+                    return
+               }
+          }
           // validate the 'Date Sold' input for comic records
           if (!isComicRelated && stateData.date_sold !== '') {
                const isValidDate = DateValidation(stateData.date_sold)
@@ -101,6 +110,7 @@ const AddComic = (props) => {
                formData.append('fmv', stateData.fmv)
                formData.append('sold_for', stateData.sold_for)
                formData.append('net_payout', stateData.net_payout)
+               formData.append('date_for_sale', stateData.date_for_sale)
                formData.append('date_sold', stateData.date_sold)
                formData.append('payout_date', stateData.payout_date)
                formData.append('sale_venue', stateData.sale_venue)
@@ -277,6 +287,20 @@ const AddComic = (props) => {
                                    </>
                               : null
                          }
+                         {!isAddComicRelated
+                              ?    <>   <label>Date For Sale (yyyy-mm-dd, yyyy-mm or yyyy)</label>
+                                        <input className='Input-element'
+                                             type='text'
+                                             name='date_for_sale'
+                                             onChange={handleChange}/>
+                                   </>
+                              :    <input className='Input-element'
+                                        autoComplete='off'
+                                        type='text'
+                                        name='related_input7'
+                                        onChange={handleChange}/>
+                         }
+                         <br />
                          {!isAddComicRelated
                               ?    <>   <label>Date Sold (yyyy-mm-dd, yyyy-mm or yyyy)</label>
                                         <input className='Input-element'

@@ -8,6 +8,7 @@ class ComicSerializer < ActiveModel::Serializer
   :cost,
   :sold_for,
   :net_payout,
+  :date_for_sale,
   :date_sold,
   :payout_date,
   :sale_venue,

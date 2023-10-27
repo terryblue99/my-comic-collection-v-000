@@ -20,6 +20,7 @@ const EditComic = (props) => {
     cost: props.location.state.comic.cost,
     sold_for: props.location.state.comic.sold_for,
     net_payout: props.location.state.comic.net_payout,
+    date_for_sale: props.location.state.comic.date_for_sale,
     date_sold: props.location.state.comic.date_sold,
     payout_date: props.location.state.comic.payout_date,
     sale_venue: props.location.state.comic.sale_venue,
@@ -40,7 +41,8 @@ const EditComic = (props) => {
     date_published: related_input3,
     date_sold: related_input4,
     payout_date: related_input5,
-    sale_venue: related_input6
+    sale_venue: related_input6,
+    date_for_sale: related_input7
   } = stateData
 
   if (related_input1 === 'undefined') {
@@ -108,6 +110,15 @@ const EditComic = (props) => {
           return
         }
       }
+      if (formInput.isFormInput) { // validate the 'Date For Sale' input for comic records
+        if (stateData.comic_publisher && ! isComicRelated && stateData.date_for_sale !== '') {
+          const isValidDate = DateValidation(stateData.date_for_sale)
+          if (! isValidDate) {
+            alert('Date For Sale must be in format yyyy-mm-dd, yyyy-mm or yyyy and contain valid day & month numbers!')
+            return
+          }
+        }
+      }
       if (formInput.isFormInput) { // validate the 'Date Sold' input for comic records
         if (stateData.comic_publisher && ! isComicRelated && stateData.date_sold !== '') {
           const isValidDate = DateValidation(stateData.date_sold)
@@ -137,6 +148,7 @@ const EditComic = (props) => {
         formData.append('cost', stateData.cost)
         formData.append('sold_for', stateData.sold_for)
         formData.append('net_payout', stateData.net_payout)
+        formData.append('date_for_sale', stateData.date_for_sale)
         formData.append('date_sold', stateData.date_sold)
         formData.append('payout_date', stateData.payout_date)
         formData.append('sale_venue', stateData.sale_venue)
@@ -335,6 +347,21 @@ const EditComic = (props) => {
             <br/>
           </> : null
         }
+          {
+            ! isEditComicRelated ? <>
+              <label>Date For Sale (yyyy-mm-dd, yyyy-mm or yyyy)</label>
+              <input className='Input-element' type='text' name='date_for_sale'
+                defaultValue={
+                  comic.date_for_sale
+                }
+                onChange={handleChange}/>
+            </> : <>
+              <input className='Input-element' autoComplete='off' type='text' name='date_for_sale'
+                defaultValue={related_input7}
+                onChange={handleChange}/>
+            </>
+          }
+          <br/> 
           {
             ! isEditComicRelated ? <>
               <label>Date Sold (yyyy-mm-dd, yyyy-mm or yyyy)</label>
