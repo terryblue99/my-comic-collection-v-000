@@ -112,6 +112,9 @@ export const comicRelatedAction = () => {
 export const comicsSoldAction = () => {
 	return dispatch => {
 		dispatch({
+			type: RESET_COMICS
+		})
+		dispatch({
 			type: COMICS_SOLD
 		})
 	}		

@@ -3,20 +3,20 @@ import {
   CLEAR_COMICS,
   COST_HIGH_TO_LOW_SORT,
   COST_LOW_TO_HIGH_SORT,
+  DATE_FOR_SALE_NEW_TO_OLD_SORT,
+  DATE_FOR_SALE_OLD_TO_NEW_SORT,
+  DATE_SOLD_NEW_TO_OLD_SORT,
+  DATE_SOLD_OLD_TO_NEW_SORT,
   SOLD_FOR_HIGH_TO_LOW_SORT,
   SOLD_FOR_LOW_TO_HIGH_SORT,
   NET_PAYOUT_LOW_TO_HIGH_SORT,
-  NET_PAYOUT_HIGH_LOW_TO_SORT,
-  DATE_FOR_SALE_NEWEST_TO_OLDEST_SORT,
-  DATE_FOR_SALE_OLDEST_TO_NEWEST_SORT,
-  DATE_SOLD_NEWEST_TO_OLDEST_SORT,
-  DATE_SOLD_OLDEST_TO_NEWEST_SORT,
+  NET_PAYOUT_HIGH_TO_LOW_SORT,
   FMV_LOW_TO_HIGH_SORT,
   FMV_HIGH_TO_LOW_SORT,
   DELETE_COMIC,
   GET_COMICS,
-  NEWEST_TO_OLDEST_SORT,
-  OLDEST_TO_NEWEST_SORT,
+  NEW_TO_OLD_SORT,
+  OLD_TO_NEW_SORT,
   RESET_TOTAL_COST,
   RESET_TOTAL_SOLD_COST,
   RESET_TOTAL_SOLD_FOR,
@@ -64,9 +64,6 @@ const costToNumber = (comic) => {
     return parseFloat(comic.cost)
   } else 
     return 0.00
-
-  
-
 }
 
 // Used when sorting comics by sold_for,
@@ -76,9 +73,6 @@ const soldForToNumber = (comic) => {
     return parseFloat(comic.sold_for)
   } else 
     return 0.00
-
-  
-
 }
 
 // Used when sorting comics by net_payout,
@@ -88,9 +82,6 @@ const netPayOutToNumber = (comic) => {
     return parseFloat(comic.net_payout)
   } else 
     return 0.00
-
-  
-
 }
 
 // Used when sorting comics by fmv,
@@ -100,9 +91,6 @@ const fmvToNumber = (comic) => {
     return parseFloat(comic.fmv)
   } else 
     return 0.00
-
-  
-
 }
 
 export default(state = initialState, {type, payload}) => {
@@ -116,8 +104,8 @@ export default(state = initialState, {type, payload}) => {
         const comicsSoldData = comicsData.filter(comic => comic.sold_for > 0)
 
         // Accumulate the Cost total of all sold comics
-        const comicsCostSoldForArray = comicsSoldData.filter(comic => comic.sold_for > 0)
-        const comicsTotalSoldCost = comicsCostSoldForArray.reduce((total, cost, index, array) => {
+        //const comicsCostSoldForArray = comicsSoldData.filter(comic => comic.sold_for > 0)
+        const comicsTotalSoldCost = comicsSoldData.reduce((total, cost, index, array) => {
           total += parseFloat(array[index].cost)
           return total
         }, 0)
@@ -144,10 +132,6 @@ export default(state = initialState, {type, payload}) => {
         })
       } else 
         return state
-
-
-      
-
 
     case RESET_COMICS:
       return({
@@ -233,10 +217,6 @@ export default(state = initialState, {type, payload}) => {
       } else 
         return state
 
-
-      
-
-
     case CLEAR_COMICS:
       state = initialState
       return({
@@ -281,11 +261,11 @@ export default(state = initialState, {type, payload}) => {
       }
 
       // Accumulate the Cost total of all sold comics
-      comicsCostSoldForArray = comicsSearchData.filter(comic => comic.sold_for > 0)
-      const totalSoldCost = comicsCostSoldForArray.reduce((total, cost, index, array) => {
-        total += parseFloat(array[index].cost)
-        return total
-      }, 0)
+      //comicsCostSoldForArray = comicsSearchData.filter(comic => comic.sold_for > 0)
+      //const totalSoldCost = comicsCostSoldForArray.reduce((total, cost, index, array) => {
+      //  total += parseFloat(array[index].cost)
+      //  return total
+      //}, 0)
 
       const searchArray = comicsSearchData.filter(comic => {
         comicArray = []
@@ -317,12 +297,17 @@ export default(state = initialState, {type, payload}) => {
         return total
       }, 0)
 
+      // Accumulate the Cost total of all sold comics
+      comicsCostSoldForArray = searchArray.filter(comic => comic.sold_for > 0)
+      const totalSoldCost = comicsCostSoldForArray.reduce((total, cost, index, array) => {
+        total += parseFloat(array[index].cost)
+        return total
+      }, 0)
+
       // Accumulate the Sold For total of all comics
       const totalSoldFor = searchArray.reduce((total, sold_for, index, array) => {
-        if (array[index].sold_for > 0) {
           total += parseFloat(array[index].sold_for)
           return total
-        }
       }, 0)
 
       // Accumulate the Net Payout total of all comics
@@ -366,14 +351,14 @@ export default(state = initialState, {type, payload}) => {
         comics: sortedComics
       })
 
-    case NEWEST_TO_OLDEST_SORT: sortedComics = _.sortBy(state.comics, 'date_published')
+    case NEW_TO_OLD_SORT: sortedComics = _.sortBy(state.comics, 'date_published')
       return({
         ...state,
         isSort: true,
         comics: sortedComics.reverse()
       })
 
-    case OLDEST_TO_NEWEST_SORT: sortedComics = _.sortBy(state.comics, 'date_published')
+    case OLD_TO_NEW_SORT: sortedComics = _.sortBy(state.comics, 'date_published')
       return({
         ...state,
         isSort: true,
@@ -392,6 +377,34 @@ export default(state = initialState, {type, payload}) => {
         ...state,
         isSort: true,
         comics: sortedComics.reverse()
+      })
+
+    case DATE_FOR_SALE_NEW_TO_OLD_SORT: sortedComics = _.sortBy(state.comics, 'date_for_sale')
+      return({
+        ...state,
+        isSort: true,
+        comics: sortedComics.reverse()
+      })
+
+    case DATE_FOR_SALE_OLD_TO_NEW_SORT: sortedComics = _.sortBy(state.comics, 'date_for_sale')
+      return({
+        ...state,
+        isSort: true,
+        comics: sortedComics
+      })
+
+    case DATE_SOLD_NEW_TO_OLD_SORT: sortedComics = _.sortBy(state.comics, 'date_sold')
+      return({
+        ...state,
+        isSort: true,
+        comics: sortedComics.reverse()
+      })
+
+    case DATE_SOLD_OLD_TO_NEW_SORT: sortedComics = _.sortBy(state.comics, 'date_sold')
+      return({
+        ...state,
+        isSort: true,
+        comics: sortedComics
       })
 
     case SOLD_FOR_LOW_TO_HIGH_SORT: sortedComics = _.sortBy(state.comics, soldForToNumber)
@@ -415,39 +428,11 @@ export default(state = initialState, {type, payload}) => {
         comics: sortedComics
       })
 
-    case NET_PAYOUT_HIGH_LOW_TO_SORT: sortedComics = _.sortBy(state.comics, netPayOutToNumber)
+    case NET_PAYOUT_HIGH_TO_LOW_SORT: sortedComics = _.sortBy(state.comics, netPayOutToNumber)
       return({
         ...state,
         isSort: true,
         comics: sortedComics.reverse()
-      })
-    
-    case DATE_FOR_SALE_NEWEST_TO_OLDEST_SORT: sortedComics = _.sortBy(state.comics, 'date_for_sale')
-      return({
-        ...state,
-        isSort: true,
-        comics: sortedComics.reverse()
-      })
-
-    case DATE_FOR_SALE_OLDEST_TO_NEWEST_SORT: sortedComics = _.sortBy(state.comics, 'date_for_sale')
-      return({
-        ...state,
-        isSort: true,
-        comics: sortedComics
-      })  
-
-    case DATE_SOLD_NEWEST_TO_OLDEST_SORT: sortedComics = _.sortBy(state.comics, 'date_sold')
-      return({
-        ...state,
-        isSort: true,
-        comics: sortedComics.reverse()
-      })
-
-    case DATE_SOLD_OLDEST_TO_NEWEST_SORT: sortedComics = _.sortBy(state.comics, 'date_sold')
-      return({
-        ...state,
-        isSort: true,
-        comics: sortedComics
       })
 
     case FMV_LOW_TO_HIGH_SORT: sortedComics = _.sortBy(state.comics, fmvToNumber)

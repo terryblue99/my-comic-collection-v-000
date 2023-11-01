@@ -39,10 +39,10 @@ const EditComic = (props) => {
     comic_number: related_input1,
     comic_title: related_input2,
     date_published: related_input3,
+    date_for_sale: related_input7,
     date_sold: related_input4,
     payout_date: related_input5,
-    sale_venue: related_input6,
-    date_for_sale: related_input7
+    sale_venue: related_input6
   } = stateData
 
   if (related_input1 === 'undefined') {
