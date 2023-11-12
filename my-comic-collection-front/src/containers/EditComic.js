@@ -406,7 +406,7 @@ const EditComic = (props) => {
         }
           <br/> {
             ! isEditComicRelated ? <>
-              <label>Fair Market Value (FMV) Low (e.g. 999.99 | defaults to 0)</label>
+              <label>Fair Market Value (FMV) (e.g. 999.99 | defaults to 0)</label>
               <input className='Input-element' type='number' step='0.01' min='0' name='fmv'
                 defaultValue={
                   comic.fmv
