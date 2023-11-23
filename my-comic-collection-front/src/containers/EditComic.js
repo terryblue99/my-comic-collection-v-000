@@ -18,6 +18,7 @@ const EditComic = (props) => {
     comic_title: props.location.state.comic.comic_title,
     date_published: props.location.state.comic.date_published,
     cost: props.location.state.comic.cost,
+    for_sale_price: props.location.state.comic.for_sale_price,
     sold_for: props.location.state.comic.sold_for,
     net_payout: props.location.state.comic.net_payout,
     date_for_sale: props.location.state.comic.date_for_sale,
@@ -146,6 +147,7 @@ const EditComic = (props) => {
         formData.append('comic_title', stateData.comic_title)
         formData.append('date_published', stateData.date_published)
         formData.append('cost', stateData.cost)
+        formData.append('for_sale_price', stateData.for_sale_price)
         formData.append('sold_for', stateData.sold_for)
         formData.append('net_payout', stateData.net_payout)
         formData.append('date_for_sale', stateData.date_for_sale)
@@ -325,7 +327,18 @@ const EditComic = (props) => {
             <br/>
           </> : null
         }
-          {
+        {
+          ! isEditComicRelated ? <>
+            <label>For Sale Price (e.g. 99.99 | defaults to 0)</label>
+            <input className='Input-element' type='number' step='0.01' min='0' name='for_sale_price'
+              defaultValue={
+                comic.for_sale_price
+              }
+              onChange={handleChange}/>
+            <br/>
+          </> : null
+        }
+        {
           ! isEditComicRelated ? <>
             <label>Sold For (e.g. 99.99 | defaults to 0)</label>
             <input className='Input-element' type='number' step='0.01' min='0' name='sold_for'
@@ -336,7 +349,7 @@ const EditComic = (props) => {
             <br/>
           </> : null
         }
-          {
+        {
           ! isEditComicRelated ? <>
             <label>Net Payout (e.g. 99.99 | defaults to 0)</label>
             <input className='Input-element' type='number' step='0.01' min='0' name='net_payout'
@@ -347,49 +360,49 @@ const EditComic = (props) => {
             <br/>
           </> : null
         }
-          {
-            ! isEditComicRelated ? <>
-              <label>Date For Sale (yyyy-mm-dd, yyyy-mm or yyyy)</label>
-              <input className='Input-element' type='text' name='date_for_sale'
-                defaultValue={
-                  comic.date_for_sale
-                }
-                onChange={handleChange}/>
-            </> : <>
-              <input className='Input-element' autoComplete='off' type='text' name='date_for_sale'
-                defaultValue={related_input7}
-                onChange={handleChange}/>
-            </>
-          }
+        {
+          ! isEditComicRelated ? <>
+            <label>Date For Sale (yyyy-mm-dd, yyyy-mm or yyyy)</label>
+            <input className='Input-element' type='text' name='date_for_sale'
+              defaultValue={
+                comic.date_for_sale
+              }
+              onChange={handleChange}/>
+          </> : <>
+            <input className='Input-element' autoComplete='off' type='text' name='date_for_sale'
+              defaultValue={related_input7}
+              onChange={handleChange}/>
+          </>
+        }
           <br/> 
-          {
-            ! isEditComicRelated ? <>
-              <label>Date Sold (yyyy-mm-dd, yyyy-mm or yyyy)</label>
-              <input className='Input-element' type='text' name='date_sold'
-                defaultValue={
-                  comic.date_sold
-                }
-                onChange={handleChange}/>
-            </> : <>
-              <input className='Input-element' autoComplete='off' type='text' name='date_sold'
-                defaultValue={related_input4}
-                onChange={handleChange}/>
-            </>
-          }
-          <br/> {
-            ! isEditComicRelated ? <>
-              <label>Payout Date (yyyy-mm-dd, yyyy-mm or yyyy)</label>
-              <input className='Input-element' type='text' name='payout_date'
-                defaultValue={
-                  comic.payout_date
-                }
-                onChange={handleChange}/>
-            </> : <>
-              <input className='Input-element' autoComplete='off' type='text' name='payout_date'
-                defaultValue={related_input5}
-                onChange={handleChange}/>
-            </>
-          }
+        {
+          ! isEditComicRelated ? <>
+            <label>Date Sold (yyyy-mm-dd, yyyy-mm or yyyy)</label>
+            <input className='Input-element' type='text' name='date_sold'
+              defaultValue={
+                comic.date_sold
+              }
+              onChange={handleChange}/>
+          </> : <>
+            <input className='Input-element' autoComplete='off' type='text' name='date_sold'
+              defaultValue={related_input4}
+              onChange={handleChange}/>
+          </>
+        }
+        <br/> {
+          ! isEditComicRelated ? <>
+            <label>Payout Date (yyyy-mm-dd, yyyy-mm or yyyy)</label>
+            <input className='Input-element' type='text' name='payout_date'
+              defaultValue={
+                comic.payout_date
+              }
+              onChange={handleChange}/>
+          </> : <>
+            <input className='Input-element' autoComplete='off' type='text' name='payout_date'
+              defaultValue={related_input5}
+              onChange={handleChange}/>
+          </>
+        }
           <br/> {
           ! isEditComicRelated ? <>
             <label>Sale Venue</label>

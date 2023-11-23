@@ -115,6 +115,7 @@ const ComicDetail = (props) => {
             comic_title,
             date_published,
             cost,
+            for_sale_price,
             sold_for,
             net_payout,
             date_for_sale,
@@ -185,6 +186,11 @@ const ComicDetail = (props) => {
                         { cost > 0
                             ?   <>  <p className='Detail-css'>Cost</p>
                                     <h3 className='ComicDetail'>{parseFloat(cost).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
+                                </>
+                            : null }
+                        { for_sale_price > 0
+                            ?   <>  <p className='Detail-css'>For Sale Price</p>
+                                    <h3 className='ComicDetail'>{parseFloat(for_sale_price).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
                                 </>
                             : null }
                         { sold_for > 0

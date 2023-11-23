@@ -46,6 +46,7 @@ class Api::V0::ComicsController < ApplicationController
           :date_published,
           :comic_title,
           :cost,
+          :for_sale_price,
           :sold_for,
           :net_payout,
           :date_for_sale,

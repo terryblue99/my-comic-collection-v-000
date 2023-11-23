@@ -7,6 +7,8 @@ import {
   DATE_FOR_SALE_OLD_TO_NEW_SORT,
   DATE_SOLD_NEW_TO_OLD_SORT,
   DATE_SOLD_OLD_TO_NEW_SORT,
+  FOR_SALE_PRICE_LOW_TO_HIGH_SORT,
+  FOR_SALE_PRICE_HIGH_TO_LOW_SORT,
   SOLD_FOR_HIGH_TO_LOW_SORT,
   SOLD_FOR_LOW_TO_HIGH_SORT,
   NET_PAYOUT_LOW_TO_HIGH_SORT,
@@ -62,6 +64,15 @@ let sortedComics
 const costToNumber = (comic) => {
   if (comic.cost) {
     return parseFloat(comic.cost)
+  } else 
+    return 0.00
+}
+
+// Used when sorting comics by for_sale_price,
+// converting it to a floating point number
+const forSalePriceToNumber = (comic) => {
+  if (comic.for_sale_price) {
+    return parseFloat(comic.for_sale_price)
   } else 
     return 0.00
 }
@@ -285,7 +296,7 @@ export default(state = initialState, {type, payload}) => {
           comic.sale_venue = ''
         }
 
-        comicArray.push(comic.comic_name.toLowerCase(), comic.comic_publisher.toLowerCase(), comic.comic_number.toLowerCase(), comic.comic_title.toLowerCase(), comic.date_published, comic.cost, comic.sold_for, comic.net_payout, comic.date_for_sale, comic.date_sold, comic.payout_date, comic.sale_venue.toLowerCase(), comic.fmv, comic.notes.toLowerCase())
+        comicArray.push(comic.comic_name.toLowerCase(), comic.comic_publisher.toLowerCase(), comic.comic_number.toLowerCase(), comic.comic_title.toLowerCase(), comic.date_published, comic.cost, comic.for_sale_price, comic.sold_for, comic.net_payout, comic.date_for_sale, comic.date_sold, comic.payout_date, comic.sale_venue.toLowerCase(), comic.fmv, comic.notes.toLowerCase())
 
         // check array of record string fields for searchText string/substring
         return comicArray.some(comicStringField => comicStringField.includes(searchText))
@@ -405,6 +416,20 @@ export default(state = initialState, {type, payload}) => {
         ...state,
         isSort: true,
         comics: sortedComics
+      })
+    
+      case FOR_SALE_PRICE_LOW_TO_HIGH_SORT: sortedComics = _.sortBy(state.comics, forSalePriceToNumber)
+      return({
+        ...state,
+        isSort: true,
+        comics: sortedComics
+      })
+
+    case FOR_SALE_PRICE_HIGH_TO_LOW_SORT: sortedComics = _.sortBy(state.comics, forSalePriceToNumber)
+      return({
+        ...state,
+        isSort: true,
+        comics: sortedComics.reverse()
       })
 
     case SOLD_FOR_LOW_TO_HIGH_SORT: sortedComics = _.sortBy(state.comics, soldForToNumber)

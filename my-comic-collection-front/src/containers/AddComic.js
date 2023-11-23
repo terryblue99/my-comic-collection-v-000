@@ -20,6 +20,7 @@ const AddComic = (props) => {
           comic_title: '',
           date_published: '',
           cost: 0.00,
+          for_sale_price: 0.00,
           sold_for: 0.00,
           net_payout: 0.00,
           date_for_sale: '',
@@ -108,6 +109,7 @@ const AddComic = (props) => {
                formData.append('date_published', stateData.date_published)
                formData.append('cost', stateData.cost)
                formData.append('fmv', stateData.fmv)
+               formData.append('for_sale_price', stateData.for_sale_price)
                formData.append('sold_for', stateData.sold_for)
                formData.append('net_payout', stateData.net_payout)
                formData.append('date_for_sale', stateData.date_for_sale)
@@ -258,6 +260,18 @@ const AddComic = (props) => {
                                              step='0.01'
                                              min='0'
                                              name='cost'
+                                             onChange={handleChange}/> 
+                                        <br />    
+                                   </>
+                              : null
+                         }
+                         {!isAddComicRelated
+                              ?    <> <label>For Sale Price (e.g. 99.99 | defaults to 0)</label>
+                                        <input className='Input-element'
+                                             type='number'
+                                             step='0.01'
+                                             min='0'
+                                             name='for_sale_price'
                                              onChange={handleChange}/> 
                                         <br />    
                                    </>

@@ -72,6 +72,8 @@ const DashboardMain = (props) => {
         <option value='Date For Sale New to Old'>Date For Sale New to Old</option>
         <option value='Date Sold Old to New'>Date Sold Old to New</option>
         <option value='Date Sold New to Old'>Date Sold New to Old</option>
+        <option value='For Sale Price Low to High'>For Sale Price Low to High</option>
+        <option value='For Sale Price High to Low'>For Sale Price High to Low</option>
         <option value='Sold For Low to High'>Sold For Low to High</option>
         <option value='Sold For High to Low'>Sold For High to Low</option>
         <option value='Net Payout Low to High'>Net Payout Low to High</option>
