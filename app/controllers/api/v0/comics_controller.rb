@@ -64,7 +64,8 @@ class Api::V0::ComicsController < ApplicationController
           :related_input3,
           :related_input4,
           :related_input5,
-          :related_input6
+          :related_input6,
+          :related_input7
       )
   end
   

@@ -132,10 +132,10 @@ const ComicDetail = (props) => {
             comic_number: related_input1,
             comic_title: related_input2,
             date_published: related_input3,
-            date_sold: related_input4,
-            payout_date: related_input5,
-            sale_venue: related_input6,
-            date_for_sale: related_input7
+            date_for_sale: related_input4,
+            date_sold: related_input5,
+            payout_date: related_input6,
+            sale_venue: related_input7
            
 
         } = currentComic
@@ -188,53 +188,53 @@ const ComicDetail = (props) => {
                                     <h3 className='ComicDetail'>{parseFloat(cost).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
                                 </>
                             : null }
+                        {related_input4 !== 'undefined' && comic_related.includes(comicRelated) 
+                            ?   <h3 className='ComicDetail'>{related_input4}</h3>
+                            :   null }
                         { for_sale_price > 0
                             ?   <>  <p className='Detail-css'>For Sale Price</p>
                                     <h3 className='ComicDetail'>{parseFloat(for_sale_price).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
                                 </>
                             : null }
+                        {related_input5 !== 'undefined' && comic_related.includes(comicRelated) 
+                            ?   <h3 className='ComicDetail'>{related_input5}</h3>
+                            :   null }
                         { sold_for > 0
                             ?   <>  <p className='Detail-css'>Sold For</p>
                                     <h3 className='ComicDetail'>{parseFloat(sold_for).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
                                 </>
                             : null }
+                        {related_input6 !== 'undefined' && comic_related.includes(comicRelated) 
+                            ?   <h3 className='ComicDetail'>{related_input6}</h3>
+                            :   null }
                         { net_payout > 0
                             ?   <>  <p className='Detail-css'>Net Payout</p>
                                     <h3 className='ComicDetail'>{parseFloat(net_payout).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
                                 </>
                             : null }
+                        {related_input7 !== 'undefined' && comic_related.includes(comicRelated) 
+                            ?   <h3 className='ComicDetail'>{related_input7}</h3>
+                            :   null }
                         {date_for_sale && !comic_publisher.includes(comicRelated)  && date_for_sale !== ''
                             ?   <>  <p className='Detail-css'>Date For Sale</p>
                                     <h3 className='ComicDetail'>{date_for_sale}</h3>
                                 </>
-                            :   null }
-                        {related_input7 !== 'undefined' && comic_related.includes(comicRelated) 
-                            ?   <h3 className='ComicDetail'>{related_input7}</h3>
                             :   null }  
                         {date_sold && !comic_publisher.includes(comicRelated)  && date_sold !== ''
                             ?   <>  <p className='Detail-css'>Date Sold</p>
                                     <h3 className='ComicDetail'>{date_sold}</h3>
                                 </>
                             :   null }
-                        {related_input4 !== 'undefined' && comic_related.includes(comicRelated) 
-                            ?   <h3 className='ComicDetail'>{related_input4}</h3>
-                            :   null }
                         {payout_date && !comic_publisher.includes(comicRelated) && payout_date !== ''
                             ?   <>  <p className='Detail-css'>Payout Date</p>
                                     <h3 className='ComicDetail'>{payout_date}</h3>
                                 </>
-                            :   null }
-                        {related_input5 !== 'undefined' && comic_related.includes(comicRelated) 
-                            ?   <h3 className='ComicDetail'>{related_input5}</h3>
                             :   null }
                         {sale_venue && !comic_publisher.includes(comicRelated)
                             ?   <>  <p className='Detail-css'>Sale Venue</p>
                                     <h3 className='ComicDetail'>{sale_venue}</h3>
                                 </>
                             :   null }
-                        {related_input6 !== 'undefined' && comic_related.includes(comicRelated) 
-                            ?   <h3 className='ComicDetail'>{related_input6}</h3>
-                            :   null } 
                         {fmv > 0
                             ?   <>  <p className='Detail-css'>Fair Market Value (FMV)</p>
                                     <h3 className='ComicDetail'>{parseFloat(fmv).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>

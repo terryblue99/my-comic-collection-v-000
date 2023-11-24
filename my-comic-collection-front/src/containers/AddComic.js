@@ -130,6 +130,7 @@ const AddComic = (props) => {
                formData.append('related_input4', stateData.related_input4)
                formData.append('related_input5', stateData.related_input5)
                formData.append('related_input6', stateData.related_input6)
+               formData.append('related_input7', stateData.related_input7)
                formData.append('notes', stateData.notes)
                formData.append('user_id', currentUser.user.id)
                if (stateData.image) {
@@ -263,8 +264,9 @@ const AddComic = (props) => {
                                              onChange={handleChange}/> 
                                         <br />    
                                    </>
-                              : null
+                              :null
                          }
+                         <br />
                          {!isAddComicRelated
                               ?    <> <label>For Sale Price (e.g. 99.99 | defaults to 0)</label>
                                         <input className='Input-element'
@@ -275,8 +277,9 @@ const AddComic = (props) => {
                                              onChange={handleChange}/> 
                                         <br />    
                                    </>
-                              : null
+                                   :null
                          }
+                         <br />
                          {!isAddComicRelated
                               ?    <> <label>Sold For (e.g. 99.99 | defaults to 0)</label>
                                         <input className='Input-element'
@@ -287,8 +290,9 @@ const AddComic = (props) => {
                                              onChange={handleChange}/> 
                                         <br />    
                                    </>
-                              : null
+                                   :null
                          }
+                         <br />
                          {!isAddComicRelated
                               ?    <> <label>Net Payout (e.g. 99.99 | defaults to 0)</label>
                                         <input className='Input-element'
@@ -299,8 +303,9 @@ const AddComic = (props) => {
                                              onChange={handleChange}/> 
                                         <br />    
                                    </>
-                              : null
+                                   :null
                          }
+                         <br />
                          {!isAddComicRelated
                               ?    <>   <label>Date For Sale (yyyy-mm-dd, yyyy-mm or yyyy)</label>
                                         <input className='Input-element'
@@ -311,7 +316,7 @@ const AddComic = (props) => {
                               :    <input className='Input-element'
                                         autoComplete='off'
                                         type='text'
-                                        name='related_input7'
+                                        name='related_input4'
                                         onChange={handleChange}/>
                          }
                          <br />
@@ -325,7 +330,7 @@ const AddComic = (props) => {
                               :    <input className='Input-element'
                                         autoComplete='off'
                                         type='text'
-                                        name='related_input4'
+                                        name='related_input5'
                                         onChange={handleChange}/>
                          }
                          <br />
@@ -339,7 +344,7 @@ const AddComic = (props) => {
                               :    <input className='Input-element'
                                         autoComplete='off'
                                         type='text'
-                                        name='related_input5'
+                                        name='related_input6'
                                         onChange={handleChange}/>
                          }
                          <br />
@@ -350,10 +355,10 @@ const AddComic = (props) => {
                                              name='sale_venue'
                                              onChange={handleChange}/>
                                    </>
-                                   :    <input className='Input-element'
+                              :    <input className='Input-element'
                                         autoComplete='off'
                                         type='text'
-                                        name='related_input6'
+                                        name='related_input7'
                                         onChange={handleChange}/>
                          }
                          <br />

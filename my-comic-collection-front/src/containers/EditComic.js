@@ -40,10 +40,10 @@ const EditComic = (props) => {
     comic_number: related_input1,
     comic_title: related_input2,
     date_published: related_input3,
-    date_for_sale: related_input7,
-    date_sold: related_input4,
-    payout_date: related_input5,
-    sale_venue: related_input6
+    date_for_sale: related_input4,
+    date_sold: related_input5,
+    payout_date: related_input6,
+    sale_venue: related_input7
   } = stateData
 
   if (related_input1 === 'undefined') {
@@ -63,6 +63,9 @@ const EditComic = (props) => {
   }
   if (related_input6 === 'undefined') {
     related_input6 = ' '
+  }
+  if (related_input7 === 'undefined') {
+    related_input7 = ' '
   }
 
   const setFormInputTrue = () => {
@@ -169,6 +172,7 @@ const EditComic = (props) => {
         formData.append('related_input4', related_input4)
         formData.append('related_input5', related_input5)
         formData.append('related_input6', related_input6)
+        formData.append('related_input7', related_input7)
         formData.append('notes', stateData.notes)
         formData.append('user_id', stateData.user_id)
         if (stateData.image) {
@@ -324,8 +328,8 @@ const EditComic = (props) => {
                 comic.cost
               }
               onChange={handleChange}/>
-            <br/>
-          </> : null
+              <br />
+          </> :null
         }
         {
           ! isEditComicRelated ? <>
@@ -335,8 +339,8 @@ const EditComic = (props) => {
                 comic.for_sale_price
               }
               onChange={handleChange}/>
-            <br/>
-          </> : null
+              <br />
+          </> :null
         }
         {
           ! isEditComicRelated ? <>
@@ -346,8 +350,8 @@ const EditComic = (props) => {
                 comic.sold_for
               }
               onChange={handleChange}/>
-            <br/>
-          </> : null
+              <br />
+          </> :null
         }
         {
           ! isEditComicRelated ? <>
@@ -357,8 +361,8 @@ const EditComic = (props) => {
                 comic.net_payout
               }
               onChange={handleChange}/>
-            <br/>
-          </> : null
+              <br />
+          </> :null
         }
         {
           ! isEditComicRelated ? <>
@@ -370,11 +374,11 @@ const EditComic = (props) => {
               onChange={handleChange}/>
           </> : <>
             <input className='Input-element' autoComplete='off' type='text' name='date_for_sale'
-              defaultValue={related_input7}
+              defaultValue={related_input4}
               onChange={handleChange}/>
           </>
         }
-          <br/> 
+        <br /> 
         {
           ! isEditComicRelated ? <>
             <label>Date Sold (yyyy-mm-dd, yyyy-mm or yyyy)</label>
@@ -385,11 +389,12 @@ const EditComic = (props) => {
               onChange={handleChange}/>
           </> : <>
             <input className='Input-element' autoComplete='off' type='text' name='date_sold'
-              defaultValue={related_input4}
+              defaultValue={related_input5}
               onChange={handleChange}/>
           </>
         }
-        <br/> {
+        <br />
+        {
           ! isEditComicRelated ? <>
             <label>Payout Date (yyyy-mm-dd, yyyy-mm or yyyy)</label>
             <input className='Input-element' type='text' name='payout_date'
@@ -399,11 +404,12 @@ const EditComic = (props) => {
               onChange={handleChange}/>
           </> : <>
             <input className='Input-element' autoComplete='off' type='text' name='payout_date'
-              defaultValue={related_input5}
+              defaultValue={related_input6}
               onChange={handleChange}/>
           </>
         }
-          <br/> {
+        <br />
+        {
           ! isEditComicRelated ? <>
             <label>Sale Venue</label>
             <input className='Input-element' type='text' name='sale_venue'
@@ -411,23 +417,25 @@ const EditComic = (props) => {
                 comic.sale_venue
               }
               onChange={handleChange}/>
-          </> : <>
+          </> :  <>
             <input className='Input-element' autoComplete='off' type='text' name='sale_venue'
-              defaultValue={related_input6}
+              defaultValue={related_input7}
               onChange={handleChange}/>
           </>
         }
-          <br/> {
-            ! isEditComicRelated ? <>
-              <label>Fair Market Value (FMV) (e.g. 999.99 | defaults to 0)</label>
-              <input className='Input-element' type='number' step='0.01' min='0' name='fmv'
-                defaultValue={
-                  comic.fmv
-                }
-                onChange={handleChange}/>
-              <br/>
-            </> : null
+        <br />
+        {
+          ! isEditComicRelated ? <>
+            <label>Fair Market Value (FMV) (e.g. 999.99 | defaults to 0)</label>
+            <input className='Input-element' type='number' step='0.01' min='0' name='fmv'
+              defaultValue={
+                comic.fmv
+              }
+              onChange={handleChange}/>
+            <br/>
+          </> : null
         }
+        <br />
           <label>Notes</label>
           <textarea className='Text-area' name='notes'
             defaultValue={

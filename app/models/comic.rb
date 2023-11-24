@@ -6,10 +6,10 @@ class Comic < ApplicationRecord
   alias_attribute :related_input1, :comic_number
   alias_attribute :related_input2, :comic_title
   alias_attribute :related_input3, :date_published
-  alias_attribute :related_input4, :date_sold
-  alias_attribute :related_input5, :payout_date
-  alias_attribute :related_input6, :sale_venue
-  alias_attribute :related_input7, :date_for_sale
+  alias_attribute :related_input4, :date_for_sale
+  alias_attribute :related_input5, :date_sold
+  alias_attribute :related_input6, :payout_date
+  alias_attribute :related_input7, :sale_venue
   
   has_one_attached :image
 
