@@ -110,6 +110,7 @@ export default(state = initialState, {type, payload}) => {
 
     case GET_COMICS:
       if (payload) {
+        
         const comicsData = payload.sortedComicData.filter(comic => comic.comic_publisher !== state.comicRelated)
         const relatedData = payload.sortedComicData.filter(comic => comic.comic_publisher === state.comicRelated)
         const comicsSoldData = comicsData.filter(comic => comic.sold_for > 0)

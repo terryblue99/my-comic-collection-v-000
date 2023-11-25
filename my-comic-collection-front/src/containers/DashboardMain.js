@@ -152,7 +152,7 @@ const DashboardMain = (props) => {
                                   }             
                 }               
               }> 
-                Display All Comics
+                Display All Comic Data
               </button>
             </>
           : null
