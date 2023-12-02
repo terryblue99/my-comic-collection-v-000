@@ -23,6 +23,7 @@ const EditComic = (props) => {
     net_payout: props.location.state.comic.net_payout,
     date_for_sale: props.location.state.comic.date_for_sale,
     date_sold: props.location.state.comic.date_sold,
+    date_shipped: props.location.state.comic.date_shipped,
     payout_date: props.location.state.comic.payout_date,
     sale_venue: props.location.state.comic.sale_venue,
     fmv: props.location.state.comic.fmv,
@@ -132,6 +133,15 @@ const EditComic = (props) => {
           }
         }
       }
+      if (formInput.isFormInput) { // validate the 'Date Shipped' input for comic records
+        if (stateData.comic_publisher && ! isComicRelated && stateData.date_shipped !== '') {
+          const isValidDate = DateValidation(stateData.date_shipped)
+          if (! isValidDate) {
+            alert('Date Shipped must be in format yyyy-mm-dd, yyyy-mm or yyyy and contain valid day & month numbers!')
+            return
+          }
+        }
+      }
       if (formInput.isFormInput) { // validate the 'Payout Date' input for comic records
         if (stateData.comic_publisher && ! isComicRelated && stateData.payout_date !== '') {
           const isValidDate = DateValidation(stateData.payout_date)
@@ -155,6 +165,7 @@ const EditComic = (props) => {
         formData.append('net_payout', stateData.net_payout)
         formData.append('date_for_sale', stateData.date_for_sale)
         formData.append('date_sold', stateData.date_sold)
+        formData.append('date_shipped', stateData.date_shipped)
         formData.append('payout_date', stateData.payout_date)
         formData.append('sale_venue', stateData.sale_venue)
         formData.append('fmv', stateData.fmv)
@@ -396,6 +407,17 @@ const EditComic = (props) => {
         <br />
         {
           ! isEditComicRelated ? <>
+            <label>Date Shipped (yyyy-mm-dd, yyyy-mm or yyyy)</label>
+            <input className='Input-element' type='text' name='date_shipped'
+              defaultValue={
+                comic.date_shipped
+              }
+              onChange={handleChange}/>
+          </> :null
+        }
+        <br />
+        {
+          ! isEditComicRelated ? <>
             <label>Payout Date (yyyy-mm-dd, yyyy-mm or yyyy)</label>
             <input className='Input-element' type='text' name='payout_date'
               defaultValue={
@@ -432,7 +454,6 @@ const EditComic = (props) => {
                 comic.fmv
               }
               onChange={handleChange}/>
-            <br/>
           </> : null
         }
         <br />

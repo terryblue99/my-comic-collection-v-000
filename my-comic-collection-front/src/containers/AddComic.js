@@ -25,6 +25,7 @@ const AddComic = (props) => {
           net_payout: 0.00,
           date_for_sale: '',
           date_sold: '',
+          date_shipped: '',
           payout_date: '',
           sale_venue: '',
           fmv: 0.00,
@@ -91,6 +92,14 @@ const AddComic = (props) => {
                     return
                }
           }
+          // validate the 'Date Shipped' input for comic records
+          if (!isComicRelated && stateData.date_shipped !== '') {
+               const isValidDate = DateValidation(stateData.date_shipped)
+               if (!isValidDate) {
+                    alert('Date Shipped must be in format yyyy-mm-dd, yyyy-mm or yyyy and contain valid day & month numbers!')
+                    return
+               }
+          }
           // validate the 'Payout Date' input for comic records
           if (!isComicRelated && stateData.payout_date !== '') {
                const isValidDate = DateValidation(stateData.payout_date)
@@ -114,6 +123,7 @@ const AddComic = (props) => {
                formData.append('net_payout', stateData.net_payout)
                formData.append('date_for_sale', stateData.date_for_sale)
                formData.append('date_sold', stateData.date_sold)
+               formData.append('date_shipped', stateData.date_shipped)
                formData.append('payout_date', stateData.payout_date)
                formData.append('sale_venue', stateData.sale_venue)
                formData.append('notes', stateData.notes)
@@ -261,12 +271,12 @@ const AddComic = (props) => {
                                              step='0.01'
                                              min='0'
                                              name='cost'
-                                             onChange={handleChange}/> 
+                                             onChange={handleChange}/>  
                                         <br />    
                                    </>
                               :null
                          }
-                         <br />
+                         
                          {!isAddComicRelated
                               ?    <> <label>For Sale Price (e.g. 99.99 | defaults to 0)</label>
                                         <input className='Input-element'
@@ -275,11 +285,11 @@ const AddComic = (props) => {
                                              min='0'
                                              name='for_sale_price'
                                              onChange={handleChange}/> 
-                                        <br />    
+                                        <br />   
                                    </>
-                                   :null
+                              :null
                          }
-                         <br />
+                         
                          {!isAddComicRelated
                               ?    <> <label>Sold For (e.g. 99.99 | defaults to 0)</label>
                                         <input className='Input-element'
@@ -290,9 +300,9 @@ const AddComic = (props) => {
                                              onChange={handleChange}/> 
                                         <br />    
                                    </>
-                                   :null
+                              :null
                          }
-                         <br />
+                         
                          {!isAddComicRelated
                               ?    <> <label>Net Payout (e.g. 99.99 | defaults to 0)</label>
                                         <input className='Input-element'
@@ -300,12 +310,12 @@ const AddComic = (props) => {
                                              step='0.01'
                                              min='0'
                                              name='net_payout'
-                                             onChange={handleChange}/> 
-                                        <br />    
+                                             onChange={handleChange}/>  
+                                        <br />   
                                    </>
                                    :null
                          }
-                         <br />
+                         
                          {!isAddComicRelated
                               ?    <>   <label>Date For Sale (yyyy-mm-dd, yyyy-mm or yyyy)</label>
                                         <input className='Input-element'
@@ -334,6 +344,17 @@ const AddComic = (props) => {
                                         onChange={handleChange}/>
                          }
                          <br />
+                         {!isAddComicRelated
+                              ?    <>   <label>Date Shipped (yyyy-mm-dd, yyyy-mm or yyyy)</label>
+                                        <input className='Input-element'
+                                             type='text'
+                                             name='date_shipped'
+                                             onChange={handleChange}/>
+                                        <br />
+                                   </>
+                              :null
+                         }
+                       
                          {!isAddComicRelated
                               ?    <>   <label>Payout Date (yyyy-mm-dd, yyyy-mm or yyyy)</label>
                                         <input className='Input-element'
@@ -374,6 +395,7 @@ const AddComic = (props) => {
                                    </>
                               : null
                          }
+                         
                          <label>Notes</label>
                               <textarea className='Text-area'  
                                    name='notes'

@@ -11,6 +11,7 @@ class ComicSerializer < ActiveModel::Serializer
   :net_payout,
   :date_for_sale,
   :date_sold,
+  :date_shipped,
   :payout_date,
   :sale_venue,
   :fmv,
