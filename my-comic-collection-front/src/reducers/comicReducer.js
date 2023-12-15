@@ -302,7 +302,7 @@ export default(state = initialState, {type, payload}) => {
           comic.sale_venue = ''
         }
 
-        comicArray.push(comic.comic_name.toLowerCase(), comic.comic_publisher.toLowerCase(), comic.comic_number.toLowerCase(), comic.comic_title.toLowerCase(), comic.date_published, comic.cost, comic.for_sale_price, comic.sold_for, comic.net_payout, comic.date_for_sale, comic.date_sold, comic.date_shipped, comic.payout_date, comic.sale_venue.toLowerCase(), comic.fmv, comic.notes.toLowerCase())
+        comicArray.push(comic.comic_name.toLowerCase(), comic.comic_publisher.toLowerCase(), comic.comic_number.toLowerCase(), comic.comic_title.toLowerCase(), comic.date_published.toLowerCase(), comic.cost, comic.for_sale_price, comic.sold_for, comic.net_payout, comic.date_for_sale.toLowerCase(), comic.date_sold.toLowerCase(), comic.date_shipped.toLowerCase(), comic.payout_date.toLowerCase(), comic.sale_venue.toLowerCase(), comic.fmv, comic.notes.toLowerCase())
 
         // check array of record string fields for searchText string/substring
         return comicArray.some(comicStringField => comicStringField.includes(searchText))
