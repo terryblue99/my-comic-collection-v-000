@@ -28,6 +28,7 @@ const AddComic = (props) => {
           date_shipped: '',
           payout_date: '',
           sale_venue: '',
+          grade: '',
           fmv: 0.00,
           notes: '',
           image: null,
@@ -126,6 +127,7 @@ const AddComic = (props) => {
                formData.append('date_shipped', stateData.date_shipped)
                formData.append('payout_date', stateData.payout_date)
                formData.append('sale_venue', stateData.sale_venue)
+               formData.append('grade', stateData.grade)
                formData.append('notes', stateData.notes)
                formData.append('user_id', stateData.user_id)
                if (stateData.image) {
@@ -380,6 +382,20 @@ const AddComic = (props) => {
                                         autoComplete='off'
                                         type='text'
                                         name='related_input7'
+                                        onChange={handleChange}/>
+                         }
+                         <br />
+                         {!isAddComicRelated
+                              ?    <>   <label>Grade</label>
+                                        <input className='Input-element'
+                                             type='text'
+                                             name='grade'
+                                             onChange={handleChange}/>
+                                   </>
+                              :    <input className='Input-element'
+                                        autoComplete='off'
+                                        type='text'
+                                        name='related_input8'
                                         onChange={handleChange}/>
                          }
                          <br />

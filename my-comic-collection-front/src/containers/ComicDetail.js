@@ -123,6 +123,7 @@ const ComicDetail = (props) => {
             date_shipped,
             payout_date,
             sale_venue,
+            grade,
             fmv,
             notes
         } = currentComic
@@ -136,8 +137,8 @@ const ComicDetail = (props) => {
             date_for_sale: related_input4,
             date_sold: related_input5,
             payout_date: related_input6,
-            sale_venue: related_input7
-           
+            sale_venue: related_input7,
+            grade: related_input8
 
         } = currentComic
         
@@ -239,6 +240,11 @@ const ComicDetail = (props) => {
                         {sale_venue && !comic_publisher.includes(comicRelated)
                             ?   <>  <p className='Detail-css'>Sale Venue</p>
                                     <h3 className='ComicDetail'>{sale_venue}</h3>
+                                </>
+                            :   null }
+                        {grade && !comic_publisher.includes(comicRelated)
+                            ?   <>  <p className='Detail-css'>Grade</p>
+                                    <h3 className='ComicDetail'>{grade}</h3>
                                 </>
                             :   null }
                         {fmv > 0

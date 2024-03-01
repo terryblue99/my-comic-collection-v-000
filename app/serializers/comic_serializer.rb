@@ -14,6 +14,7 @@ class ComicSerializer < ActiveModel::Serializer
   :date_shipped,
   :payout_date,
   :sale_venue,
+  :grade,
   :fmv,
   :user_id,
   :notes,

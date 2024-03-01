@@ -10,6 +10,7 @@ class Comic < ApplicationRecord
   alias_attribute :related_input5, :date_sold
   alias_attribute :related_input6, :payout_date
   alias_attribute :related_input7, :sale_venue
+  alias_attribute :related_input8, :grade
   
   has_one_attached :image
 

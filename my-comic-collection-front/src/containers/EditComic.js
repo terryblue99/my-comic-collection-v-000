@@ -26,6 +26,7 @@ const EditComic = (props) => {
     date_shipped: props.location.state.comic.date_shipped,
     payout_date: props.location.state.comic.payout_date,
     sale_venue: props.location.state.comic.sale_venue,
+    grade: props.location.state.comic.grade,
     fmv: props.location.state.comic.fmv,
     notes: props.location.state.comic.notes,
     user_id: props.location.state.comic.user_id,
@@ -44,7 +45,8 @@ const EditComic = (props) => {
     date_for_sale: related_input4,
     date_sold: related_input5,
     payout_date: related_input6,
-    sale_venue: related_input7
+    sale_venue: related_input7,
+    grade: related_input8
   } = stateData
 
   if (related_input1 === 'undefined') {
@@ -168,6 +170,7 @@ const EditComic = (props) => {
         formData.append('date_shipped', stateData.date_shipped)
         formData.append('payout_date', stateData.payout_date)
         formData.append('sale_venue', stateData.sale_venue)
+        formData.append('grade', stateData.grade)
         formData.append('fmv', stateData.fmv)
         formData.append('notes', stateData.notes)
         formData.append('user_id', stateData.user_id)
@@ -442,6 +445,21 @@ const EditComic = (props) => {
           </> :  <>
             <input className='Input-element' autoComplete='off' type='text' name='sale_venue'
               defaultValue={related_input7}
+              onChange={handleChange}/>
+          </>
+        }
+        <br />
+        {
+          ! isEditComicRelated ? <>
+            <label>Grade</label>
+            <input className='Input-element' type='text' name='grade'
+              defaultValue={
+                comic.grade
+              }
+              onChange={handleChange}/>
+          </> :  <>
+            <input className='Input-element' autoComplete='off' type='text' name='grade'
+              defaultValue={related_input8}
               onChange={handleChange}/>
           </>
         }

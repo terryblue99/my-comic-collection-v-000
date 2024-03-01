@@ -68,6 +68,8 @@ const DashboardMain = (props) => {
         <option value='Oldest to Newest'>Oldest to Newest</option>
         <option value='Cost Low to High'>Cost Low to High</option>
         <option value='Cost High to Low'>Cost High to Low</option>
+        <option value='Grade Low to High'>Grade Low to High</option>
+        <option value='Grade High to Low'>Grade High to Low</option>
         <option value='Date For Sale Old to New'>Date For Sale Old to New</option>
         <option value='Date For Sale New to Old'>Date For Sale New to Old</option>
         <option value='Date Sold Old to New'>Date Sold Old to New</option>

@@ -3,6 +3,8 @@ import {
   CLEAR_COMICS,
   COST_HIGH_TO_LOW_SORT,
   COST_LOW_TO_HIGH_SORT,
+  GRADE_HIGH_TO_LOW_SORT,
+  GRADE_LOW_TO_HIGH_SORT,
   DATE_FOR_SALE_NEW_TO_OLD_SORT,
   DATE_FOR_SALE_OLD_TO_NEW_SORT,
   DATE_SOLD_NEW_TO_OLD_SORT,
@@ -301,8 +303,11 @@ export default(state = initialState, {type, payload}) => {
         if (comic.sale_venue === null) {
           comic.sale_venue = ''
         }
+        if (comic.grade === null) {
+          comic.grade = ''
+        }
 
-        comicArray.push(comic.comic_name.toLowerCase(), comic.comic_publisher.toLowerCase(), comic.comic_number.toLowerCase(), comic.comic_title.toLowerCase(), comic.date_published.toLowerCase(), comic.cost, comic.for_sale_price, comic.sold_for, comic.net_payout, comic.date_for_sale.toLowerCase(), comic.date_sold.toLowerCase(), comic.date_shipped.toLowerCase(), comic.payout_date.toLowerCase(), comic.sale_venue.toLowerCase(), comic.fmv, comic.notes.toLowerCase())
+        comicArray.push(comic.comic_name.toLowerCase(), comic.comic_publisher.toLowerCase(), comic.comic_number.toLowerCase(), comic.comic_title.toLowerCase(), comic.date_published.toLowerCase(), comic.cost, comic.for_sale_price, comic.sold_for, comic.net_payout, comic.date_for_sale.toLowerCase(), comic.date_sold.toLowerCase(), comic.date_shipped.toLowerCase(), comic.payout_date.toLowerCase(), comic.sale_venue.toLowerCase(), comic.grade.toLowerCase(), comic.fmv, comic.notes.toLowerCase())
 
         // check array of record string fields for searchText string/substring
         return comicArray.some(comicStringField => comicStringField.includes(searchText))
@@ -390,6 +395,20 @@ export default(state = initialState, {type, payload}) => {
       })
 
     case COST_HIGH_TO_LOW_SORT: sortedComics = _.sortBy(state.comics, costToNumber)
+      return({
+        ...state,
+        isSort: true,
+        comics: sortedComics.reverse()
+      })
+
+      case GRADE_LOW_TO_HIGH_SORT: sortedComics = _.sortBy(state.comics, 'grade')
+      return({
+        ...state,
+        isSort: true,
+        comics: sortedComics
+      })
+
+    case GRADE_HIGH_TO_LOW_SORT: sortedComics = _.sortBy(state.comics, 'grade')
       return({
         ...state,
         isSort: true,
